@@ -1,0 +1,26 @@
+<div >
+    <form name="frm" id="frm">
+    	<div data-ng-if="showEntityType">
+    		<label for="entityType">Entity type:</label>
+    		<select id="entityType" name="entityType" data-ng-model="entity.isCinema" data-required="">
+    			<option value="1">Cinema</option>
+    			<option value="0">Theater</option>
+    			<option value="">Please select</option>
+    		</select>
+    		<div data-ng-show="frm.entityType.$error.required" class="required">Entity type is required</div>
+    	</div>	
+    	<label for="entityName">Name:</label>
+    	<input id="entityName" type="text" name="entityName" data-ng-model="entity.name" placeholder="name" data-required="">
+    	<div data-ng-show="frm.entityName.$error.required" class="required">Name is required</div>
+    	<br>
+    	<label for="entityAddress">Address:</label>
+    	<input id="entityAddress" type="text" name="entityAddress" data-ng-model="entity.address" placeholder="address" data-required="">
+    	<div data-ng-show="frm.entityAddress.$error.required" class="required">Address is required</div>
+    	<br>
+    	<label for="entityDescription">Description:</label>
+    	<input id="entityDescription" type="text" name="entityDescription" data-ng-model="entity.description" placeholder="description">
+    	<br>
+    	<button data-ng-click="frm.$invalid || saveEntity()">Save</button>
+    	<button data-ng-click="changeView('/cinematheaterlist')">Cancel</button>
+    </form>
+</div>

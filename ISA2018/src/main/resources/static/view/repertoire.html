@@ -1,0 +1,15 @@
+<div>
+    <form name="frm" id="frm">
+    <button data-ng-if="loginuser.role=='cintheadmin'" data-ng-click="changeView('/repertoire/edit/00000000-0000-0000-0000-000000000000/'+selectedEntityId)">Create</button>
+    	<div data-ng-repeat="repertoire in selectedRepertoires" data-ng-show="selectedRepertoires.length > 0">
+			<div>Production: {{getProductionNameForId(repertoire.idProduction).name}}</div>
+			<div>Production date/time: {{repertoire.dateTime}}</div>
+			<div>Room name: {{roomNameForId(repertoire.idRoom).name}}</div>			
+			<button data-ng-if="loginuser.role=='cintheadmin'" data-ng-click="changeView('/repertoire/edit/'+ repertoire.repertoireId +'/'+selectedEntityId)">Edit</button>
+			<button data-ng-if="loginuser.role=='cintheadmin'" data-ng-click="deleteRepertoire(repertoire.repertoireId)">Delete</button>
+			<button data-ng-if="loginuser.role=='customer'" data-ng-click="changeView('/ticketReservation')">Reservation</button>
+    	
+    	</div>
+		<button data-ng-click="changeView('/cinematheaterlist')">Back</button>
+    </form>
+</div>

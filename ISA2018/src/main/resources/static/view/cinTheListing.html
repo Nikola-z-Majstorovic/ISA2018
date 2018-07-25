@@ -1,0 +1,16 @@
+<div >
+    <form name="frm" id="frm">
+    	<button data-ng-click="loadEntities(0)">Theaters</button>
+    	<button data-ng-click="loadEntities(1)">Cinemas</button>
+    	<button data-ng-if="loginuser.role == 'sysadmin'" data-ng-click="changeView('/cinematheater/edit/00000000-0000-0000-0000-000000000000')">Create new entity</button>
+    	<div data-ng-repeat="entity in selectedEntities" data-ng-show="selectedEntities.length > 0">
+    		<div>{{ entityType }} name: {{entity.name}}</div>
+    		<div>Address: {{entity.address}}</div>
+    		<div>Description: {{entity.description}}</div>
+    		<div>Rating: {{entity.EntityRate}}</div>
+    		<button data-ng-if="loginuser.role == 'customer' || loginuser.role == 'cintheadmin'" data-ng-click="changeView('/repertoirelisting/' + entity.cinemaTheaterId)">Repertoire</button>
+    		<button data-ng-if="loginuser.role == 'sysadmin'" data-ng-click="changeView('/cinematheater/edit/' + entity.cinemaTheaterId)">Edit</button>
+    		<button data-ng-if="loginuser.role == 'sysadmin'" data-ng-click="deleteEntity(entity.cinemaTheaterId)">Delete</button>
+    	</div>
+    </form>
+</div>

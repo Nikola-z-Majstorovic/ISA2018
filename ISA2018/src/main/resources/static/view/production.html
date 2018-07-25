@@ -1,0 +1,18 @@
+<div>
+    <form name="frm" id="frm">
+    <button data-ng-click="changeView('/production/edit/00000000-0000-0000-0000-000000000000')">Create</button>
+    	<div data-ng-repeat="production in productions" data-ng-show="productions.length > 0">
+			<div>Production name: {{production.name}}</div>
+			<div>Production genre: {{production.genre}}</div>
+			<div>Actors: {{production.actors}}</div>	
+			<div>Director: {{production.nameOfDirector}}</div>	
+			<div>Duration: {{production.duration}}</div>	
+			<div>Rating: {{production.avrageRating}}</div>	
+			<div>Description: {{production.description}}</div>		
+			<div>Movie/Display {{getProductionType(production.isMovie)}}</div>		
+				
+    		<button data-ng-click="changeView('/production/edit/'+production.idProduction)">Edit</button>
+    		<button data-ng-click="deleteProduction(production.idProduction)">Delete</button>
+    	</div>
+    </form>
+</div>

@@ -1,0 +1,26 @@
+<div >
+    <form name="frm" id="frm">    	
+    		<label for="idProduction">{{displayType}} :</label>
+    		<select id=idProduction name="idProduction" data-ng-model="repertoire.idProduction" data-required=""
+    			data-ng-options="production.idProduction as production.name for production in selectedProductions" >
+    			<option value="">Please select</option>
+    		</select>
+    		<div data-ng-show="frm.idProduction.$error.required" class="required"> {{displayType}} is required</div>
+    	<label for="dateTime">Date/Time:</label>
+    	<input id="dateTime" type="date" name="dateTime" data-ng-model="repertoire.dateTime" placeholder="name" data-required="">
+    	<div data-ng-show="frm.dateTime.$error.required" class="required">Date/time is required</div>
+    	<br>
+    	<label for="price">Price:</label>
+    	<input id="price" type="number" name="price" data-ng-model="repertoire.price" placeholder="address" data-required="">
+    	<div data-ng-show="frm.price.$error.required" class="required">Price is required</div>
+    	<br>
+    	<label for="idRoom">Room:</label>
+    		<select id=idRoom name="idRoom" data-ng-model="repertoire.idRoom" data-required=""
+    			data-ng-options="room.idRoom as room.name for room in selectedEntityRooms" >
+    			<option value="">Please select</option>
+    		</select>
+    	<div data-ng-show="frm.idRoom.$error.required" class="required"> Room is required</div> 		   	
+    	 <button data-ng-click="frm.$invalid || saveRepertoire()">Save</button>
+    	<button data-ng-click="changeView('/repertoirelisting/'+entity.cinemaTheaterId)">Cancel</button>
+    </form>
+</div>
