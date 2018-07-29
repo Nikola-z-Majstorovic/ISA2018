@@ -5,13 +5,30 @@ myModule.controller('cinTheListingCtrl', ['$rootScope', '$scope', '$timeout', '$
     $scope.loadEntities = function(entityType){
     	if(entityType == 1){
     		$scope.entityType = 'Cinema';  
-    		    		
-    		$scope.selectedEntities = angular.copy(appService.lodashFilterBy($rootScope.cinemasAndTheaters, 'isCinema', entityType));
+            dataService.getAll('cinThe','getAll',entityType,function(res) {
+            	if(res.status==200){        
+            		console.log(res);
+            		$scope.selectedEntities = res.data;
+            	}else {
+            		console.log(res);
+            		
+            	}	
+            });
+//    		$scope.selectedEntities = angular.copy(appService.lodashFilterBy($rootScope.cinemasAndTheaters, 'isCinema', entityType));
     		//Load cinemas using data service
+          	
     	}else{
     		$scope.entityType = 'Theater';
-    		
-    		$scope.selectedEntities = angular.copy(appService.lodashFilterBy($rootScope.cinemasAndTheaters, 'isCinema', entityType));
+            dataService.getAll('cinThe','getAll',entityType,function(res) {
+            	if(res.status==200){        
+            		console.log(res);
+            		$scope.selectedEntities = res.data;
+            	}else {
+            		console.log(res);
+            		
+            	}
+            });
+//    		$scope.selectedEntities = angular.copy(appService.lodashFilterBy($rootScope.cinemasAndTheaters, 'isCinema', entityType));
     		//Load theaters using data service
     	}
     };

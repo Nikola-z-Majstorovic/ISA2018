@@ -5,10 +5,13 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -41,7 +44,10 @@ public class User implements Serializable {
 	@Column(nullable = false)
 	private String phone;
 	
-	@OneToMany(fetch = FetchType.LAZY)
+	@Enumerated(EnumType.STRING)
+	private Role role;
+	
+	@ManyToMany
 	private Set<CinemaTheater> cinemaTheaters;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
@@ -53,7 +59,7 @@ public class User implements Serializable {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
 	private Set<AuctionBiding> auctionBidings;
 	
-	@OneToMany(fetch = FetchType.LAZY)
+	@ManyToMany
 	private Set<Prop> props;
 	
 	public User() {
@@ -126,6 +132,14 @@ public class User implements Serializable {
 
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
 	}
 
 

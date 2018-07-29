@@ -3,8 +3,9 @@ myModule.factory('appService', [ '$rootScope', '$location', '$timeout',
 			return {
 				init : function() {
 				   $rootScope.loginuser = {
-				    		username:"",
-				    		password:""
+						    email:"",
+						    password:"",
+						    role:"UNREGISTRATED"
 				    };
 						   
 					$rootScope.changeView = function(view) {
@@ -13,14 +14,15 @@ myModule.factory('appService', [ '$rootScope', '$location', '$timeout',
 					};
 					$rootScope.logOut = function() {
 						$rootScope.loginuser = {
-					    		username:"",
-					    		password:""					    		
+								email:"",
+					    		password:"",
+					    		role:"UNREGISTRATED"
 					    };
 						$rootScope.changeView("/login");
 					};
 					
 					
-					
+					$rootScope.mainFriendRequests = [];
 					$rootScope.users = [{userID: 1, name: 'Pera', surname: 'Peric', role: 'sysadmin'},
 										{userID: 2, name: 'Djura', surname: 'Djuric', role: 'cintheadmin'},
 										{userID: 3, name: 'Milos', surname: 'Misic', role: 'customer'}];
@@ -32,7 +34,7 @@ myModule.factory('appService', [ '$rootScope', '$location', '$timeout',
 							{cinemaTheaterId: 4, name: 'Evropa', description: 'This is description', address: 'Nikole Tesle 32', isCinema: 1, EntityRate: 45},
 						];
 					
-					$rootScope.loginuser = $rootScope.users[1];
+					//$rootScope.loginuser = $rootScope.users[1];
 					
 					$rootScope.repertoires = [
 						{repertoireId: 1, dateTime: "01.02.2018 20:00", price: 200, cinemaTheaterId: 1,idRoom:1, idProduction:3},

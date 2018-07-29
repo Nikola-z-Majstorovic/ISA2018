@@ -9,7 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -44,8 +44,8 @@ public class CinemaTheater implements Serializable{
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "cinemaTheater")
 	private Set<Room> rooms;
 	
-	@ManyToOne(optional = false)
-	private User user;
+	@ManyToMany()
+	private Set<User> user;
 	
 	public CinemaTheater() {
 		// TODO Auto-generated constructor stub
@@ -110,12 +110,5 @@ public class CinemaTheater implements Serializable{
 		this.entityRate = entityRate;
 	}
 
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
 	
 }

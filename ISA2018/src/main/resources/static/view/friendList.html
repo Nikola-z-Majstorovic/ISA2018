@@ -1,0 +1,25 @@
+<div>
+    <input type="text" name="findUser" data-ng-model="findUser" min="3" placeholder="username">
+    <button data-ng-click="searchUsers()">Find user</button>
+    
+    <div data-ng-repeat="user in foundUsers">
+    	<div>
+    		{{user.name}} <button data-ng-click="sendFriendRequest(user)">Send Friend Request</button>
+    	</div>
+    </div>
+    
+    
+    <div>Friend Requests</div>
+    <div data-ng-repeat="friendRequest in friendRequests">
+    	<div>
+    		{{friendRequest.userID}} <button data-ng-click="confirmFriendRequest(friendRequest)">Accept</button>
+    	</div>
+    </div>
+    
+    <div>My Friends</div>
+    <div data-ng-repeat="myFriend in myFriends">
+    	<div>
+    		{{myFriend.friendID}}
+    	</div>
+    </div>
+</div>

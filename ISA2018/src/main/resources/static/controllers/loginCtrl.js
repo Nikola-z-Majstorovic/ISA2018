@@ -5,26 +5,10 @@ myModule.controller('loginCtrl', ['$rootScope', '$scope', '$timeout', '$window',
 
     $scope.login = function () {
 
-//           dataService.login($rootScope.loginuser,function(res) {
-//            	if(res.status==200){
-//            		$rootScope.loginuser = res.data;
-//            		
-//            		if($rootScope.loginuser.myFavoriteRestaurants == null){
-//            			$rootScope.loginuser.myFavoriteRestaurants = [];
-//            		}else{
-//            			for (var i = 0; i < $rootScope.loginuser.myFavoriteRestaurants.length; i++) {
-//            				$rootScope.loginuser.myFavoriteRestaurants[i] = Number($rootScope.loginuser.myFavoriteRestaurants[i]);
-//            	        }
-//            		}
-//            	    $rootScope.changeView('/home');
-//            	}else {
-//            		console.log("greska");
-//            		$scope.errorLogin=true;
-//            	}
-//            });
-        dataService.getAll('login',function(res) {
-        	if(res.status==200){        		
-        		console.log('bingo');        		
+        dataService.login($rootScope.loginuser,function(res) {
+        	if(res.status==200){        
+        		console.log(res);
+        		$rootScope.loginuser= res.data;
         	    $rootScope.changeView('/home');
         	}else {
         		console.log(res);

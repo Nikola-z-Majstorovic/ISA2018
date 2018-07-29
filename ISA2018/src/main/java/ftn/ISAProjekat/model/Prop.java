@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -32,8 +33,8 @@ public class Prop implements Serializable {
 	@Column(nullable = false)
 	private boolean isNew;
 	
-	@ManyToOne(optional = false)
-	private User user;
+	@ManyToMany
+	private Set<User> user;
 	
 	@ManyToOne(optional = false)
 	private FanZone fanZone;
@@ -83,14 +84,6 @@ public class Prop implements Serializable {
 
 	public void setNew(boolean isNew) {
 		this.isNew = isNew;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
 	}
 
 	public FanZone getFanZone() {

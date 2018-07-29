@@ -2,7 +2,7 @@ myModule.controller('repertoireCtrl', ['$rootScope', '$scope', '$timeout', '$win
     //-----------------------------------------------------------------------------------------------------------
     console.log('we are in repertoire ctrl');
 //    $scope.selectedRepertoires = [];
-    
+    console.log($rootScope.loginuser.role);
     $scope.selectedEntityId =  Number($routeParams.cinTheId);
     $scope.refreshRepertoire = function () {
 

@@ -15,7 +15,8 @@
 <button data-ng-click="changeView('/login')">login</button>
 <button data-ng-click="changeView('/registration')">registration</button>
 <button data-ng-click="changeView('/cinematheaterlist')">View entity list</button>
-<button data-ng-click="changeView('/productionList')">View production list</button> <!-- data-ng-if="loginuser.role=='cintheadmin'" -->
+<button data-ng-click="changeView('/productionList')">View production list</button> <!-- data-ng-if="loginuser.role=='CINTHEADMIN'" -->
+<button data-ng-click="changeView('/friendList')">View friend list</button> <!-- data-ng-if="loginuser.role=='CUSTOMER'" -->
 	<div data-ng-view></div>
 <!-- sevices -->
 <script src="services/appService.js"></script>
@@ -29,6 +30,7 @@
 <script src="controllers/productionCtrl.js"></script>
 <script src="controllers/productionEditCtrl.js"></script>
 <script src="controllers/repertoireEditCtrl.js"></script>
+<script src="controllers/friendListCtrl.js"></script>
 </body>
 
 </html>

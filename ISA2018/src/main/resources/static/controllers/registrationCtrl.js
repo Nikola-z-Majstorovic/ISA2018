@@ -2,19 +2,18 @@ myModule.controller('registrationCtrl', ['$rootScope', '$scope', '$timeout', '$w
     //-----------------------------------------------------------------------------------------------------------
     console.log('we are in reg ctrl');
     $scope.regUser = {
-        username: "",
+        email: "",
         password: "",
         name: "",
         surname: "",
         phone: "",
-        email: "",
         city:""
     };
     $scope.submit = function () {
                  
-           dataService.reg($scope.regUser,function(res) {
+           dataService.registration($scope.regUser,function(res) {
             	console.log(res);
-            	if(res.status==200){
+            	if(res.status==201){
             		$rootScope.loginuser = res.data;
             	    $rootScope.changeView('/home');
             	}else {

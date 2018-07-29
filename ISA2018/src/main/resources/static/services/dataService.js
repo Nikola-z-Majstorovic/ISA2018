@@ -4,25 +4,34 @@ myModule.factory('dataService', ['$http','$resource', '$window', '$routeParams',
         get: function (id) {
             
         },
-        getAll: function (method,cb) {
-        	$http.get('/users/' + method)
+        getAll: function (ctrl,method,param,cb) {
+        	if(param==null) {
+        	$http.get(ctrl+ '/' + method)
             .then(function (response) {
             	cb(response);
             }, function (reason) {
             	cb(reason);
-            });
+            }); 
+        	} else {
+            	$http.get(ctrl + '/' + method + '/' +param)
+                .then(function (response) {
+                	cb(response);
+                }, function (reason) {
+                	cb(reason);
+                }); 
+        	}
  
         },
         delete:function(method,param,cb){
-        	$http.delete('/rest/' + method+ "/" + param)
+        	$http.delete( method+ "/" + param)
             .then(function (response) {
             	cb(response);
             }, function (reason) {
             	cb(reason);
             });
         },
-        create:function(method,param,cb){
-        	$http.post('/rest/'+  method, param)
+        create:function(ctrl,method,param,cb){
+        	$http.post(ctrl+ '/' + method , param)
             .then(function (response) {
             	cb(response);
             }, function (reason) {
@@ -30,7 +39,7 @@ myModule.factory('dataService', ['$http','$resource', '$window', '$routeParams',
             });
         },
         update:function(ctrl,method,param,cb){
-        	$http.put('/WebFoodDelivery/rest/' +ctrl+ '/'+ method, param)
+        	$http.put(ctrl+ '/'+ method, param)
             .then(function (response) {
             	cb(response);
             }, function (reason) {
@@ -38,7 +47,8 @@ myModule.factory('dataService', ['$http','$resource', '$window', '$routeParams',
             });
         },
         login: function (user,cb) {
-        	$http.post('/WebFoodDelivery/rest/users/signIn', user)
+        	console.log(user);
+        	$http.post('/users/login' ,user)
             .then(function (response) {
             	cb(response);
             }, function (reason) {
@@ -47,8 +57,8 @@ myModule.factory('dataService', ['$http','$resource', '$window', '$routeParams',
         	
         	
         },
-        reg : function(user,cb) {
-        	$http.post('/WebFoodDelivery/rest/users/signUp', user)
+        registration : function(user,cb) {
+        	$http.post('/users/registration' ,user)
             .then(function (response) {
             	cb(response);
             }, function (reason) {

@@ -58,7 +58,14 @@ myModule.config(['$routeProvider', '$httpProvider','$locationProvider', function
                 controller: 'productionEditCtrl',
                 templateUrl: 'view/productionEdit.html',
                 resolve: {}
+            })   
+        .when('/friendList',
+            {
+                controller: 'friendListCtrl',
+                templateUrl: 'view/friendList.html',
+                resolve: {}
             })      
+            
 }]);
 
 myModule.run(['$resource', '$rootScope', '$window', '$timeout', '$location', '$routeParams', 'appService', 'dataService', function ($resource, $rootScope, $window, $timeout, $location, $routeParams, appService, dataService) {
