@@ -22,7 +22,11 @@ myModule.factory('appService', [ '$rootScope', '$location', '$timeout',
 					};
 					
 					
-					$rootScope.mainFriendRequests = [];
+					$rootScope.mainFriendRequests = [
+						{userID: 2, friendID: 1, approved: true, sender: true},
+						{userID: 1, friendID: 2, approved: true, sender: false}
+						
+					];
 					$rootScope.users = [{userID: 1, name: 'Pera', surname: 'Peric', role: 'sysadmin'},
 										{userID: 2, name: 'Djura', surname: 'Djuric', role: 'cintheadmin'},
 										{userID: 3, name: 'Milos', surname: 'Misic', role: 'customer'}];

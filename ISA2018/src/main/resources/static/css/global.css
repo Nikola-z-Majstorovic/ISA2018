@@ -50,6 +50,15 @@
     .required {
         color:red;
     }
+    
+    
+    .columnsInRoom{
+    	display: inline-block;
+    	margin-left: 5px;
+    	margin-right: 7px;
+    }
+    
+    
     .modal{display:block;position: fixed;z-index: 100;padding-top: 100px !important;left: 0;top: 0;width: 100%;height: 100%;overflow: auto;background-color: rgb(0,0,0);background-color: rgba(0,0,0,0.4);}
     .modal-content{background-color: #fefefe;margin: auto;padding: 20px;border: 1px solid #888;width: 55%;}
     .close{color: #aaaaaa;float: right;font-size: 28px;font-weight: bold;}

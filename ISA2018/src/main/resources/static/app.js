@@ -64,7 +64,13 @@ myModule.config(['$routeProvider', '$httpProvider','$locationProvider', function
                 controller: 'friendListCtrl',
                 templateUrl: 'view/friendList.html',
                 resolve: {}
-            })      
+            })  
+        .when('/ticketReservation/:repertoireId/:entityId',
+            {
+                controller: 'reservationCtrl',
+                templateUrl: 'view/reservation.html',
+                resolve: {}
+            })  
             
 }]);
 

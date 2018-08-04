@@ -16,7 +16,7 @@ import ftn.ISAProjekat.model.CinemaTheater;
 import ftn.ISAProjekat.repository.services.CinTheService;
 
 @RestController
-public class CinTheController {
+public class CinTheCtrl {
 
 	@Autowired
 	private CinTheService cinTheService;

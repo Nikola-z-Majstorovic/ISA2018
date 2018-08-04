@@ -14,8 +14,6 @@ myModule.controller('cinTheListingCtrl', ['$rootScope', '$scope', '$timeout', '$
             		
             	}	
             });
-//    		$scope.selectedEntities = angular.copy(appService.lodashFilterBy($rootScope.cinemasAndTheaters, 'isCinema', entityType));
-    		//Load cinemas using data service
           	
     	}else{
     		$scope.entityType = 'Theater';
@@ -28,8 +26,7 @@ myModule.controller('cinTheListingCtrl', ['$rootScope', '$scope', '$timeout', '$
             		
             	}
             });
-//    		$scope.selectedEntities = angular.copy(appService.lodashFilterBy($rootScope.cinemasAndTheaters, 'isCinema', entityType));
-    		//Load theaters using data service
+
     	}
     };
     
