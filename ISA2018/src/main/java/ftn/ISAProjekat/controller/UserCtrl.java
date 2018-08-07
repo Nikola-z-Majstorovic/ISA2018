@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import ftn.ISAProjekat.model.User;
-import ftn.ISAProjekat.repository.services.UserService;
+import ftn.ISAProjekat.services.UserService;
 
 @RestController
 public class UserCtrl {

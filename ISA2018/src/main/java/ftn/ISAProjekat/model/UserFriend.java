@@ -21,6 +21,9 @@ public class UserFriend implements Serializable {
 	private Long id;
 
 	@Column(nullable = false)
+	private int myId;
+	
+	@Column(nullable = false)
 	private boolean approved;
 
 	@Column(nullable = false)
@@ -70,6 +73,14 @@ public class UserFriend implements Serializable {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public int getMyId() {
+		return myId;
+	}
+
+	public void setMyId(int myId) {
+		this.myId = myId;
 	}
 
 }

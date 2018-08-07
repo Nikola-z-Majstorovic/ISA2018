@@ -3,14 +3,18 @@ package ftn.ISAProjekat.model;
 import java.io.Serializable;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class Repertoire implements Serializable {
@@ -31,13 +35,20 @@ public class Repertoire implements Serializable {
 	@Column(nullable = false)
 	private float price;
 	
+//	@ManyToOne(cascade = CascadeType.MERGE,fetch = FetchType.EAGER)
 	@ManyToOne(optional = false)
+//	@JsonBackReference
+	@JoinColumn(name = "cinema_theater_id")
 	private CinemaTheater cinemaTheater;
 	
 	@ManyToOne(optional = false)
+//	@JsonBackReference
+//	@JoinColumn(name = "room_id")
 	private Room room;
 	
 	@ManyToOne(optional = false)
+//	@JsonBackReference
+//	@JoinColumn(name = "production_id")
 	private Production production;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "repertoire")
@@ -47,12 +58,14 @@ public class Repertoire implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Repertoire(Long id, boolean active, float price, CinemaTheater cinemaTheater) {
+	public Repertoire(Long id, boolean active, float price, CinemaTheater cinemaTheater,Room room,Production production) {
 		super();
 		this.id = id;
 		this.active = active;
 		this.price = price;
 		this.cinemaTheater = cinemaTheater;
+		this.room = room;
+		this.production = production;
 	}
 
 

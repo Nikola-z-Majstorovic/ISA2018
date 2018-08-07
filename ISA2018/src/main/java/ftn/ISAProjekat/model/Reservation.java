@@ -2,6 +2,7 @@ package ftn.ISAProjekat.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,6 +26,18 @@ public class Reservation implements Serializable{
 	
 	@ManyToOne(optional = false)
 	private Repertoire repertoire;
+	
+	@Column(nullable = false)
+	private boolean approved;
+	
+	@Column(nullable = false)
+	private int sitNumber;
+	
+	@Column(nullable = false)
+	private int rowNumber;
+	
+	@Column(nullable = false)
+	private long senderId;
 	
 	public Reservation() {
 		// TODO Auto-generated constructor stub
@@ -58,6 +71,38 @@ public class Reservation implements Serializable{
 
 	public void setRepertoire(Repertoire repertoire) {
 		this.repertoire = repertoire;
+	}
+
+	public boolean isApproved() {
+		return approved;
+	}
+
+	public void setApproved(boolean approved) {
+		this.approved = approved;
+	}
+
+	public int getSitNumber() {
+		return sitNumber;
+	}
+
+	public void setSitNumber(int sitNumber) {
+		this.sitNumber = sitNumber;
+	}
+
+	public int getRowNumber() {
+		return rowNumber;
+	}
+
+	public void setRowNumber(int rowNumber) {
+		this.rowNumber = rowNumber;
+	}
+
+	public long getSenderId() {
+		return senderId;
+	}
+
+	public void setSenderId(long senderId) {
+		this.senderId = senderId;
 	}
 
 }

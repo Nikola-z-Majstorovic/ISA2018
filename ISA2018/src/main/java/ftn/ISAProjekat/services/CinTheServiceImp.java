@@ -1,4 +1,4 @@
-package ftn.ISAProjekat.repository.services;
+package ftn.ISAProjekat.services;
 
 import java.util.Collection;
 
@@ -25,12 +25,16 @@ public class CinTheServiceImp implements CinTheService {
 		return savedCinemaTheater;
 	}
 
+	@Override
+	public void delete(long id) {
+		cinTheRepository.deleteById(id);
+	}
 
-
-
-
-	
-
+	@Override
+	public Collection<CinemaTheater> findAll() {
+		return cinTheRepository.findAll();
+		
+	}
 
 
 }

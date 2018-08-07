@@ -1,4 +1,4 @@
-package ftn.ISAProjekat.repository.services;
+package ftn.ISAProjekat.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

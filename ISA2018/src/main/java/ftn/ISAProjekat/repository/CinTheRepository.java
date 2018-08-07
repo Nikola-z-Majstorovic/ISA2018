@@ -10,6 +10,8 @@ import ftn.ISAProjekat.model.CinemaTheater;
 public interface CinTheRepository extends JpaRepository<CinemaTheater, Long>{
 
 	 Collection<CinemaTheater> findByIsCinema(boolean isCinema);
+	 
+
 
 	
 }

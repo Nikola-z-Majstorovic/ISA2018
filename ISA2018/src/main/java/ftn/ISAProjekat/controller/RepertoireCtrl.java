@@ -4,29 +4,35 @@ import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import ftn.ISAProjekat.model.Production;
-import ftn.ISAProjekat.services.ProductionService;
+import ftn.ISAProjekat.model.Repertoire;
+import ftn.ISAProjekat.services.RepertoireService;
 
 @RestController
-public class ProductionCtrl {
+public class RepertoireCtrl {
 
 	@Autowired
-	private ProductionService productionService;
+	private RepertoireService repertoireService;
 	
 	@RequestMapping(
-			value = "/production/getAll/{isMovie}",
+			value = "/repertoire/getAll",
 			method = RequestMethod.GET,
 			produces = MediaType.APPLICATION_JSON_VALUE
 			)
 	@ResponseBody
-	public Collection<Production> getProductions(@PathVariable boolean isMovie) {
-		return productionService.findByIsMovie(isMovie);
+	public Collection<Repertoire> getRepertoire() {
+		
+		if(repertoireService.findAll()!=null) {
+			Collection<Repertoire> pera =  repertoireService.findAll();
+			
+			return pera;
+		} 
+			return null;
+		
 	}
-	
+
 }

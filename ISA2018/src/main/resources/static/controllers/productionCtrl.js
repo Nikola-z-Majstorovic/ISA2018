@@ -3,7 +3,7 @@ myModule.controller('productionCtrl', ['$rootScope', '$scope', '$timeout', '$win
     console.log('we are in production ctrl');
     
     $scope.refreshProductions = function() {
-		 dataService.getAll('production','getAll',productionType,function(res){
+		 dataService.getAll('production','getAll',true,function(res){
           	if(res.status==200){        
          		console.log(res);
          		$scope.productions = res.data;

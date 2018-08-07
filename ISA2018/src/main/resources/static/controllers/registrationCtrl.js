@@ -15,7 +15,7 @@ myModule.controller('registrationCtrl', ['$rootScope', '$scope', '$timeout', '$w
             	console.log(res);
             	if(res.status==201){
             		$rootScope.loginuser = res.data;
-            	    $rootScope.changeView('/home');
+            	    $rootScope.changeView('/cinematheaterlist');
             	}else {
             		console.log("greska");
             		$scope.errorLogin=true;

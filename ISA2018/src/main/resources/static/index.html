@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Home</title>
+<title>Cinema/Theater</title>
    <script src="js/angular.min.js"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-resource/1.7.2/angular-resource.min.js"></script>
    <script src="js/angular-route.min.js"></script>
@@ -17,6 +17,7 @@
 <button data-ng-click="changeView('/cinematheaterlist')">View entity list</button>
 <button data-ng-click="changeView('/productionList')">View production list</button> <!-- data-ng-if="loginuser.role=='CINTHEADMIN'" -->
 <button data-ng-click="changeView('/friendList')">View friend list</button> <!-- data-ng-if="loginuser.role=='CUSTOMER'" -->
+<button data-ng-click="changeView('/myReservations')">My Reservations</button> <!-- data-ng-if="loginuser.role=='CUSTOMER'" -->
 	<div data-ng-view></div>
 <!-- sevices -->
 <script src="services/appService.js"></script>
@@ -32,6 +33,8 @@
 <script src="controllers/repertoireEditCtrl.js"></script>
 <script src="controllers/friendListCtrl.js"></script>
 <script src="controllers/reservationCtrl.js"></script>
+<script src="controllers/myReservationsCtrl.js"></script>
+
 </body>
 
 </html>

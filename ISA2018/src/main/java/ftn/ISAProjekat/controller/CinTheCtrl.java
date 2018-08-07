@@ -13,7 +13,7 @@ import java.util.*;
 
 
 import ftn.ISAProjekat.model.CinemaTheater;
-import ftn.ISAProjekat.repository.services.CinTheService;
+import ftn.ISAProjekat.services.CinTheService;
 
 @RestController
 public class CinTheCtrl {
@@ -33,10 +33,21 @@ public class CinTheCtrl {
 		} 
 			return null;
 	}
+	
 	@RequestMapping(
-			value = "/cinThe/create",
+			value = "/cinThe/getAll",
 			method = RequestMethod.GET,
 			produces = MediaType.APPLICATION_JSON_VALUE			
+			)
+	@ResponseBody
+	public Collection<CinemaTheater> getAll(){ 
+			return cinTheService.findAll(); 
+	}
+	@RequestMapping(
+			value = "/cinThe/create",
+			method = RequestMethod.POST,
+			produces = MediaType.APPLICATION_JSON_VALUE,
+			consumes = MediaType.APPLICATION_JSON_VALUE		
 			)
 	@ResponseBody
 	public ResponseEntity<CinemaTheater> create(CinemaTheater cinemaTheater) {
@@ -45,8 +56,9 @@ public class CinTheCtrl {
 	}
 	@RequestMapping(
 			value = "/cinThe/update",
-			method = RequestMethod.GET,
-			produces = MediaType.APPLICATION_JSON_VALUE			
+			method = RequestMethod.PUT,
+			produces = MediaType.APPLICATION_JSON_VALUE,
+			consumes = MediaType.APPLICATION_JSON_VALUE		
 			)
 	@ResponseBody
 	public ResponseEntity<CinemaTheater> update(CinemaTheater cinemaTheater) {
@@ -56,5 +68,13 @@ public class CinTheCtrl {
 		}else {
 			return new ResponseEntity<CinemaTheater>(HttpStatus.CONFLICT);
 		}
+	}
+	@RequestMapping(
+			value = "/cinThe/delete/{id}",
+			method = RequestMethod.DELETE		
+			)
+	@ResponseBody
+	public void deleteEntity(@PathVariable long id) {
+		cinTheService.delete(id);
 	}
 }

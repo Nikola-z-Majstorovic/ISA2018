@@ -2,15 +2,7 @@ var myModule = angular.module('myModule', ['ngRoute', 'ngResource']);
 
 myModule.config(['$routeProvider', '$httpProvider','$locationProvider', function ($routeProvider, $httpProvider,$locationProvider) {
 	$locationProvider.hashPrefix('');
-    //#region Routes 
     $routeProvider
-//        .when('/home',
-//            {
-//                controller: 'homeCtrl',
-//                templateUrl: 'view/home.html',
-//                resolve: {}
-//            })
-//            	
         .when('/login',
             {
                 controller: 'loginCtrl',
@@ -71,6 +63,12 @@ myModule.config(['$routeProvider', '$httpProvider','$locationProvider', function
                 templateUrl: 'view/reservation.html',
                 resolve: {}
             })  
+        .when('/myReservations',
+            {
+                controller: 'myReservationsCtrl',
+                templateUrl: 'view/myReservations.html',
+                resolve: {}
+            }) 
             
 }]);
 

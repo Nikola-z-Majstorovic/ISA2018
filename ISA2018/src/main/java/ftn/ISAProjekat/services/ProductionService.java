@@ -1,4 +1,4 @@
-package ftn.ISAProjekat.repository.services;
+package ftn.ISAProjekat.services;
 
 import java.util.Collection;
 

@@ -9,7 +9,7 @@ myModule.controller('loginCtrl', ['$rootScope', '$scope', '$timeout', '$window',
         	if(res.status==200){        
         		console.log(res);
         		$rootScope.loginuser= res.data;
-        	    $rootScope.changeView('/home');
+        	    $rootScope.changeView('/cinematheaterlist');
         	}else {
         		console.log(res);
         		

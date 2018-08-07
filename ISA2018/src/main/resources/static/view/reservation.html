@@ -26,7 +26,7 @@
 			<div>
 				<div style="display: inline-block;">{{row.rowNo}} row:</div>
 				<div style="display: inline-block;" data-ng-repeat = 'sitInRow in row.sits'>
-					<input type="checkbox" data-ng-model="sitInRow.checked" name="sitNo_{{sitInRow.sitNo}}" data-ng-click="checkSit(row, sitInRow.sitNo)">
+					<input type="checkbox" data-ng-checked = "isReserved(row, sitInRow.sitNo)" data-ng-disabled = "isReserved(row, sitInRow.sitNo)"  data-ng-model="sitInRow.checked" name="sitNo_{{sitInRow.sitNo}}" data-ng-click="checkSit(row, sitInRow.sitNo, $event)">
 				</div>
 			</div>
 			<br>
@@ -34,7 +34,7 @@
 	
 	<div data-ng-show="tempReservations.length > 0">	
 		<div>My Friends</div>
-	    <div data-ng-repeat="myFriend in myFriends">
+	    <div data-ng-repeat="myFriend in myFriends" data-ng-show="myFriend.active == true">
 	    	<div>
 	    		{{myFriend.friendID}}
 	    	</div>

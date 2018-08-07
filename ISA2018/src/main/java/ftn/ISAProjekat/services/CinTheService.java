@@ -1,4 +1,4 @@
-package ftn.ISAProjekat.repository.services;
+package ftn.ISAProjekat.services;
 
 import java.util.Collection;
 
@@ -9,6 +9,10 @@ public interface CinTheService {
 	Collection<CinemaTheater> findByIsCinema(boolean isCinema);
 
 	CinemaTheater create(CinemaTheater cinemaTheater);
+
+	void delete(long id);
+
+	Collection<CinemaTheater> findAll();
 
 
 

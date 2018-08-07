@@ -13,6 +13,7 @@ myModule.factory('dataService', ['$http','$resource', '$window', '$routeParams',
             	cb(reason);
             }); 
         	} else {
+        		console.log(ctrl + '/' + method + '/' +param);
             	$http.get(ctrl + '/' + method + '/' +param)
                 .then(function (response) {
                 	cb(response);
@@ -22,13 +23,22 @@ myModule.factory('dataService', ['$http','$resource', '$window', '$routeParams',
         	}
  
         },
-        delete:function(method,param,cb){
-        	$http.delete( method+ "/" + param)
-            .then(function (response) {
-            	cb(response);
-            }, function (reason) {
-            	cb(reason);
-            });
+        delete:function(ctrl,method,param,cb){
+        	if(param==null) {
+	        	$http.delete(ctrl+ '/' + method)
+	            .then(function (response) {
+	            	cb(response);
+	            }, function (reason) {
+	            	cb(reason);
+	            });
+        	} else {
+        		$http.delete(ctrl + '/' + method + '/' +param)
+                .then(function (response) {
+                	cb(response);
+                }, function (reason) {
+                	cb(reason);
+                }); 
+        	}
         },
         create:function(ctrl,method,param,cb){
         	$http.post(ctrl+ '/' + method , param)
@@ -47,7 +57,6 @@ myModule.factory('dataService', ['$http','$resource', '$window', '$routeParams',
             });
         },
         login: function (user,cb) {
-        	console.log(user);
         	$http.post('/users/login' ,user)
             .then(function (response) {
             	cb(response);
