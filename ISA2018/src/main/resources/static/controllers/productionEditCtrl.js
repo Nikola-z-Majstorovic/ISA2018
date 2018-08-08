@@ -1,4 +1,4 @@
-myModule.controller('productionEditCtrl', ['$rootScope', '$scope', '$timeout', '$window', 'dataService','$http', '$routeParams', 'appService', function ($rootScope, $scope, $timeout, $window, dataService,$http, $routeParams, appService) {
+myModule.controller('productionEditCtrl', ['$rootScope', '$scope', 'dataService', 'appService', function ($rootScope, $scope, dataService,appService) {
     //-----------------------------------------------------------------------------------------------------------
     console.log('we are in productionEditCtrl ctrl');
    

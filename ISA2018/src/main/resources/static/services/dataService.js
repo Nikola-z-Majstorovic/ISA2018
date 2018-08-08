@@ -1,4 +1,4 @@
-myModule.factory('dataService', ['$http','$resource', '$window', '$routeParams', '$location', '$route', '$rootScope', 'appService', function ($http,$resource, $window, $routeParams, $location, $route, $rootScope, appService) {
+myModule.factory('dataService', ['$http', function ($http) {
 
     return {
         get: function (id) {
@@ -13,7 +13,6 @@ myModule.factory('dataService', ['$http','$resource', '$window', '$routeParams',
             	cb(reason);
             }); 
         	} else {
-        		console.log(ctrl + '/' + method + '/' +param);
             	$http.get(ctrl + '/' + method + '/' +param)
                 .then(function (response) {
                 	cb(response);

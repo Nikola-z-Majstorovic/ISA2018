@@ -55,22 +55,6 @@ public class Production implements Serializable {
 	public Production() {
 		// TODO Auto-generated constructor stub
 	}
-
-	public Production(Long id, String name, String actors, String genre, String nameOfDirector, float duration,
-			int avrageRating, String description, boolean isMovie, int productionRate) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.actors = actors;
-		this.genre = genre;
-		this.nameOfDirector = nameOfDirector;
-		this.duration = duration;
-		this.avrageRating = avrageRating;
-		this.description = description;
-		this.isMovie = isMovie;
-		this.productionRate = productionRate;
-	}
-
 	public Long getId() {
 		return id;
 	}
@@ -149,6 +133,12 @@ public class Production implements Serializable {
 
 	public void setProductionRate(int productionRate) {
 		this.productionRate = productionRate;
+	}
+	public Set<Repertoire> getRepertoires() {
+		return repertoires;
+	}
+	public void setRepertoires(Set<Repertoire> repertoires) {
+		this.repertoires = repertoires;
 	}
 
 	

@@ -33,13 +33,6 @@ public class AuctionBiding implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	public AuctionBiding(Auction auction, User user) {
-		super();
-		this.auction = auction;
-		this.user = user;
-	}
-
-
 	public Auction getAuction() {
 		return auction;
 	}
@@ -54,6 +47,22 @@ public class AuctionBiding implements Serializable{
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public float getBidingPrice() {
+		return bidingPrice;
+	}
+
+	public void setBidingPrice(float bidingPrice) {
+		this.bidingPrice = bidingPrice;
 	}
 
 }

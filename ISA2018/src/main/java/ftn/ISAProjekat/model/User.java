@@ -47,7 +47,7 @@ public class User implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private Role role;
 	
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.LAZY)
 	private Set<CinemaTheater> cinemaTheaters;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
@@ -59,23 +59,11 @@ public class User implements Serializable {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
 	private Set<AuctionBiding> auctionBidings;
 	
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.LAZY)
 	private Set<Prop> props;
 	
 	public User() {
 		// TODO Auto-generated constructor stub
-	}
-
-	public User(Long id, String email, String password, String name, String surname, String city, String phone) {
-		super();
-		this.id = id;
-		this.email = email;
-		this.password = password;
-		this.name = name;
-		this.surname = surname;
-		this.city = city;
-		this.phone = phone;
-
 	}
 
 	public Long getId() {
@@ -142,6 +130,43 @@ public class User implements Serializable {
 		this.role = role;
 	}
 
+	public Set<CinemaTheater> getCinemaTheaters() {
+		return cinemaTheaters;
+	}
 
+	public void setCinemaTheaters(Set<CinemaTheater> cinemaTheaters) {
+		this.cinemaTheaters = cinemaTheaters;
+	}
 
+	public Set<Reservation> getReservations() {
+		return reservations;
+	}
+
+	public void setReservations(Set<Reservation> reservations) {
+		this.reservations = reservations;
+	}
+
+	public Set<UserFriend> getFriends() {
+		return friends;
+	}
+
+	public void setFriends(Set<UserFriend> friends) {
+		this.friends = friends;
+	}
+
+	public Set<AuctionBiding> getAuctionBidings() {
+		return auctionBidings;
+	}
+
+	public void setAuctionBidings(Set<AuctionBiding> auctionBidings) {
+		this.auctionBidings = auctionBidings;
+	}
+
+	public Set<Prop> getProps() {
+		return props;
+	}
+
+	public void setProps(Set<Prop> props) {
+		this.props = props;
+	}
 }

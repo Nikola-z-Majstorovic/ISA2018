@@ -1,6 +1,6 @@
 package ftn.ISAProjekat.services;
 
-import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +15,7 @@ public class RepertoireServiceImp implements RepertoireService {
 	RepertoireRepository repertoireRepository;
 	
 	@Override
-	public Collection<Repertoire> findAll() {
+	public List<Repertoire> findAll() {
 		return repertoireRepository.findAll();
 		
 	}

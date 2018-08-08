@@ -1,6 +1,6 @@
 var myModule = angular.module('myModule', ['ngRoute', 'ngResource']);
 
-myModule.config(['$routeProvider', '$httpProvider','$locationProvider', function ($routeProvider, $httpProvider,$locationProvider) {
+myModule.config(['$routeProvider' ,'$locationProvider', function ($routeProvider,$locationProvider) {
 	$locationProvider.hashPrefix('');
     $routeProvider
         .when('/login',
@@ -72,7 +72,7 @@ myModule.config(['$routeProvider', '$httpProvider','$locationProvider', function
             
 }]);
 
-myModule.run(['$resource', '$rootScope', '$window', '$timeout', '$location', '$routeParams', 'appService', 'dataService', function ($resource, $rootScope, $window, $timeout, $location, $routeParams, appService, dataService) {
+myModule.run([ '$rootScope', '$location', 'appService', function ( $rootScope,$location, appService) {
 
 
     appService.init();

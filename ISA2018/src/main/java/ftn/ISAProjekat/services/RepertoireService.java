@@ -1,11 +1,11 @@
 package ftn.ISAProjekat.services;
 
-import java.util.Collection;
+import java.util.List;
 
 import ftn.ISAProjekat.model.Repertoire;
 
 public interface RepertoireService  {
 
-	Collection<Repertoire> findAll();
+	List<Repertoire> findAll();
 
 }

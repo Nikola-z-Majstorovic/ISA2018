@@ -36,13 +36,6 @@ public class UserFriend implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public UserFriend(Long id, boolean approved, boolean requestSender) {
-		super();
-		this.id = id;
-		this.approved = approved;
-		this.requestSender = requestSender;
-	}
-
 	public Long getId() {
 		return id;
 	}

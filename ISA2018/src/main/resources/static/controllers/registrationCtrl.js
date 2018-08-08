@@ -1,4 +1,4 @@
-myModule.controller('registrationCtrl', ['$rootScope', '$scope', '$timeout', '$window', 'dataService', function ($rootScope, $scope, $timeout, $window, dataService) {
+myModule.controller('registrationCtrl',['$rootScope', '$scope', 'dataService', 'appService', function ($rootScope, $scope, dataService,appService) {
     //-----------------------------------------------------------------------------------------------------------
     console.log('we are in reg ctrl');
     $scope.regUser = {

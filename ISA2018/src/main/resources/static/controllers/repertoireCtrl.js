@@ -1,4 +1,4 @@
-myModule.controller('repertoireCtrl', ['$rootScope', '$scope', '$timeout', '$window', 'dataService','$http', '$routeParams', 'appService', function ($rootScope, $scope, $timeout, $window, dataService,$http, $routeParams, appService) {
+myModule.controller('repertoireCtrl', ['$rootScope', '$scope', 'dataService', 'appService','$routeParams', function ($rootScope, $scope, dataService,appService,$routeParams) {
     //-----------------------------------------------------------------------------------------------------------
     console.log('we are in repertoire ctrl');
     $scope.selectedRepertoires = [];

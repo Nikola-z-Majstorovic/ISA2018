@@ -1,4 +1,4 @@
-myModule.factory('appService', [ '$rootScope', '$location', '$timeout','$window', function($rootScope, $location, $timeout, $window) {
+myModule.factory('appService', [ '$rootScope', '$location', function($rootScope, $location) {
 	return {
 				init : function() {
 				   $rootScope.loginuser = {

@@ -43,12 +43,6 @@ public class Reservation implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	public Reservation(Long id, Repertoire repertoire) {
-		super();
-		this.id = id;
-		this.repertoire = repertoire;
-	}
-
 	public Long getId() {
 		return id;
 	}

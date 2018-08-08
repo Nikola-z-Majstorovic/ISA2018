@@ -1,4 +1,4 @@
-myModule.controller('loginCtrl', ['$rootScope', '$scope', '$timeout', '$window', 'dataService','$http', function ($rootScope, $scope, $timeout, $window, dataService,$http) {
+myModule.controller('loginCtrl',['$rootScope', '$scope', 'dataService', 'appService', function ($rootScope, $scope, dataService,appService) {
     //-----------------------------------------------------------------------------------------------------------
     console.log('we are in login ctrl');
     $scope.errorLogin=false;

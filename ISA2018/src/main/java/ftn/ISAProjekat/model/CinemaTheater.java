@@ -44,22 +44,11 @@ public class CinemaTheater implements Serializable{
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "cinemaTheater")
 	private Set<Room> rooms;
 	
-	@ManyToMany()
+	@ManyToMany(fetch = FetchType.LAZY)
 	private Set<User> user;
 	
 	public CinemaTheater() {
 		// TODO Auto-generated constructor stub
-	}
-
-	public CinemaTheater(Long id, String name, String address, String description, boolean isCinema,
-			int entityRate) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.address = address;
-		this.description = description;
-		this.isCinema = isCinema;
-		this.entityRate = entityRate;
 	}
 
 	public Long getId() {
@@ -108,6 +97,30 @@ public class CinemaTheater implements Serializable{
 
 	public void setEntityRate(int entityRate) {
 		this.entityRate = entityRate;
+	}
+
+	public Set<Repertoire> getRepertoires() {
+		return repertoires;
+	}
+
+	public void setRepertoires(Set<Repertoire> repertoires) {
+		this.repertoires = repertoires;
+	}
+
+	public Set<Room> getRooms() {
+		return rooms;
+	}
+
+	public void setRooms(Set<Room> rooms) {
+		this.rooms = rooms;
+	}
+
+	public Set<User> getUser() {
+		return user;
+	}
+
+	public void setUser(Set<User> user) {
+		this.user = user;
 	}
 
 	

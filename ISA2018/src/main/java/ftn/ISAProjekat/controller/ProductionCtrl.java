@@ -1,13 +1,13 @@
 package ftn.ISAProjekat.controller;
 
-import java.util.Collection;
+
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import ftn.ISAProjekat.model.Production;
@@ -24,8 +24,7 @@ public class ProductionCtrl {
 			method = RequestMethod.GET,
 			produces = MediaType.APPLICATION_JSON_VALUE
 			)
-	@ResponseBody
-	public Collection<Production> getProductions(@PathVariable boolean isMovie) {
+	public List<Production> getProductions(@PathVariable boolean isMovie) {
 		return productionService.findByIsMovie(isMovie);
 	}
 	

@@ -29,17 +29,20 @@ public class FanZone implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	public FanZone(Long id) {
-		super();
-		this.id = id;
-	}
-
 	public Long getId() {
 		return id;
 	}
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public Set<Prop> getProps() {
+		return props;
+	}
+
+	public void setProps(Set<Prop> props) {
+		this.props = props;
 	}
 
 }

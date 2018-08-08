@@ -1,4 +1,4 @@
-myModule.controller('friendListCtrl', ['$rootScope', '$scope', '$timeout', '$window', 'dataService','$http', 'appService', function ($rootScope, $scope, $timeout, $window, dataService,$http, appService) {
+myModule.controller('friendListCtrl', ['$rootScope', '$scope', 'dataService', 'appService', function ($rootScope, $scope, dataService,appService) {
     //-----------------------------------------------------------------------------------------------------------
     console.log('we are in friendList ctrl');
 

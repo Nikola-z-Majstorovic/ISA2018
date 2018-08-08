@@ -46,13 +46,6 @@ public class Prop implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Prop(Long id, String name, String description, boolean isNew) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.description = description;
-		this.isNew = isNew;
-	}
 
 	public Long getId() {
 		return id;
@@ -95,6 +88,23 @@ public class Prop implements Serializable {
 	}
 
 
+	public Set<User> getUser() {
+		return user;
+	}
 
+
+	public void setUser(Set<User> user) {
+		this.user = user;
+	}
+
+
+	public Set<Auction> getAuctions() {
+		return auctions;
+	}
+
+
+	public void setAuctions(Set<Auction> auctions) {
+		this.auctions = auctions;
+	}
 
 }

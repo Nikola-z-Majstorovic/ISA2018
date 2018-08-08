@@ -1,6 +1,6 @@
 package ftn.ISAProjekat.services;
 
-import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +15,7 @@ public class ProductionServiceImp implements ProductionService{
 	private ProductionRepository productionRepository;
 	
 	@Override
-	public Collection<Production> findByIsMovie(boolean isMovie) {
+	public List<Production> findByIsMovie(boolean isMovie) {
 		return productionRepository.findByIsMovie(isMovie);
 	}
 

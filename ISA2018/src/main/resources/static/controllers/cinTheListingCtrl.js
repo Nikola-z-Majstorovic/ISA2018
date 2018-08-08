@@ -1,4 +1,4 @@
-myModule.controller('cinTheListingCtrl', ['$rootScope', '$scope', '$timeout', '$window', 'dataService','$http', 'appService', function ($rootScope, $scope, $timeout, $window, dataService,$http, appService) {
+myModule.controller('cinTheListingCtrl', ['$rootScope', '$scope', 'dataService', 'appService', function ($rootScope, $scope, dataService,appService) {
     //-----------------------------------------------------------------------------------------------------------
     console.log('we are in cinTheListing ctrl');
     $scope.selectedEntities = [];

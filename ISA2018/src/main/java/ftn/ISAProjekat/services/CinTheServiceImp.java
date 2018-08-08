@@ -1,6 +1,6 @@
 package ftn.ISAProjekat.services;
 
-import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +15,12 @@ public class CinTheServiceImp implements CinTheService {
 	CinTheRepository cinTheRepository;
 
 	@Override
-	public Collection<CinemaTheater> findByIsCinema(boolean isCinema) {
+	public List<CinemaTheater> findAll() {
+		return cinTheRepository.findAll();
+		
+	}
+	@Override
+	public List<CinemaTheater> findByIsCinema(boolean isCinema) {
 		return cinTheRepository.findByIsCinema(isCinema);
 	}
 
@@ -26,15 +31,11 @@ public class CinTheServiceImp implements CinTheService {
 	}
 
 	@Override
-	public void delete(long id) {
+	public void delete(Long id) {
 		cinTheRepository.deleteById(id);
 	}
 
-	@Override
-	public Collection<CinemaTheater> findAll() {
-		return cinTheRepository.findAll();
-		
-	}
+
 
 
 }

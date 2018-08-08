@@ -1,59 +1,29 @@
-package ftn.ISAProjekat.model;
+package ftn.ISAProjekat.dto;
 
-import java.io.Serializable;
+
 import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import ftn.ISAProjekat.model.CinemaTheater;
+import ftn.ISAProjekat.model.Production;
+import ftn.ISAProjekat.model.Reservation;
+import ftn.ISAProjekat.model.Room;
 
+public class RepertoireDTO {
 
-@Entity
-public class Repertoire implements Serializable {
-
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	
-	@Column(nullable = false)
 	private boolean active;
-	
-	@Column(nullable = false)
+		
 	private float price;
 	
-	@ManyToOne(optional = false)
 	private CinemaTheater cinemaTheater;
 	
-	@ManyToOne(optional = false)
 	private Room room;
 	
-	@ManyToOne(optional = false)
 	private Production production;
-	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "repertoire")
+
 	private Set<Reservation> reservations;
 	
-	public Repertoire() {
+	public RepertoireDTO() {
 		// TODO Auto-generated constructor stub
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public boolean isActive() {

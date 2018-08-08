@@ -43,15 +43,6 @@ public class Room implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	
-	public Room(Long id, String name, int numOfRows, int numOfSitsInRow) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.numOfRows = numOfRows;
-		this.numOfSitsInRow = numOfSitsInRow;
-	}
-
 
 	public Long getId() {
 		return id;
