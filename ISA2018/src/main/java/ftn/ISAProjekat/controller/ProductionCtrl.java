@@ -25,7 +25,9 @@ public class ProductionCtrl {
 			produces = MediaType.APPLICATION_JSON_VALUE
 			)
 	public List<Production> getProductions(@PathVariable boolean isMovie) {
-		return productionService.findByIsMovie(isMovie);
+		
+		List<Production> prd= productionService.findByIsMovie(isMovie);
+		return prd;
 	}
 	
 }

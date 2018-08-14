@@ -30,11 +30,11 @@ public class UserServiceImp implements UserService {
 	@Override
     public User create(User user) throws Exception {
        
-        if (user.getId() != null) {
-            throw new Exception(
-                    "Id mora biti null prilikom perzistencije novog entiteta.");
-        }
-        user.setRole(Role.valueOf("CUSTOMER"));
+		user.setRole(Role.valueOf("CUSTOMER"));
+//        User user = new User();
+//        
+//        user.setName(userDTO.getName());
+        
         User savedUser = userRepository.save(user);
         return savedUser;
     }

@@ -5,13 +5,10 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 @Entity
 public class Prop implements Serializable {
@@ -36,12 +33,14 @@ public class Prop implements Serializable {
 	@ManyToMany
 	private Set<User> user;
 	
+	/*
 	@ManyToOne(optional = false)
 	private FanZone fanZone;
-
+	*/
+/*
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "prop")
 	private Set<Auction> auctions;
-	
+	*/
 	public Prop() {
 		// TODO Auto-generated constructor stub
 	}
@@ -78,7 +77,7 @@ public class Prop implements Serializable {
 	public void setNew(boolean isNew) {
 		this.isNew = isNew;
 	}
-
+/*
 	public FanZone getFanZone() {
 		return fanZone;
 	}
@@ -87,24 +86,23 @@ public class Prop implements Serializable {
 		this.fanZone = fanZone;
 	}
 
-
+*/
+	
 	public Set<User> getUser() {
 		return user;
 	}
-
 
 	public void setUser(Set<User> user) {
 		this.user = user;
 	}
 
-
+/*
 	public Set<Auction> getAuctions() {
 		return auctions;
 	}
 
-
 	public void setAuctions(Set<Auction> auctions) {
 		this.auctions = auctions;
 	}
-
+*/
 }

@@ -7,7 +7,7 @@ myModule.controller('repertoireCtrl', ['$rootScope', '$scope', 'dataService', 'a
     $scope.refreshRepertoire = function () {
 
 //    	$scope.selectedRepertoires = angular.copy(appService.lodashFilterBy($rootScope.repertoires, 'cinemaTheaterId', Number($routeParams.cinTheId)));
-    	dataService.getAll('repertoire','getAll',null,function(res) {
+    	dataService.getAll('repertoire','getAll', $scope.selectedEntityId,function(res) {
         	if(res.status==200){        
         		console.log(res);
         		$scope.selectedRepertoires = res.data;
@@ -18,18 +18,17 @@ myModule.controller('repertoireCtrl', ['$rootScope', '$scope', 'dataService', 'a
     	});
     }
     
-    $scope.getProductionNameForId = function(productionId) {
-    	return appService.lodashFindBy($rootScope.productions,'idProduction',productionId);
-    }
-    
 	$scope.deleteRepertoire = function (repertoireId) {
-	//call dataService delete
-
+		//call dataService delete
+		dataService.delete('repertoire', 'delete', repertoireId,function(res) {
+        	if(res.status==200){        
+        		$scope.refreshRepertoire();
+        	}else {
+        		console.log(res);        		
+        	}	
+    	});
 	}
-    $scope.roomNameForId = function(roomId) {
-    	return appService.lodashFindBy($rootScope.rooms,'idRoom',roomId);
-    }
-    
+
     $scope.refreshRepertoire();
 }]);
 

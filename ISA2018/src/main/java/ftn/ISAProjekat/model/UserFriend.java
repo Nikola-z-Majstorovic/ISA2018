@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 
 @Entity
 public class UserFriend implements Serializable {
@@ -29,8 +28,8 @@ public class UserFriend implements Serializable {
 	@Column(nullable = false)
 	private boolean requestSender;
 	
-	@ManyToOne(optional = false)
-	private User user;
+	@Column(nullable = false)
+	private int userId;
 	
 	public UserFriend() {
 		// TODO Auto-generated constructor stub
@@ -59,13 +58,12 @@ public class UserFriend implements Serializable {
 	public void setRequestSender(boolean requestSender) {
 		this.requestSender = requestSender;
 	}
-
-	public User getUser() {
-		return user;
+	public int getUserId() {
+		return userId;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 
 	public int getMyId() {

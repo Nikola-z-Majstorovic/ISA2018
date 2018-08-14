@@ -1,14 +1,11 @@
 package ftn.ISAProjekat.model;
 
 import java.io.Serializable;
-import java.util.Set;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.Id;;
 
 @Entity
 public class FanZone implements Serializable{
@@ -21,10 +18,10 @@ public class FanZone implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+	/*
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "fanZone")
 	private Set<Prop> props;
-	
+	*/
 	public FanZone() {
 		// TODO Auto-generated constructor stub
 	}
@@ -36,7 +33,7 @@ public class FanZone implements Serializable{
 	public void setId(Long id) {
 		this.id = id;
 	}
-
+/*
 	public Set<Prop> getProps() {
 		return props;
 	}
@@ -44,5 +41,5 @@ public class FanZone implements Serializable{
 	public void setProps(Set<Prop> props) {
 		this.props = props;
 	}
-
+*/
 }

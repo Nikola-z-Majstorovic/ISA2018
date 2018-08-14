@@ -1,6 +1,5 @@
 <div >
     <form name="frm" id="frm">
-		
 
 <!-- 		<div style="margin-left: 46px;"> -->
 <!-- 			<div class="columnsInRoom" data-ng-repeat = 'column in totalSitsInRow'> -->
@@ -26,7 +25,7 @@
 			<div>
 				<div style="display: inline-block;">{{row.rowNo}} row:</div>
 				<div style="display: inline-block;" data-ng-repeat = 'sitInRow in row.sits'>
-					<input type="checkbox" data-ng-checked = "isReserved(row, sitInRow.sitNo)" data-ng-disabled = "isReserved(row, sitInRow.sitNo)"  data-ng-model="sitInRow.checked" name="sitNo_{{sitInRow.sitNo}}" data-ng-click="checkSit(row, sitInRow.sitNo, $event)">
+					<input type="checkbox" data-ng-checked = "isReserved(row, sitInRow.sitNo)" name="sitNo_{{sitInRow.sitNo}}" data-ng-click="checkSit(row, sitInRow.sitNo, $event)">
 				</div>
 			</div>
 			<br>

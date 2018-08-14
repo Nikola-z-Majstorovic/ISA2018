@@ -3,10 +3,7 @@ package ftn.ISAProjekat.dto;
 
 import java.util.Set;
 
-import ftn.ISAProjekat.model.CinemaTheater;
-import ftn.ISAProjekat.model.Production;
 import ftn.ISAProjekat.model.Reservation;
-import ftn.ISAProjekat.model.Room;
 
 public class RepertoireDTO {
 
@@ -14,11 +11,11 @@ public class RepertoireDTO {
 		
 	private float price;
 	
-	private CinemaTheater cinemaTheater;
-	
-	private Room room;
-	
-	private Production production;
+//	private CinemaTheater cinemaTheater;
+//	
+//	private Room room;
+//	
+//	private Production production;
 
 	private Set<Reservation> reservations;
 	
@@ -42,29 +39,29 @@ public class RepertoireDTO {
 		this.price = price;
 	}
 
-	public CinemaTheater getCinemaTheater() {
-		return cinemaTheater;
-	}
-
-	public void setCinemaTheater(CinemaTheater cinemaTheater) {
-		this.cinemaTheater = cinemaTheater;
-	}
-
-	public Room getRoom() {
-		return room;
-	}
-
-	public void setRoom(Room room) {
-		this.room = room;
-	}
-
-	public Production getProduction() {
-		return production;
-	}
-
-	public void setProduction(Production production) {
-		this.production = production;
-	}
+//	public CinemaTheater getCinemaTheater() {
+//		return cinemaTheater;
+//	}
+//
+//	public void setCinemaTheater(CinemaTheater cinemaTheater) {
+//		this.cinemaTheater = cinemaTheater;
+//	}
+//
+//	public Room getRoom() {
+//		return room;
+//	}
+//
+//	public void setRoom(Room room) {
+//		this.room = room;
+//	}
+//
+//	public Production getProduction() {
+//		return production;
+//	}
+//
+//	public void setProduction(Production production) {
+//		this.production = production;
+//	}
 
 	public Set<Reservation> getReservations() {
 		return reservations;

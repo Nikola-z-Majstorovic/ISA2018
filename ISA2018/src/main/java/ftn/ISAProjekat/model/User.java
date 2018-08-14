@@ -1,20 +1,20 @@
 package ftn.ISAProjekat.model;
 
 import java.io.Serializable;
-import java.util.Set;
+
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
+
+
 
 @Entity
+//@Table(name = "users")
 public class User implements Serializable {
 
 	/**
@@ -46,22 +46,32 @@ public class User implements Serializable {
 	
 	@Enumerated(EnumType.STRING)
 	private Role role;
-	
-	@ManyToMany(fetch = FetchType.LAZY)
+/*
+//	@ManyToMany(fetch = FetchType.EAGER)
+	@JsonManagedReference
+	@ManyToMany(mappedBy = "user")
+//	@JsonIgnore
 	private Set<CinemaTheater> cinemaTheaters;
-	
+*/
+	/*
+	@JsonManagedReference(value="reservations")
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
 	private Set<Reservation> reservations;
-	
+	*/
+	/*
+	@JsonManagedReference(value="friends")
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
 	private Set<UserFriend> friends;
-	
+	*/
+/*
+	@JsonManagedReference
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
 	private Set<AuctionBiding> auctionBidings;
-	
-	@ManyToMany(fetch = FetchType.LAZY)
+*/
+/*
+	@ManyToMany(mappedBy = "user")
 	private Set<Prop> props;
-	
+*/
 	public User() {
 		// TODO Auto-generated constructor stub
 	}
@@ -129,7 +139,7 @@ public class User implements Serializable {
 	public void setRole(Role role) {
 		this.role = role;
 	}
-
+/*
 	public Set<CinemaTheater> getCinemaTheaters() {
 		return cinemaTheaters;
 	}
@@ -137,7 +147,8 @@ public class User implements Serializable {
 	public void setCinemaTheaters(Set<CinemaTheater> cinemaTheaters) {
 		this.cinemaTheaters = cinemaTheaters;
 	}
-
+*/
+	/*
 	public Set<Reservation> getReservations() {
 		return reservations;
 	}
@@ -153,20 +164,23 @@ public class User implements Serializable {
 	public void setFriends(Set<UserFriend> friends) {
 		this.friends = friends;
 	}
+*/
+//	public Set<AuctionBiding> getAuctionBidings() {
+//		return auctionBidings;
+//	}
+//
+//	public void setAuctionBidings(Set<AuctionBiding> auctionBidings) {
+//		this.auctionBidings = auctionBidings;
+//	}
+//
+//	
+//	public Set<Prop> getProps() {
+//		return props;
+//	}
+//
+//	public void setProps(Set<Prop> props) {
+//		this.props = props;
+//	}
+//	
 
-	public Set<AuctionBiding> getAuctionBidings() {
-		return auctionBidings;
-	}
-
-	public void setAuctionBidings(Set<AuctionBiding> auctionBidings) {
-		this.auctionBidings = auctionBidings;
-	}
-
-	public Set<Prop> getProps() {
-		return props;
-	}
-
-	public void setProps(Set<Prop> props) {
-		this.props = props;
-	}
 }

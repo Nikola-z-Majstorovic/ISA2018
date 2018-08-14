@@ -1,23 +1,42 @@
 <div>
+	<div style="float: left;">
+	  	<div>My Profile</div>
+	   	<div>Name: {{$rootScope.loginuser.name}}</div>
+	   	<div>Surname: {{$rootScope.loginuser.surname}}</div>
+	   	<div>Email: {{$rootScope.loginuser.email}}</div>
+	   	<div>City: {{$rootScope.loginuser.city}}</div>      
+   	</div>
    
-    <div>My Reservations</div>
-    <div data-ng-repeat="reservation in myAllReservations" data-ng-if="reservation.approved == true">
-    	<div>
-    		Repertoire: {{reservation.RepertoireId}} 
-    	</div>
-    </div>
-    <br>
-    <br>
-    <br>
-    <div>Invitations for Events Friends</div>
-    <div data-ng-repeat="invitation in myAllReservations" data-ng-if="invitation.approved == false">
-    	<div>
-    		Repertoire: {{invitation.RepertoireId}} 
-    	</div>
-    	<div>
-    		From friend: {{invitation.senderId}} 
-    	</div>
-    	<button data-ng-click="confirmInvitation(invitation, true)">Confirm</button>
-    	<button data-ng-click="confirmInvitation(invitation, false)">Decline</button>
+    
+   <div style="float: right;">
+	    <div>My Reservations</div>
+	    <div data-ng-repeat="reservation in myAllReservations" data-ng-if="reservation.approved == true">
+	    	<div>
+	    		Repertoire: {{reservation.RepertoireId}} 
+	    	</div>
+	    </div>
+	    <br>
+	    <br>
+	    <br>
+	    <div>Invitations for Events Friends</div>
+	    <div data-ng-repeat="invitation in myAllReservations" data-ng-if="invitation.approved == false">
+	    	<div>
+	    		Repertoire: {{invitation.RepertoireId}} 
+	    	</div>
+	    	<div>
+	    		From friend: {{invitation.senderId}} 
+	    	</div>
+	    	<button data-ng-click="confirmInvitation(invitation, true)">Confirm</button>
+	    	<button data-ng-click="confirmInvitation(invitation, false)">Decline</button>
+	    </div>
+	    
+	    
+	    <div>
+	    <div>Reservation History:</div>
+	    
+	    
+	    
+	    
+	    </div>
     </div>
 </div>

@@ -1,21 +1,17 @@
 package ftn.ISAProjekat.model;
 
 import java.io.Serializable;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 
 @Entity
 public class Repertoire implements Serializable {
-
 	
 	/**
 	 * 
@@ -32,18 +28,26 @@ public class Repertoire implements Serializable {
 	@Column(nullable = false)
 	private float price;
 	
+	//@JsonManagedReference(value="cinemaTheater")
+	//@JsonBackReference
+//	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL) 
 	@ManyToOne(optional = false)
 	private CinemaTheater cinemaTheater;
 	
+
+//	@JsonManagedReference
 	@ManyToOne(optional = false)
 	private Room room;
 	
+//	@JsonManagedReference
 	@ManyToOne(optional = false)
 	private Production production;
-	
+
+	/*
+	//@JsonManagedReference(value="reservations")
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "repertoire")
 	private Set<Reservation> reservations;
-	
+	*/
 	public Repertoire() {
 		// TODO Auto-generated constructor stub
 	}
@@ -95,7 +99,7 @@ public class Repertoire implements Serializable {
 	public void setProduction(Production production) {
 		this.production = production;
 	}
-
+/*
 	public Set<Reservation> getReservations() {
 		return reservations;
 	}
@@ -103,5 +107,6 @@ public class Repertoire implements Serializable {
 	public void setReservations(Set<Reservation> reservations) {
 		this.reservations = reservations;
 	}
+	*/
 
 }

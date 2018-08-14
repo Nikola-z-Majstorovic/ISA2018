@@ -5,12 +5,12 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class CinemaTheater implements Serializable{
@@ -38,13 +38,22 @@ public class CinemaTheater implements Serializable{
 	@Column(nullable = false)
 	private int entityRate;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "cinemaTheater")
+	/*
+	@JsonManagedReference
+	@OneToMany(mappedBy = "cinemaTheater", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Set<Repertoire> repertoires;
-	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "cinemaTheater")
+	*/
+	/*
+	@JsonManagedReference
+	@OneToMany(mappedBy = "cinemaTheater", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Set<Room> rooms;
+	*/
 	
-	@ManyToMany(fetch = FetchType.LAZY)
+	//@ManyToMany(mappedBy = "cinemaTheater", fetch = FetchType.EAGER)
+	@ManyToMany
+//	@JsonIgnore
+	@JsonBackReference
+	//@ManyToMany(fetch = FetchType.LAZY)
 	private Set<User> user;
 	
 	public CinemaTheater() {
@@ -98,7 +107,7 @@ public class CinemaTheater implements Serializable{
 	public void setEntityRate(int entityRate) {
 		this.entityRate = entityRate;
 	}
-
+/*
 	public Set<Repertoire> getRepertoires() {
 		return repertoires;
 	}
@@ -106,7 +115,8 @@ public class CinemaTheater implements Serializable{
 	public void setRepertoires(Set<Repertoire> repertoires) {
 		this.repertoires = repertoires;
 	}
-
+	*/
+/*
 	public Set<Room> getRooms() {
 		return rooms;
 	}
@@ -114,6 +124,7 @@ public class CinemaTheater implements Serializable{
 	public void setRooms(Set<Room> rooms) {
 		this.rooms = rooms;
 	}
+*/
 
 	public Set<User> getUser() {
 		return user;

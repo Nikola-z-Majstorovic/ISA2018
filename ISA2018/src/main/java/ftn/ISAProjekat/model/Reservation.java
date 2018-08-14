@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 
 @Entity
 public class Reservation implements Serializable{
@@ -21,12 +20,18 @@ public class Reservation implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@ManyToOne(optional = false)
+	/*
+	@ManyToOne(optional = false)	
 	private User user;
 	
 	@ManyToOne(optional = false)
-	private Repertoire repertoire;
-	
+	private Repertoire repertoire;	
+	*/
+	@Column(nullable = false)
+	private Long userId;
+	@Column(nullable = false)
+	private Long repertoireId;
+
 	@Column(nullable = false)
 	private boolean approved;
 	
@@ -36,8 +41,8 @@ public class Reservation implements Serializable{
 	@Column(nullable = false)
 	private int rowNumber;
 	
-	@Column(nullable = false)
-	private long senderId;
+	@Column(nullable = true)
+	private Long senderId;
 	
 	public Reservation() {
 		// TODO Auto-generated constructor stub
@@ -51,6 +56,7 @@ public class Reservation implements Serializable{
 		this.id = id;
 	}
 
+/*
 	public User getUser() {
 		return user;
 	}
@@ -66,7 +72,7 @@ public class Reservation implements Serializable{
 	public void setRepertoire(Repertoire repertoire) {
 		this.repertoire = repertoire;
 	}
-
+*/
 	public boolean isApproved() {
 		return approved;
 	}
@@ -91,11 +97,27 @@ public class Reservation implements Serializable{
 		this.rowNumber = rowNumber;
 	}
 
-	public long getSenderId() {
+	public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
+
+	public Long getRepertoireId() {
+		return repertoireId;
+	}
+
+	public void setRepertoireId(Long repertoireId) {
+		this.repertoireId = repertoireId;
+	}
+
+	public Long getSenderId() {
 		return senderId;
 	}
 
-	public void setSenderId(long senderId) {
+	public void setSenderId(Long senderId) {
 		this.senderId = senderId;
 	}
 

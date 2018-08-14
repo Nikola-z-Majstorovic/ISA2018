@@ -19,6 +19,7 @@ myModule.controller('cinTheEditCtrl', ['$rootScope', '$scope', 'dataService', 'a
          		console.log(res);         
          	}
          });
+    	 
     	 //console.log($scope.allEntities); // zasto je allEntities prazna niz
     	 
 //    	$scope.entity = angular.copy(appService.lodashFindBy($rootScope.cinemasAndTheaters, 'cinemaTheaterId', Number($routeParams.entityid)));

@@ -2,12 +2,13 @@
     <form name="frm" id="frm">
     <button data-ng-if="loginuser.role == 'CINTHEADMIN'" data-ng-click="changeView('/repertoire/edit/00000000-0000-0000-0000-000000000000/'+selectedEntityId)">Create</button>
     	<div data-ng-repeat="repertoire in selectedRepertoires" data-ng-show="selectedRepertoires.length > 0">
-			<div>Production: {{repertoire.active}}</div>
-<!-- 			<div>Production date/time: {{repertoire.dateTime}}</div> -->
-<!-- 			<div>Room name: {{roomNameForId(repertoire.idRoom).name}}</div>			 -->
-			<button data-ng-if="loginuser.role=='CINTHEADMIN'" data-ng-click="changeView('/repertoire/edit/'+ repertoire.repertoireId +'/'+selectedEntityId)">Edit</button>
+			<div>Production Name: {{repertoire.production.name}}</div>
+			<div>Room: {{repertoire.room.name}}</div>
+			<div>Ticket Price: {{repertoire.price}}</div>
+			<div>Repertoire Date/Time: {{repertoire.displayDate}}</div>
+			<button data-ng-if="loginuser.role=='CINTHEADMIN'" data-ng-click="changeView('/repertoire/edit/'+ repertoire.id +'/'+selectedEntityId)">Edit</button>
 			<button data-ng-if="loginuser.role=='CINTHEADMIN'" data-ng-click="deleteRepertoire(repertoire.repertoireId)">Delete</button>
-			<button data-ng-if="loginuser.role=='CUSTOMER'" data-ng-click="changeView('/ticketReservation/'+ repertoire.repertoireId +'/'+selectedEntityId)">Reservation</button>
+			<button data-ng-if="loginuser.role=='CUSTOMER'" data-ng-click="changeView('/ticketReservation/'+ repertoire.id +'/'+selectedEntityId)">Reservation</button>
     	
     	</div>
 		<button data-ng-click="changeView('/cinematheaterlist')">Back</button>

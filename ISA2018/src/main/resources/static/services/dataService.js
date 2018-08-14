@@ -13,7 +13,7 @@ myModule.factory('dataService', ['$http', function ($http) {
             	cb(reason);
             }); 
         	} else {
-            	$http.get(ctrl + '/' + method + '/' +param)
+            	$http.get(ctrl + '/' + method + '/' + param)
                 .then(function (response) {
                 	cb(response);
                 }, function (reason) {
@@ -40,7 +40,7 @@ myModule.factory('dataService', ['$http', function ($http) {
         	}
         },
         create:function(ctrl,method,param,cb){
-        	$http.post(ctrl+ '/' + method , param)
+        	$http.post(ctrl+ '/' + method, param)
             .then(function (response) {
             	cb(response);
             }, function (reason) {

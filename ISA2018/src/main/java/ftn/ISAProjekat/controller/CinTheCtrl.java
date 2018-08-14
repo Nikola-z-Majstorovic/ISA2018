@@ -28,6 +28,7 @@ public class CinTheCtrl {
 	public List<CinemaTheater> getAll(@PathVariable boolean isCinema){
 
 		List<CinemaTheater>cinema= cinTheService.findByIsCinema(isCinema);
+				
 		return cinema;
 	}
 	

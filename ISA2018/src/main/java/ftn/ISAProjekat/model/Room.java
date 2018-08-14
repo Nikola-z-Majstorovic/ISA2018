@@ -1,16 +1,13 @@
 package ftn.ISAProjekat.model;
 
 import java.io.Serializable;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 @Entity
 public class Room implements Serializable{
@@ -32,9 +29,6 @@ public class Room implements Serializable{
 	
 	@Column(nullable = false)
 	private int numOfSitsInRow;
-	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "room")
-	private Set<Repertoire> repertoires; 
 	
 	@ManyToOne(optional = false)
 	private CinemaTheater cinemaTheater;
@@ -74,14 +68,6 @@ public class Room implements Serializable{
 
 	public void setNumOfSitsInRow(int numOfSitsInRow) {
 		this.numOfSitsInRow = numOfSitsInRow;
-	}
-
-	public Set<Repertoire> getRepertoires() {
-		return repertoires;
-	}
-
-	public void setRepertoires(Set<Repertoire> repertoires) {
-		this.repertoires = repertoires;
 	}
 
 	public CinemaTheater getCinemaTheater() {

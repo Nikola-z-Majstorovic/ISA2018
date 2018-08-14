@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+
 @Entity
 public class AuctionBiding implements Serializable{
 
@@ -26,6 +27,7 @@ public class AuctionBiding implements Serializable{
 	@ManyToOne(optional = false)
 	private Auction auction;
 	
+	//@JsonBackReference(value="auctionBidings")
 	@ManyToOne(optional = false)
 	private User user;
 
@@ -45,8 +47,8 @@ public class AuctionBiding implements Serializable{
 		return user;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUser(User users) {
+		this.user = users;
 	}
 
 	public Long getId() {

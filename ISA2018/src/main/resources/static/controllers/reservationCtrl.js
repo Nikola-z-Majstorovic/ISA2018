@@ -1,71 +1,91 @@
-myModule.controller('reservationCtrl', ['$rootScope', '$scope', 'dataService', 'appService', function ($rootScope, $scope, dataService,appService) {
+myModule.controller('reservationCtrl', ['$rootScope', '$scope', '$routeParams', 'dataService', 'appService', '$http', function ($rootScope, $scope, $routeParams, dataService,appService,$http) {
     //-----------------------------------------------------------------------------------------------------------
     console.log('we are in reservation ctrl');
    
-    $scope.entityId=Number($routeParams.entityId);
+    $scope.entityId = Number($routeParams.entityId);
     $scope.repertoireId = Number($routeParams.repertoireId);
     
-    $scope.selectedRepertoire = appService.lodashFindBy($rootScope.repertoires,'repertoireId',$scope.repertoireId);
-    
-    $scope.selectedRoom = appService.lodashFindBy($rootScope.rooms,'idRoom', $scope.selectedRepertoire.idRoom);
     
     
-    $scope.totalRowsInRoom = [];
-    $scope.totalSitsInRow = [];
+   
+    dataService.getAll('repertoire','get', $scope.repertoireId,function(res) {
+    	if(res.status==200){        
+    		console.log(res);
+    		$scope.selectedRepertoires = res.data;
+
+    		$scope.selectedRoom = $scope.selectedRepertoires.room;
+
+    	    $scope.totalRowsInRoom = [];
+    	    $scope.totalSitsInRow = [];
+    	    
+    	    for (var i = 1; i <= $scope.selectedRoom.numOfSitsInRow; i++) {
+    	    	$scope.totalSitsInRow.push(i);
+    		}   
+    	    
+//    	    for (var i = 1; i <= $scope.selectedRoom.numOfRows; i++) {
+//    	    	$scope.totalRowsInRoom.push(i);
+//    		}   
+    	    
+    	    
+    	  
+    	    for (var i = 1; i <= $scope.selectedRoom.numOfRows; i++) {
+
+    	    	var tempSits = [];
+    	    	
+    	    	
+    	    	for (var y = 1; y <= $scope.selectedRoom.numOfSitsInRow; y++) {
+    	    		var tempSit = {
+    	    				sitNo: y,
+    	    				checked: false
+    	    		};
+    	    		tempSits.push(tempSit);
+    	    	}  
+    	    	
+    	    	var row = {
+    	    			rowNo: i,
+    	    			sits: tempSits
+    	    	};
+    	    	$scope.totalRowsInRoom.push(row);
+
+    		}  
+    	    
+    	    console.log($scope.totalRowsInRoom);
+    	    $scope.myFriends = appService.lodashFilterBy($rootScope.mainFriendRequests, 'userID', $rootScope.loginuser.id);
+    	    $scope.myFriends = appService.lodashFilterBy($scope.myFriends, 'approved', true);
+    	    
+    	    
+    	    for (var y = 0; y < $scope.myFriends.length; y++) {
+    	    	 $scope.myFriends[y].active = true;
+    			
+    		} 
+    	    
+    	    
+    	    //console.log($scope.myFriends);
+    	    $scope.tempReservations = [];
+    	    
+    	    
+    	}else {
+    		console.log(res);
+    		
+    	}	
+	});
     
-    for (var i = 1; i <= $scope.selectedRoom.numOfSits; i++) {
-    	$scope.totalSitsInRow.push(i);
-	}   
     
-//    for (var i = 1; i <= $scope.selectedRoom.numOfRows; i++) {
-//    	$scope.totalRowsInRoom.push(i);
-//	}   
     
+   // $scope.selectedRepertoire = appService.lodashFindBy($rootScope.repertoires,'repertoireId',$scope.repertoireId);
+    
+    //$scope.selectedRoom = appService.lodashFindBy($rootScope.rooms,'idRoom', $scope.selectedRepertoire.idRoom);
     
   
-    for (var i = 1; i <= $scope.selectedRoom.numOfRows; i++) {
-
-    	var tempSits = [];
-    	
-    	
-    	for (var y = 1; y <= $scope.selectedRoom.numOfSits; y++) {
-    		var tempSit = {
-    				sitNo: y,
-    				checked: false
-    		};
-    		tempSits.push(tempSit);
-    	}  
-    	
-    	var row = {
-    			rowNo: i,
-    			sits: tempSits
-    	};
-    	$scope.totalRowsInRoom.push(row);
-
-	}  
-    
-    console.log($scope.totalRowsInRoom);
-    $scope.myFriends = appService.lodashFilterBy($rootScope.mainFriendRequests, 'userID', $rootScope.loginuser.id);
-    $scope.myFriends = appService.lodashFilterBy($scope.myFriends, 'approved', true);
-    
-    
-    for (var y = 0; y < $scope.myFriends.length; y++) {
-    	 $scope.myFriends[y].active = true;
-		
-	} 
-    
-    
-    //console.log($scope.myFriends);
-    $scope.tempReservations = [];
     $scope.checkSit = function(row, sitNo, event){
 
 
     	
     	 var tempReservationID = '-' + row.rowNo + '-' + sitNo + '-';
-
+    	 console.log(tempReservationID);
     	 var tempReservation = {
     			 tempReservationID: tempReservationID,
-    			 userID: $rootScope.loginuser.id,
+    			 userId: $rootScope.loginuser.id,
     			 approved: false,
     			 rowNumber: row.rowNo,
     			 sitNumber: sitNo,
@@ -80,9 +100,9 @@ myModule.controller('reservationCtrl', ['$rootScope', '$scope', 'dataService', '
     			 _.remove($scope.tempReservations, reservation);
     		
     			 
-    			 if(reservation.userID != $rootScope.loginuser.id){
+    			 if(reservation.userId != $rootScope.loginuser.id){
     				 
-    				 var tempFriend = appService.lodashFindBy($scope.myFriends, 'friendID', Number(reservation.userID));
+    				 var tempFriend = appService.lodashFindBy($scope.myFriends, 'friendID', Number(reservation.userId));
 	    			 
      			 	tempFriend.active = true;
     			 }
@@ -120,8 +140,8 @@ myModule.controller('reservationCtrl', ['$rootScope', '$scope', 'dataService', '
 	    			 
     			 }while(!appService.lodashFindBy($scope.myFriends, 'friendID', Number(friendID)))
     	
-    			 if(friendID != null && friendID.trim() != ''){
-	    			 tempReservation.userID = Number(friendID);
+    			 if(friendID != null && friendId.trim() != ''){
+	    			 tempReservation.userId = Number(friendID);
 	    			
 	    			 
 	    			 var tempFriend = appService.lodashFindBy($scope.myFriends, 'friendID', Number(friendID));
@@ -162,11 +182,11 @@ myModule.controller('reservationCtrl', ['$rootScope', '$scope', 'dataService', '
     };
    
     $scope.saveReservation = function(){
-    	console.log($scope.tempReservations);
-    	
     	var valid = false;
     	for (var y = 0; y < $scope.tempReservations.length; y++) {
-    		if($scope.tempReservations.userID == $rootScope.loginuser.id){
+    		console.log('tu smo');
+    		if($scope.tempReservations[y].userId == $rootScope.loginuser.id){
+    			console.log('bingo');
     			valid = true;
     		}
     	
@@ -178,7 +198,7 @@ myModule.controller('reservationCtrl', ['$rootScope', '$scope', 'dataService', '
     		//save and send reservations - db call
 
     		for (var y = 0; y < $scope.tempReservations.length; y++) {
-        		if($scope.tempReservations.userID == $rootScope.loginuser.id){
+        		if($scope.tempReservations[y].userId == $rootScope.loginuser.id){
         			$scope.tempReservations[y].approved = true;
         			$scope.tempReservations[y].senderId = null;        			        		
         		}else{
@@ -186,8 +206,37 @@ myModule.controller('reservationCtrl', ['$rootScope', '$scope', 'dataService', '
         			$scope.tempReservations[y].senderId = $rootScope.loginuser.id;
         		}
         		
+        		//Deleting not needed propertie on object
         		delete $scope.tempReservations[y].tempReservationID;
+        		
         		//data service call
+        		//Storing object in new variable because of name to be like one in backend
+        		var reservation = $scope.tempReservations[y];
+
+        		console.log('----------');
+        		console.log(reservation);
+        		console.log('----------');
+        		 
+       		
+        		dataService.create('reservation','makeReservation', reservation, function(res) {
+                	if(res.status==200){        
+                		console.log(res);
+                		
+                		
+                		//redirect
+                		$rootScope.changeView('/login');
+                		
+                		
+                	}else {
+                		console.log(res);
+                		
+                	}	
+            	});
+        		
+        	
+        		
+        		
+        		
         		
         		
         		$rootScope.hcReservations.push($scope.tempReservations[y]);
@@ -201,19 +250,32 @@ myModule.controller('reservationCtrl', ['$rootScope', '$scope', 'dataService', '
     };
     
     
-    $scope.isReserved = function(row, sitNo){
-    	//console.log($rootScope.hcReservations);
-    	for (var y = 0; y < $rootScope.hcReservations.length; y++) {
-    		if($scope.hcReservations[y].rowNumber == row.rowNo && $scope.hcReservations[y].sitNumber == sitNo && $scope.hcReservations[y].repertoireId == $scope.repertoireId){
-    			console.log('aaaaa');
-    			return true;
-    			
-    		}else{
-    			return false;
-    		}
-    	}
-    
-    }
+    dataService.getAll('reservation','getAll', $scope.repertoireId,function(res) {
+		$scope.allReservations = res.data;
+		
+		
+		  $scope.isReserved = function(row, sitNo){
+		    	//Call data service, get all reservations for this repertoire
+		    	
+			  console.log(row);
+ 			 console.log(sitNo);
+		    	for (var y = 0; y < $scope.allReservations.length - 1; y++) {
+		    		if($scope.allReservations[y].rowNumber == row.rowNo && $scope.allReservations[y].sitNumber == sitNo /*&& $scope.allReservations[y].repertoireId == $scope.repertoireId*/){
+		    			console.log($scope.allReservations[y]);
+		    			
+		    			
+		    			return true;
+		    			
+		    		}else{
+		    			return false;
+		    		}
+		    	}
+
+		    
+		    }
+	});
+	
+  
     
 }]);
 
