@@ -9,8 +9,12 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Room implements Serializable{
@@ -33,10 +37,12 @@ public class Room implements Serializable{
 	@Column(nullable = false)
 	private int numOfSitsInRow;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "room")
-	private Set<Repertoire> repertoires; 
+//	@OneToMany(fetch = FetchType.LAZY, mappedBy = "room")
+//	private Set<Repertoire> repertoires; 
 	
 	@ManyToOne(optional = false)
+	@JoinColumn(name="cinema_theater_id")
+	@JsonBackReference("b")
 	private CinemaTheater cinemaTheater;
 	
 	public Room() {
@@ -76,13 +82,13 @@ public class Room implements Serializable{
 		this.numOfSitsInRow = numOfSitsInRow;
 	}
 
-	public Set<Repertoire> getRepertoires() {
-		return repertoires;
-	}
-
-	public void setRepertoires(Set<Repertoire> repertoires) {
-		this.repertoires = repertoires;
-	}
+//	public Set<Repertoire> getRepertoires() {
+//		return repertoires;
+//	}
+//
+//	public void setRepertoires(Set<Repertoire> repertoires) {
+//		this.repertoires = repertoires;
+//	}
 
 	public CinemaTheater getCinemaTheater() {
 		return cinemaTheater;

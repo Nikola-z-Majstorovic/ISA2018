@@ -9,14 +9,20 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 public class CinemaTheater implements Serializable{
 
 	/**
-	 * 
+	 * Imamo 1 Cinema * repertoires 
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
@@ -38,13 +44,16 @@ public class CinemaTheater implements Serializable{
 	@Column(nullable = false)
 	private int entityRate;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "cinemaTheater")
+	@OneToMany(mappedBy = "cinemaTheater")
+	@JsonManagedReference("a")
 	private Set<Repertoire> repertoires;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "cinemaTheater")
+	@JsonManagedReference("b")
 	private Set<Room> rooms;
 	
 	@ManyToMany(fetch = FetchType.LAZY)
+	@JsonBackReference("c")
 	private Set<User> user;
 	
 	public CinemaTheater() {

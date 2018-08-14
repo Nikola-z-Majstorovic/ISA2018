@@ -7,7 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class Reservation implements Serializable{
@@ -22,9 +25,12 @@ public class Reservation implements Serializable{
 	private Long id;
 	
 	@ManyToOne(optional = false)
+	@JsonBackReference
 	private User user;
 	
 	@ManyToOne(optional = false)
+	@JsonBackReference("r")
+	@JoinColumn(name="repertoire_id")
 	private Repertoire repertoire;
 	
 	@Column(nullable = false)

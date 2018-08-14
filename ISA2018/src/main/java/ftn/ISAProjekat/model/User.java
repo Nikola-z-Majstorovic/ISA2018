@@ -14,6 +14,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class User implements Serializable {
 
@@ -48,18 +51,23 @@ public class User implements Serializable {
 	private Role role;
 	
 	@ManyToMany(fetch = FetchType.LAZY)
+	@JsonManagedReference
 	private Set<CinemaTheater> cinemaTheaters;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+	@JsonManagedReference
 	private Set<Reservation> reservations;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+	@JsonManagedReference
 	private Set<UserFriend> friends;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+	@JsonManagedReference
 	private Set<AuctionBiding> auctionBidings;
 	
 	@ManyToMany(fetch = FetchType.LAZY)
+	@JsonManagedReference
 	private Set<Prop> props;
 	
 	public User() {

@@ -9,8 +9,14 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 
 @Entity
@@ -18,7 +24,7 @@ public class Repertoire implements Serializable {
 
 	
 	/**
-	 * 
+	 * 1 Repertoire 1 Cinema 
 	 */
 	private static final long serialVersionUID = 1L;
 
@@ -33,15 +39,22 @@ public class Repertoire implements Serializable {
 	private float price;
 	
 	@ManyToOne(optional = false)
+	@JoinColumn(name="cinema_theater_id")
+	@JsonBackReference("a")
 	private CinemaTheater cinemaTheater;
 	
 	@ManyToOne(optional = false)
+	@JoinColumn(name="room_id")
+	@JsonBackReference("b")
 	private Room room;
 	
 	@ManyToOne(optional = false)
+	@JoinColumn(name="production_id")
+	@JsonBackReference("p")
 	private Production production;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "repertoire")
+	@JsonManagedReference("r")
 	private Set<Reservation> reservations;
 	
 	public Repertoire() {

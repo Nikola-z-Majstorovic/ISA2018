@@ -9,7 +9,10 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Production implements Serializable {
@@ -50,6 +53,7 @@ public class Production implements Serializable {
 	private int productionRate;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "production")
+	@JsonManagedReference("p")
 	private Set<Repertoire> repertoires;
 	
 	public Production() {
