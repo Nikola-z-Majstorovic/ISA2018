@@ -5,6 +5,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 public class CinemaTheater implements Serializable{
 
 	/**
-	 * 
+	 * Imamo 1 Cinema * repertoires 
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
@@ -46,14 +47,20 @@ public class CinemaTheater implements Serializable{
 	/*
 	@JsonManagedReference
 	@OneToMany(mappedBy = "cinemaTheater", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+=======
+	@OneToMany(mappedBy = "cinemaTheater")
+	@JsonManagedReference("a")
+	private Set<Repertoire> repertoires;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "cinemaTheater")
+	@JsonManagedReference("b")
+>>>>>>> 383f5c21e66b910c982432071c7f26d01cfa509a
 	private Set<Room> rooms;
 	*/
 	
-	//@ManyToMany(mappedBy = "cinemaTheater", fetch = FetchType.EAGER)
-	@ManyToMany
-//	@JsonIgnore
-	@JsonBackReference
-	//@ManyToMany(fetch = FetchType.LAZY)
+
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JsonBackReference("c")
 	private Set<User> user;
 	
 	public CinemaTheater() {

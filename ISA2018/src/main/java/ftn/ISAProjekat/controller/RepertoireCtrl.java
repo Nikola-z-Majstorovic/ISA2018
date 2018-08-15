@@ -1,40 +1,57 @@
 package ftn.ISAProjekat.controller;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import ftn.ISAProjekat.dto.DTOAll;
 import ftn.ISAProjekat.model.Repertoire;
-import ftn.ISAProjekat.services.RepertoireService;
+import ftn.ISAProjekat.repository.RepertoireRepository;
 
 @RestController
 public class RepertoireCtrl {
 
 	@Autowired
-	private RepertoireService repertoireService;
-	
-	@RequestMapping(
-			value = "/repertoire/getAll/{cinemaTheaterId}",
-			method = RequestMethod.GET,
-			produces = MediaType.APPLICATION_JSON_VALUE
-			)
-	public List<Repertoire> getRepertoires(@PathVariable Long cinemaTheaterId) {	
-			List<Repertoire> repertoires=repertoireService.findAllByCinemaTheaterId(cinemaTheaterId);
-			return repertoires;
-	}
-	@RequestMapping(
-			value = "/repertoire/get/{repertoireId}",
-			method = RequestMethod.GET,
-			produces = MediaType.APPLICATION_JSON_VALUE
-			)
-	public  Optional<Repertoire> getRepertoire(@PathVariable Long repertoireId) {	
-			return repertoireService.findById(repertoireId);		
+	private RepertoireRepository repertoireRepository;
+
+	@RequestMapping(value = "/repertoire/getAll", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<DTOAll> getRepertoire() {
+//			List<Repertoire> repertoires =  repertoireRepository.findAll();
+//			
+//			List<RepertoireDTO> allRepertoires= new ArrayList<>();
+//			
+//		for (Repertoire repertoire : repertoires) {
+//			RepertoireDTO repertoireDTO = new RepertoireDTO();
+//			
+//			repertoireDTO.setCinemaTheater(repertoire.getCinemaTheater());
+//			
+//			allRepertoires.add(repertoireDTO);
+//		}
+//		
+//		return allRepertoires;
+		
+		List<DTOAll> listDtos = new ArrayList<>();
+
+		for(Repertoire repertoire : repertoireRepository.findAll())
+		{
+			DTOAll dtoAll = new DTOAll();
+			dtoAll.setActive(repertoire.isActive());
+			dtoAll.setCinemaTheater(repertoire.getCinemaTheater());
+			dtoAll.setPrice(repertoire.getPrice());
+			dtoAll.setProduction(repertoire.getProduction());
+			dtoAll.setProduction(repertoire.getProduction());
+			dtoAll.setRoom(repertoire.getRoom());
+			
+			listDtos.add(dtoAll);
+		}
+		
+		return  listDtos;
+
 	}
 }
 

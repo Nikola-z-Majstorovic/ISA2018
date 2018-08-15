@@ -2,7 +2,6 @@ package ftn.ISAProjekat.model;
 
 import java.io.Serializable;
 
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -10,8 +9,6 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-
 
 @Entity
 //@Table(name = "users")
@@ -51,25 +48,39 @@ public class User implements Serializable {
 	@JsonManagedReference
 	@ManyToMany(mappedBy = "user")
 //	@JsonIgnore
+=======
+	
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JsonManagedReference
+>>>>>>> 383f5c21e66b910c982432071c7f26d01cfa509a
 	private Set<CinemaTheater> cinemaTheaters;
 */
 	/*
 	@JsonManagedReference(value="reservations")
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+	@JsonManagedReference
 	private Set<Reservation> reservations;
 	*/
 	/*
 	@JsonManagedReference(value="friends")
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+	@JsonManagedReference
 	private Set<UserFriend> friends;
 	*/
 /*
 	@JsonManagedReference
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+	@JsonManagedReference
 	private Set<AuctionBiding> auctionBidings;
+<<<<<<< HEAD
 */
 /*
 	@ManyToMany(mappedBy = "user")
+=======
+	
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JsonManagedReference
+>>>>>>> 383f5c21e66b910c982432071c7f26d01cfa509a
 	private Set<Prop> props;
 */
 	public User() {

@@ -7,6 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class Reservation implements Serializable{
@@ -19,19 +23,16 @@ public class Reservation implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	/*
-	@ManyToOne(optional = false)	
+
+	@ManyToOne(optional = false)
+	@JsonBackReference
 	private User user;
 	
 	@ManyToOne(optional = false)
-	private Repertoire repertoire;	
-	*/
-	@Column(nullable = false)
-	private Long userId;
-	@Column(nullable = false)
-	private Long repertoireId;
-
+	@JsonBackReference("r")
+	@JoinColumn(name="repertoire_id")
+	private Repertoire repertoire;
+	
 	@Column(nullable = false)
 	private boolean approved;
 	
@@ -95,22 +96,6 @@ public class Reservation implements Serializable{
 
 	public void setRowNumber(int rowNumber) {
 		this.rowNumber = rowNumber;
-	}
-
-	public Long getUserId() {
-		return userId;
-	}
-
-	public void setUserId(Long userId) {
-		this.userId = userId;
-	}
-
-	public Long getRepertoireId() {
-		return repertoireId;
-	}
-
-	public void setRepertoireId(Long repertoireId) {
-		this.repertoireId = repertoireId;
 	}
 
 	public Long getSenderId() {
