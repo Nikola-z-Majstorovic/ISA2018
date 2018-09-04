@@ -1,7 +1,9 @@
 package ftn.ISAProjekat.model;
 
 import java.io.Serializable;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -9,18 +11,19 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 @Entity
-//@Table(name = "users")
-public class User implements Serializable {
+public class User implements Serializable  {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
 	@Column(nullable = false)
@@ -43,48 +46,15 @@ public class User implements Serializable {
 	
 	@Enumerated(EnumType.STRING)
 	private Role role;
-/*
-//	@ManyToMany(fetch = FetchType.EAGER)
-	@JsonManagedReference
-	@ManyToMany(mappedBy = "user")
-//	@JsonIgnore
-=======
 	
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JsonManagedReference
->>>>>>> 383f5c21e66b910c982432071c7f26d01cfa509a
+	@ManyToMany(cascade=CascadeType.ALL) 
+	@JoinTable(name="user_cinema_theaters", joinColumns=@JoinColumn(name="user_id"),
+	inverseJoinColumns=@JoinColumn(name="cinema_theater_id"))
 	private Set<CinemaTheater> cinemaTheaters;
-*/
-	/*
-	@JsonManagedReference(value="reservations")
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-	@JsonManagedReference
-	private Set<Reservation> reservations;
-	*/
-	/*
-	@JsonManagedReference(value="friends")
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-	@JsonManagedReference
-	private Set<UserFriend> friends;
-	*/
-/*
-	@JsonManagedReference
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-	@JsonManagedReference
-	private Set<AuctionBiding> auctionBidings;
-<<<<<<< HEAD
-*/
-/*
-	@ManyToMany(mappedBy = "user")
-=======
 	
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JsonManagedReference
->>>>>>> 383f5c21e66b910c982432071c7f26d01cfa509a
-	private Set<Prop> props;
-*/
+	
 	public User() {
-		// TODO Auto-generated constructor stub
+		super();
 	}
 
 	public Long getId() {
@@ -150,7 +120,7 @@ public class User implements Serializable {
 	public void setRole(Role role) {
 		this.role = role;
 	}
-/*
+
 	public Set<CinemaTheater> getCinemaTheaters() {
 		return cinemaTheaters;
 	}
@@ -158,40 +128,6 @@ public class User implements Serializable {
 	public void setCinemaTheaters(Set<CinemaTheater> cinemaTheaters) {
 		this.cinemaTheaters = cinemaTheaters;
 	}
-*/
-	/*
-	public Set<Reservation> getReservations() {
-		return reservations;
-	}
 
-	public void setReservations(Set<Reservation> reservations) {
-		this.reservations = reservations;
-	}
-
-	public Set<UserFriend> getFriends() {
-		return friends;
-	}
-
-	public void setFriends(Set<UserFriend> friends) {
-		this.friends = friends;
-	}
-*/
-//	public Set<AuctionBiding> getAuctionBidings() {
-//		return auctionBidings;
-//	}
-//
-//	public void setAuctionBidings(Set<AuctionBiding> auctionBidings) {
-//		this.auctionBidings = auctionBidings;
-//	}
-//
-//	
-//	public Set<Prop> getProps() {
-//		return props;
-//	}
-//
-//	public void setProps(Set<Prop> props) {
-//		this.props = props;
-//	}
-//	
-
+	
 }

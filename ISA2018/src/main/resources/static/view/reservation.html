@@ -25,17 +25,17 @@
 			<div>
 				<div style="display: inline-block;">{{row.rowNo}} row:</div>
 				<div style="display: inline-block;" data-ng-repeat = 'sitInRow in row.sits'>
-					<input type="checkbox" data-ng-checked = "isReserved(row, sitInRow.sitNo)" name="sitNo_{{sitInRow.sitNo}}" data-ng-click="checkSit(row, sitInRow.sitNo, $event)">
+					<input type="checkbox" data-ng-model="sitInRow.checked"  data-ng-disabled="sitInRow.disabled" name="sitNo_{{sitInRow.sitNo}}" data-ng-click="checkSit(row, sitInRow.sitNo, $event)">
 				</div>
 			</div>
 			<br>
 		</div>
 	
-	<div data-ng-show="tempReservations.length > 0">	
+	<div data-ng-show="displayFriends">	
 		<div>My Friends</div>
 	    <div data-ng-repeat="myFriend in myFriends" data-ng-show="myFriend.active == true">
 	    	<div>
-	    		{{myFriend.friendID}}
+	    		{{myFriend.user.id}} - {{getFriendName(myFriend.user.id).name}}
 	    	</div>
 	    </div>
 	</div>

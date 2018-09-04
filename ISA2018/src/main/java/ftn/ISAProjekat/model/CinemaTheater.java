@@ -1,27 +1,28 @@
 package ftn.ISAProjekat.model;
 
 import java.io.Serializable;
-import java.util.Set;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class CinemaTheater implements Serializable{
+public class CinemaTheater implements Serializable {
 
 	/**
-	 * Imamo 1 Cinema * repertoires 
+	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
 	@Column(nullable = false)
@@ -39,32 +40,16 @@ public class CinemaTheater implements Serializable{
 	@Column(nullable = false)
 	private int entityRate;
 	
-	/*
-	@JsonManagedReference
-	@OneToMany(mappedBy = "cinemaTheater", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	private Set<Repertoire> repertoires;
-	*/
-	/*
-	@JsonManagedReference
-	@OneToMany(mappedBy = "cinemaTheater", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-=======
-	@OneToMany(mappedBy = "cinemaTheater")
-	@JsonManagedReference("a")
-	private Set<Repertoire> repertoires;
-	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "cinemaTheater")
-	@JsonManagedReference("b")
->>>>>>> 383f5c21e66b910c982432071c7f26d01cfa509a
-	private Set<Room> rooms;
-	*/
-	
+	@JsonIgnore
+	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy="cinemaTheater") 
+	private List<Room> rooms;
 
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JsonBackReference("c")
-	private Set<User> user;
+	@JsonIgnore
+	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy="cinemaTheater") 
+	private List<Repertoire> repertoires;
 	
 	public CinemaTheater() {
-		// TODO Auto-generated constructor stub
+		super();
 	}
 
 	public Long getId() {
@@ -114,32 +99,21 @@ public class CinemaTheater implements Serializable{
 	public void setEntityRate(int entityRate) {
 		this.entityRate = entityRate;
 	}
-/*
-	public Set<Repertoire> getRepertoires() {
-		return repertoires;
-	}
 
-	public void setRepertoires(Set<Repertoire> repertoires) {
-		this.repertoires = repertoires;
-	}
-	*/
-/*
-	public Set<Room> getRooms() {
+	public List<Room> getRooms() {
 		return rooms;
 	}
 
-	public void setRooms(Set<Room> rooms) {
+	public void setRooms(List<Room> rooms) {
 		this.rooms = rooms;
 	}
-*/
 
-	public Set<User> getUser() {
-		return user;
+	public List<Repertoire> getRepertoires() {
+		return repertoires;
 	}
 
-	public void setUser(Set<User> user) {
-		this.user = user;
+	public void setRepertoires(List<Repertoire> repertoires) {
+		this.repertoires = repertoires;
 	}
 
-	
 }

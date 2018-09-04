@@ -1,9 +1,6 @@
 myModule.factory('dataService', ['$http', function ($http) {
 
     return {
-        get: function (id) {
-            
-        },
         getAll: function (ctrl,method,param,cb) {
         	if(param==null) {
         	$http.get(ctrl+ '/' + method)
@@ -13,6 +10,7 @@ myModule.factory('dataService', ['$http', function ($http) {
             	cb(reason);
             }); 
         	} else {
+//        		console.log(ctrl + '/' + method + '/' + param);
             	$http.get(ctrl + '/' + method + '/' + param)
                 .then(function (response) {
                 	cb(response);

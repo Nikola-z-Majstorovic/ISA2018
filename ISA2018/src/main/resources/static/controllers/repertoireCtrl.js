@@ -30,5 +30,22 @@ myModule.controller('repertoireCtrl', ['$rootScope', '$scope', 'dataService', 'a
 	}
 
     $scope.refreshRepertoire();
+    
+    
+    $scope.changeViewReservation = function(repertoireId, entityId){
+    	
+    		
+    	  dataService.getAll('reservation','getAll', repertoireId,function(res) {
+
+    		  $rootScope.allReservations = res.data;
+
+    		  $rootScope.changeView('/ticketReservation/' + entityId + '/' + repertoireId);
+  			
+  		
+  		});
+    	
+    	
+    	
+    }
 }]);
 

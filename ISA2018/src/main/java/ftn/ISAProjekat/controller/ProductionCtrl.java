@@ -4,14 +4,17 @@ package ftn.ISAProjekat.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import ftn.ISAProjekat.model.Production;
-import ftn.ISAProjekat.services.ProductionService;
+import ftn.ISAProjekat.service.ProductionService;
 
 @RestController
 public class ProductionCtrl {
@@ -24,10 +27,43 @@ public class ProductionCtrl {
 			method = RequestMethod.GET,
 			produces = MediaType.APPLICATION_JSON_VALUE
 			)
-	public List<Production> getProductions(@PathVariable boolean isMovie) {
-		
-		List<Production> prd= productionService.findByIsMovie(isMovie);
-		return prd;
+	public List<Production> getProductions(@PathVariable boolean isMovie) {		
+		return productionService.findByIsMovie(isMovie);		
 	}
-	
+	@RequestMapping(
+			value = "/production/findAll",
+			method = RequestMethod.GET,
+			produces = MediaType.APPLICATION_JSON_VALUE
+			)
+	public List<Production> findAll() {		
+		return productionService.findAll();		
+	}
+	@RequestMapping(
+			value = "/production/create",
+			method = RequestMethod.POST,
+			consumes = MediaType.APPLICATION_JSON_VALUE
+			)
+	public void create(@RequestBody Production production) {		
+		 productionService.create(production);		
+	}
+	@RequestMapping(
+			value = "/production/update",
+			method = RequestMethod.PUT,
+			consumes = MediaType.APPLICATION_JSON_VALUE
+			)
+	public ResponseEntity<Production> update(@RequestBody Production production) {		
+		if(production.getId()!=null) {
+			Production updatedProduction= productionService.create(production);
+			return new ResponseEntity<Production>(updatedProduction,HttpStatus.CREATED);
+		}else {
+			return new ResponseEntity<Production>(HttpStatus.CONFLICT);
+		}	
+	}
+	@RequestMapping(
+			value = "/production/delete/{id}",
+			method = RequestMethod.DELETE
+			)
+	public void delete(@PathVariable Long id) {		
+		 productionService.delete(id);		
+	}
 }

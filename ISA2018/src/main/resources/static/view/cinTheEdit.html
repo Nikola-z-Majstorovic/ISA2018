@@ -2,9 +2,9 @@
     <form name="frm" id="frm">
     	<div data-ng-if="showEntityType">
     		<label for="entityType">Entity type:</label>
-    		<select id="entityType" name="entityType" data-ng-model="entity.isCinema" data-required="">
-    			<option value="1">Cinema</option>
-    			<option value="0">Theater</option>
+    		<select id="entityType" name="entityType" data-ng-model="entity.cinema" data-required="">
+    			<option value=1>Cinema</option>
+    			<option value=0>Theater</option>
     			<option value="">Please select</option>
     		</select>
     		<div data-ng-show="frm.entityType.$error.required" class="required">Entity type is required</div>

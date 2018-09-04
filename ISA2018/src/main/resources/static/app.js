@@ -55,18 +55,39 @@ myModule.config(['$routeProvider' ,'$locationProvider', function ($routeProvider
             {
                 controller: 'friendListCtrl',
                 templateUrl: 'view/friendList.html',
-                resolve: {}
+                resolve: {   
+                	
+                }
             })  
         .when('/ticketReservation/:repertoireId/:entityId',
             {
                 controller: 'reservationCtrl',
                 templateUrl: 'view/reservation.html',
-                resolve: {}
+                resolve: {
+//                 	allReservations : function(dataService, $rootScope){
+//                		//return "bingo";
+//                 		console.log($rootScope.selectedRepertoire);
+//                		  dataService.getAll('reservation','getAll', $rootScope.selectedRepertoire,function(res) {
+//                			console.log(res.data);
+//                			return res.data;
+//                			
+//                			
+//                		
+//                		});
+//                	}
+                	
+                }
             })  
         .when('/myReservations',
             {
                 controller: 'myReservationsCtrl',
                 templateUrl: 'view/myReservations.html',
+                resolve: {}
+            })         
+        .when('/incomeSummary',
+            {
+                controller: 'incomeSummaryCtrl',
+                templateUrl: 'view/incomeSummary.html',
                 resolve: {}
             }) 
             

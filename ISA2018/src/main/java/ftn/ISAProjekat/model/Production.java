@@ -1,8 +1,9 @@
 package ftn.ISAProjekat.model;
 
 import java.io.Serializable;
-import java.util.Set;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,18 +12,20 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class Production implements Serializable {
+public class Production implements Serializable{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	
 	
 	@Column(nullable = false)
 	private String name;
@@ -35,7 +38,7 @@ public class Production implements Serializable {
 	
 	@Column(nullable = false)
 	private String nameOfDirector;
-	
+
 	@Column(nullable = false)
 	private float duration;
 	
@@ -51,13 +54,14 @@ public class Production implements Serializable {
 	@Column(nullable = false)
 	private int productionRate;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "production")
-	@JsonManagedReference("p")
-	private Set<Repertoire> repertoires;
-	
+	@JsonIgnore
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY,mappedBy="production") 
+	private List<Repertoire> repertoires;
+
 	public Production() {
-		// TODO Auto-generated constructor stub
+		super();
 	}
+
 	public Long getId() {
 		return id;
 	}
@@ -138,4 +142,12 @@ public class Production implements Serializable {
 		this.productionRate = productionRate;
 	}
 
+	public List<Repertoire> getRepertoires() {
+		return repertoires;
 	}
+
+	public void setRepertoires(List<Repertoire> repertoires) {
+		this.repertoires = repertoires;
+	}
+	
+}

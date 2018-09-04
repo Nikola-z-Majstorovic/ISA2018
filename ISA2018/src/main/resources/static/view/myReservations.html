@@ -1,10 +1,10 @@
 <div>
 	<div style="float: left;">
 	  	<div>My Profile</div>
-	   	<div>Name: {{$rootScope.loginuser.name}}</div>
-	   	<div>Surname: {{$rootScope.loginuser.surname}}</div>
-	   	<div>Email: {{$rootScope.loginuser.email}}</div>
-	   	<div>City: {{$rootScope.loginuser.city}}</div>      
+	   	<div>Name: {{loginuser.name}}</div>
+	   	<div>Surname: {{loginuser.surname}}</div>
+	   	<div>Email: {{loginuser.email}}</div>
+	   	<div>City: {{loginuser.city}}</div>      
    	</div>
    
     
@@ -12,7 +12,23 @@
 	    <div>My Reservations</div>
 	    <div data-ng-repeat="reservation in myAllReservations" data-ng-if="reservation.approved == true">
 	    	<div>
-	    		Repertoire: {{reservation.RepertoireId}} 
+	    		Production: {{getRepertoireInfo(reservation.repertoireId, 'name')}} 
+	    	</div>
+	    	<div>
+	    		Date/Time: {{getRepertoireInfo(reservation.repertoireId, 'time')}} 
+	    	</div>
+	    	<div><button data-ng-if="isPossibleToCancel(reservation.repertoireId);" data-ng-click="cancelReservation(reservation.id)">Cancel</button></div>
+	    </div>
+	    <br>
+	    <br>
+	    <br>
+	    <div>Reservation History</div>
+	    <div data-ng-repeat="reservation in reservationHistory">
+	    	<div>
+	    		Production: {{getRepertoireInfo(reservation.repertoireId, 'name')}} 
+	    	</div>
+	    	<div>
+	    		Date/Time: {{getRepertoireInfo(reservation.repertoireId, 'time')}} 
 	    	</div>
 	    </div>
 	    <br>
@@ -21,20 +37,18 @@
 	    <div>Invitations for Events Friends</div>
 	    <div data-ng-repeat="invitation in myAllReservations" data-ng-if="invitation.approved == false">
 	    	<div>
-	    		Repertoire: {{invitation.RepertoireId}} 
+	    		Production: {{invitation.RepertoireId}} 
 	    	</div>
 	    	<div>
-	    		From friend: {{invitation.senderId}} 
+	    		From friend: {{getFriendName(invitation.senderId).name}} 
+	    	</div>
+	    	<div>
+	    		Date/Time: {{getRepertoireInfo(invitation.repertoireId, 'time')}} 
 	    	</div>
 	    	<button data-ng-click="confirmInvitation(invitation, true)">Confirm</button>
 	    	<button data-ng-click="confirmInvitation(invitation, false)">Decline</button>
 	    </div>
-	    
-	    
-	    <div>
-	    <div>Reservation History:</div>
-	    
-	    
+
 	    
 	    
 	    </div>

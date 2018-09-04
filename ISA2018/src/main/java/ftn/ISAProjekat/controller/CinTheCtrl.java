@@ -7,12 +7,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import ftn.ISAProjekat.dto.CinTheSumIncom;
+import ftn.ISAProjekat.dto.CinemaEarn;
 import ftn.ISAProjekat.model.CinemaTheater;
-import ftn.ISAProjekat.services.CinTheService;
+import ftn.ISAProjekat.service.CinTheService;
 
 @RestController
 public class CinTheCtrl {
@@ -26,27 +29,41 @@ public class CinTheCtrl {
 			produces = MediaType.APPLICATION_JSON_VALUE			
 			)
 	public List<CinemaTheater> getAll(@PathVariable boolean isCinema){
-
-		List<CinemaTheater>cinema= cinTheService.findByIsCinema(isCinema);
-				
-		return cinema;
+		return cinTheService.findByIsCinema(isCinema);			
 	}
-	
-//	@RequestMapping(
-//			value = "/cinThe/getAll",
-//			method = RequestMethod.GET,
-//			produces = MediaType.APPLICATION_JSON_VALUE			
-//			)
-//	public List<CinemaTheater> getAll(){ 
-//			return cinTheService.findAll(); 
-//	}
+	@RequestMapping(
+			value = "/cinThe/find/{id}",
+			method = RequestMethod.GET,
+			produces = MediaType.APPLICATION_JSON_VALUE			
+			)
+	public CinemaTheater find(@PathVariable Long id){
+		return cinTheService.find(id);			
+	}
+	@RequestMapping(
+			value = "/cinThe/incomeSummuryForPeriod",
+			method = RequestMethod.PUT,
+			produces = MediaType.APPLICATION_JSON_VALUE,
+			consumes= MediaType.APPLICATION_JSON_VALUE
+			)
+	public List<CinTheSumIncom> incomeSummuryForPeriod(@RequestBody CinemaEarn cinemaEarn){
+		List<CinTheSumIncom> list=cinTheService.incomeSummuryForPeriod(cinemaEarn.getStartDate(), cinemaEarn.getEndDate());
+		return 	list;		
+	}
+	@RequestMapping(
+			value = "/cinThe/findAll",
+			method = RequestMethod.GET,
+			produces = MediaType.APPLICATION_JSON_VALUE			
+			)
+	public List<CinemaTheater> findAll(){
+		return cinTheService.findAll();			
+	}
+
 	@RequestMapping(
 			value = "/cinThe/create",
 			method = RequestMethod.POST,
-			produces = MediaType.APPLICATION_JSON_VALUE,
 			consumes = MediaType.APPLICATION_JSON_VALUE		
 			)
-	public ResponseEntity<CinemaTheater> create(CinemaTheater cinemaTheater) {
+	public ResponseEntity<CinemaTheater> create(@RequestBody CinemaTheater cinemaTheater) {
 		CinemaTheater savedCinemaTheater= cinTheService.create(cinemaTheater);
 		return new ResponseEntity<CinemaTheater>(savedCinemaTheater,HttpStatus.CREATED);
 	}
@@ -56,7 +73,7 @@ public class CinTheCtrl {
 			produces = MediaType.APPLICATION_JSON_VALUE,
 			consumes = MediaType.APPLICATION_JSON_VALUE		
 			)
-	public ResponseEntity<CinemaTheater> update(CinemaTheater cinemaTheater) {
+	public ResponseEntity<CinemaTheater> update(@RequestBody CinemaTheater cinemaTheater) {
 		if(cinemaTheater.getId()!=null) {
 			CinemaTheater updatedCinemaTheater= cinTheService.create(cinemaTheater);
 			return new ResponseEntity<CinemaTheater>(updatedCinemaTheater,HttpStatus.CREATED);

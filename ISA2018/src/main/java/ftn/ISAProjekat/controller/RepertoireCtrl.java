@@ -1,57 +1,81 @@
 package ftn.ISAProjekat.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import ftn.ISAProjekat.dto.DTOAll;
+import ftn.ISAProjekat.dto.CinemaEarn;
+import ftn.ISAProjekat.dto.RepertoireIncom;
 import ftn.ISAProjekat.model.Repertoire;
-import ftn.ISAProjekat.repository.RepertoireRepository;
+import ftn.ISAProjekat.service.RepertoireService;
 
 @RestController
 public class RepertoireCtrl {
 
 	@Autowired
-	private RepertoireRepository repertoireRepository;
+	private RepertoireService repertoireService;
 
-	@RequestMapping(value = "/repertoire/getAll", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<DTOAll> getRepertoire() {
-//			List<Repertoire> repertoires =  repertoireRepository.findAll();
-//			
-//			List<RepertoireDTO> allRepertoires= new ArrayList<>();
-//			
-//		for (Repertoire repertoire : repertoires) {
-//			RepertoireDTO repertoireDTO = new RepertoireDTO();
-//			
-//			repertoireDTO.setCinemaTheater(repertoire.getCinemaTheater());
-//			
-//			allRepertoires.add(repertoireDTO);
-//		}
-//		
-//		return allRepertoires;
-		
-		List<DTOAll> listDtos = new ArrayList<>();
-
-		for(Repertoire repertoire : repertoireRepository.findAll())
-		{
-			DTOAll dtoAll = new DTOAll();
-			dtoAll.setActive(repertoire.isActive());
-			dtoAll.setCinemaTheater(repertoire.getCinemaTheater());
-			dtoAll.setPrice(repertoire.getPrice());
-			dtoAll.setProduction(repertoire.getProduction());
-			dtoAll.setProduction(repertoire.getProduction());
-			dtoAll.setRoom(repertoire.getRoom());
-			
-			listDtos.add(dtoAll);
-		}
-		
-		return  listDtos;
-
+	@RequestMapping(
+			value = "/repertoire/getAll/{cinemaTheaterId}",
+			method = RequestMethod.GET,
+			produces = MediaType.APPLICATION_JSON_VALUE
+			)
+	public List<Repertoire> getRepertoires(@PathVariable Long cinemaTheaterId) {		
+		 return repertoireService.getAll(cinemaTheaterId);
+	}
+	@RequestMapping(
+			value = "/repertoire/incomeSummuryForPeriod",
+			method = RequestMethod.GET,
+			produces = MediaType.APPLICATION_JSON_VALUE
+			)
+	private List<RepertoireIncom> incomeSummuryForPeriod(@RequestBody CinemaEarn cinemaEarn) {
+		return repertoireService.incomeSummuryForPeriod(cinemaEarn.getStartDate(),cinemaEarn.getEndDate());
+	}
+	@RequestMapping(
+			value = "/repertoire/get/{repertoireId}",
+			method = RequestMethod.GET,
+			produces = MediaType.APPLICATION_JSON_VALUE
+			)
+	private Repertoire getRepertoire(@PathVariable Long repertoireId) {
+		return repertoireService.get(repertoireId);
+	}
+	@RequestMapping(
+			value = "/repertoire/getEveryRepertoire",
+			method = RequestMethod.GET,
+			produces = MediaType.APPLICATION_JSON_VALUE
+			)
+	private List<Repertoire> getEveryRepertopire() {
+		return repertoireService.getAll();
+	}
+	@RequestMapping(
+			value = "/repertoire/create",
+			method = RequestMethod.POST,
+			consumes = MediaType.APPLICATION_JSON_VALUE
+			)
+	private void createRepertopire(@RequestBody Repertoire repertoire) {
+		repertoireService.createRepertoire(repertoire);
+	}
+	@RequestMapping(
+			value = "/repertoire/update",
+			method = RequestMethod.PUT,
+			consumes = MediaType.APPLICATION_JSON_VALUE
+			)
+	private void updateRepertoire(@RequestBody Repertoire repertoire) {
+		 repertoireService.createRepertoire(repertoire);
+	}
+	@RequestMapping(
+			value = "/repertoire/delete/{id}",
+			method = RequestMethod.DELETE,
+			produces = MediaType.APPLICATION_JSON_VALUE
+			)
+	private void deleteRepertoire(@PathVariable Long id) {
+		 repertoireService.delete(id);
 	}
 }
 

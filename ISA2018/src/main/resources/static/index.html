@@ -11,13 +11,15 @@
    <script src="js/moment.min.js"></script>
    
 </head>
+
 <body data-ng-app="myModule">
-<button data-ng-click="changeView('/login')">login</button>
-<button data-ng-click="changeView('/registration')">registration</button>
-<button data-ng-click="changeView('/cinematheaterlist')">View entity list</button>
-<button data-ng-click="changeView('/productionList')">View production list</button> <!-- data-ng-if="loginuser.role=='CINTHEADMIN'" -->
-<button data-ng-click="changeView('/friendList')">View friend list</button> <!-- data-ng-if="loginuser.role=='CUSTOMER'" -->
-<button data-ng-click="changeView('/myReservations')">My Reservations</button> <!-- data-ng-if="loginuser.role=='CUSTOMER'" -->
+<button data-ng-if="loginuser.role=='UNREGISTRATED'"data-ng-click="changeView('/login')">login</button>
+<button data-ng-if="loginuser.role=='UNREGISTRATED'" data-ng-click="changeView('/registration')">registration</button>
+<button data-ng-if="loginuser.role=='UNREGISTRATED'" data-ng-click="changeView('/cinematheaterlist')">View entity list</button>
+<button data-ng-if="loginuser.role=='CINTHEADMIN'" data-ng-click="changeView('/productionList')">View production list</button> 
+<button data-ng-if="loginuser.role=='CUSTOMER'"data-ng-click="changeView('/friendList')">View friend list</button> 
+<button data-ng-if="loginuser.role=='CUSTOMER'" data-ng-click="changeView('/myReservations')">My Reservations</button> 
+<button data-ng-if="loginuser.role=='CINTHEADMIN'" data-ng-click="changeView('/incomeSummary')">Income Summary</button> 
 	<div data-ng-view></div>
 <!-- sevices -->
 <script src="services/appService.js"></script>
@@ -34,6 +36,7 @@
 <script src="controllers/friendListCtrl.js"></script>
 <script src="controllers/reservationCtrl.js"></script>
 <script src="controllers/myReservationsCtrl.js"></script>
+<script src="controllers/incomeSummaryCtrl.js"></script>
 
 </body>
 

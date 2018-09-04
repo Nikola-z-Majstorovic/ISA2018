@@ -22,7 +22,16 @@ myModule.controller('productionCtrl', ['$rootScope', '$scope', 'dataService', 'a
     	 }
     }
     $scope.deleteProduction = function (productionId) {
-    	//calling data service delete
+    	console.log('usao');
+    	console.log(productionId);
+    	 dataService.delete('production','delete',productionId,function(res){
+           	if(res.status==200){        
+          		console.log(res);
+          		$scope.productions = res.data;
+           	}else {
+           		console.log(res);
+           	}          	
+ 		 });
     }
 }]);
 

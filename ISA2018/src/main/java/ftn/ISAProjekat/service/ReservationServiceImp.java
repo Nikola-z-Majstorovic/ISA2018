@@ -1,4 +1,4 @@
-package ftn.ISAProjekat.services;
+package ftn.ISAProjekat.service;
 
 
 import java.util.List;
@@ -21,9 +21,24 @@ public class ReservationServiceImp implements ReservationService{
 	}
 
 	@Override
-	public List<Reservation> findByRepertoireId(Long repertoireId) {
-		return reservationRepository.findByRepertoireId(repertoireId);
+	public List<Reservation> findByUserId(Long repertoireId) {
+		return reservationRepository.findByUserId(repertoireId);
 	
+	}
+
+	@Override
+	public void deleteReservation(Long id) {
+		reservationRepository.delete(id);
+	}
+
+	@Override
+	public void deleteExpiredReservations() {
+		reservationRepository.deleteExpiredReservations();		
+	}
+
+	@Override
+	public List<Reservation> findById(Long repertoireId) {
+		return reservationRepository.findByRepertoireId(repertoireId);
 	}
 
 	

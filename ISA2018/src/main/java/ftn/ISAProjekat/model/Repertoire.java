@@ -1,31 +1,27 @@
 package ftn.ISAProjekat.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 public class Repertoire implements Serializable {
-	
+
 	/**
-	 * 1 Repertoire 1 Cinema 
+	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
 	@Column(nullable = false)
@@ -34,35 +30,20 @@ public class Repertoire implements Serializable {
 	@Column(nullable = false)
 	private float price;
 	
-	//@JsonManagedReference(value="cinemaTheater")
-	//@JsonBackReference
-//	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL) 
-	@ManyToOne(optional = false)
-	@JoinColumn(name="cinema_theater_id")
-	@JsonBackReference("a")
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone = "UTC")
+	private Date timeOfDisplay;
+	
+    @ManyToOne
 	private CinemaTheater cinemaTheater;
 	
+    @ManyToOne
+    private Room room;
 
-//	@JsonManagedReference
-	@ManyToOne(optional = false)
-	@JoinColumn(name="room_id")
-	@JsonBackReference("b")
-	private Room room;
-	
-//	@JsonManagedReference
-	@ManyToOne(optional = false)
-	@JoinColumn(name="production_id")
-	@JsonBackReference("p")
-	private Production production;
-
-	/*
-	//@JsonManagedReference(value="reservations")
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "repertoire")
-	@JsonManagedReference("r")
-	private Set<Reservation> reservations;
-	*/
+    @ManyToOne
+    private Production production;
+    
 	public Repertoire() {
-		// TODO Auto-generated constructor stub
+		super();
 	}
 
 	public Long getId() {
@@ -112,14 +93,14 @@ public class Repertoire implements Serializable {
 	public void setProduction(Production production) {
 		this.production = production;
 	}
-/*
-	public Set<Reservation> getReservations() {
-		return reservations;
+
+	public Date getTimeOfDisplay() {
+		return timeOfDisplay;
 	}
 
-	public void setReservations(Set<Reservation> reservations) {
-		this.reservations = reservations;
+	public void setTimeOfDisplay(Date timeOfDisplay) {
+		this.timeOfDisplay = timeOfDisplay;
 	}
-	*/
-
+    
+    
 }

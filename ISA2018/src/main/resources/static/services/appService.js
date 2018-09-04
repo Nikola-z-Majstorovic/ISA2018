@@ -8,7 +8,6 @@ myModule.factory('appService', [ '$rootScope', '$location', function($rootScope,
 				    };
 						   
 					$rootScope.changeView = function(view) {
-
 						$location.path(view);
 					};
 					$rootScope.logOut = function() {
@@ -21,11 +20,11 @@ myModule.factory('appService', [ '$rootScope', '$location', function($rootScope,
 					};
 					
 					
-					$rootScope.mainFriendRequests = [
-						{userID: 2, friendID: 1, approved: true, sender: true},
-						{userID: 1, friendID: 2, approved: true, sender: false}
-						
-					];
+//					$rootScope.mainFriendRequests = [
+//						{userID: 2, friendID: 1, approved: true, sender: true},
+//						{userID: 1, friendID: 2, approved: true, sender: false}
+//						
+//					];
 //					$rootScope.users = [{userID: 1, name: 'Pera', surname: 'Peric', role: 'sysadmin'},
 //										{userID: 2, name: 'Djura', surname: 'Djuric', role: 'cintheadmin'},
 //										{userID: 3, name: 'Milos', surname: 'Misic', role: 'customer'}];
@@ -53,38 +52,38 @@ myModule.factory('appService', [ '$rootScope', '$location', function($rootScope,
 //						{idProduction:3,name:"Pokondirana tikva",actors:"/",genre:"comedy",nameOfDirector:"Sterija Popovic",duration:1.4,avrageRating:5,description:"/",isMovie:0}
 //					];
 					
-					$rootScope.hcReservations = [
-						{
-							id: 1,
-							rowNumber: 1,
-							sitNumber: 1,
-							senderId: null,
-							userID: 2,
-							RepertoireId: 2,
-							approved: true
-						},
-						{
-							id: 2,
-							rowNumber: 3,
-							sitNumber: 2,
-							senderId: 1,
-							userID: 2,
-							RepertoireId: 1,
-							approved: false
-						}
-
-					];
-					
-					$rootScope.rooms = [
-					{idRoom:1,name:"1",numOfSits:10,numOfRows:6,cinemaTheaterId:1},
-					{idRoom:2,name:"2",numOfSits:8,numOfRows:4,cinemaTheaterId:1},
-					{idRoom:3,name:"1",numOfSits:10,numOfRows:6,cinemaTheaterId:2},
-					{idRoom:4,name:"2",numOfSits:8,numOfRows:4,cinemaTheaterId:2},
-					{idRoom:5,name:"1",numOfSits:10,numOfRows:6,cinemaTheaterId:3},
-					{idRoom:6,name:"2",numOfSits:8,numOfRows:4,cinemaTheaterId:3},
-					{idRoom:7,name:"1",numOfSits:10,numOfRows:6,cinemaTheaterId:4},
-					{idRoom:8,name:"2",numOfSits:8,numOfRows:4,cinemaTheaterId:4}
-					];
+//					$rootScope.hcReservations = [
+//						{
+//							id: 1,
+//							rowNumber: 1,
+//							sitNumber: 1,
+//							senderId: null,
+//							userID: 2,
+//							RepertoireId: 2,
+//							approved: true
+//						},
+//						{
+//							id: 2,
+//							rowNumber: 3,
+//							sitNumber: 2,
+//							senderId: 1,
+//							userID: 2,
+//							RepertoireId: 1,
+//							approved: false
+//						}
+//
+//					];
+//					
+//					$rootScope.rooms = [
+//					{idRoom:1,name:"1",numOfSits:10,numOfRows:6,cinemaTheaterId:1},
+//					{idRoom:2,name:"2",numOfSits:8,numOfRows:4,cinemaTheaterId:1},
+//					{idRoom:3,name:"1",numOfSits:10,numOfRows:6,cinemaTheaterId:2},
+//					{idRoom:4,name:"2",numOfSits:8,numOfRows:4,cinemaTheaterId:2},
+//					{idRoom:5,name:"1",numOfSits:10,numOfRows:6,cinemaTheaterId:3},
+//					{idRoom:6,name:"2",numOfSits:8,numOfRows:4,cinemaTheaterId:3},
+//					{idRoom:7,name:"1",numOfSits:10,numOfRows:6,cinemaTheaterId:4},
+//					{idRoom:8,name:"2",numOfSits:8,numOfRows:4,cinemaTheaterId:4}
+//					];
 					
 
 

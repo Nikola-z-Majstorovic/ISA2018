@@ -4,47 +4,76 @@ myModule.controller('friendListCtrl', ['$rootScope', '$scope', 'dataService', 'a
 
     $scope.refreshFriends = function (){
 	    //Find all my friend requests that are not approved and they are sent by another user
-	    $scope.friendRequests = appService.lodashFilterBy($rootScope.mainFriendRequests, 'friendID', $rootScope.loginuser.id);
-	    
+    	 /*	
+	    $scope.friendRequests = appService.lodashFilterBy($rootScope.myFriendRequests, 'userId', $rootScope.loginuser.id);
+	 
 	    $scope.friendRequests = appService.lodashFilterBy($scope.friendRequests, 'approved', false);
 	    
 	    $scope.friendRequests = appService.lodashFilterBy($scope.friendRequests, 'sender', true);
-	    
+	 
 	    console.log('Friend requests');
 	    console.log($scope.friendRequests);
 	    
 	    //Find all my friends (approved requests)
 	    $scope.myFriends = appService.lodashFilterBy($rootScope.mainFriendRequests, 'userID', $rootScope.loginuser.id);
 	    $scope.myFriends = appService.lodashFilterBy($scope.myFriends, 'approved', true);
-	    
+	   
 	    console.log('My friends');
 	    console.log($scope.myFriends);
+	    
+	    */
+    	dataService.getAll('userFriend','getAllMyFriends',$rootScope.loginuser.id,function(res) {
+        			if(res.status==200){  
+        				//console.log(res);
+	        			$rootScope.myFriends = res.data;	
+        			}else {
+        				console.log(res);
+        			}
+	        			
+	    });
+    	//zasto ovde nismo napisali	var myfriends = appService.lodashFilterBy($rootScope.myFriends, 'myId', $rootScope.loginuser.id); nego stalno proveravamo u bazi 
     }
     
-    $scope.refreshFriends();
+    //$scope.refreshFriends();
+   // console.log($rootScope.myFriends);
     
+    
+   
     $scope.searchUsers = function(){
     	$scope.foundUsers = [];
     	
-    	for (var i = 0; i < $rootScope.users.length; i++) {
-    		var username = $rootScope.users[i].name.toLowerCase();
-    		var contains = username.includes($scope.findUser.toLowerCase());
-    		
-    		
-    		if(contains){
-    			
-    			var myfriends = appService.lodashFilterBy($rootScope.mainFriendRequests, 'userID', $rootScope.loginuser.id);
-    			
-    		    var user = appService.lodashFindBy(myfriends, 'friendID', $rootScope.users[i].userID);
-    		    
-    		    if(!user){
-    		    	if($rootScope.users[i].userID != $rootScope.loginuser.id){
-    		    		$scope.foundUsers.push($rootScope.users[i]);
-    		    	}
-    		    }
-        		
-        	}
-		 }  
+    	
+    	if($scope.findUser.length >= 3){
+	    	for (var i = 0; i <= $rootScope.users.length - 1; i++) {
+	    		var username = $rootScope.users[i].name.toLowerCase();
+	    		var contains = username.includes($scope.findUser.toLowerCase());
+	    		
+	    		
+	    		if(contains){
+	    			
+	    			var myfriends = appService.lodashFilterBy($rootScope.myFriends, 'myId', $rootScope.loginuser.id); 
+	    			
+	    			
+	    			var user = null;
+	    		    //var user = appService.lodashFindBy(myfriends, 'id', $rootScope.users[i].id);
+	    			
+	    			//Check if found user is already my friend. If he is, than dont count him as found user
+	    		    for (var y = 0; y <= myfriends.length - 1; y++) {
+	    		    	if(myfriends[y].user.id == $rootScope.users[i].id){
+	    		    		user = myfriends[y];
+	    		    	}
+	    		    
+	    		    }
+	
+	    		    if(!user){
+	    		    	if($rootScope.users[i].id != $rootScope.loginuser.id){
+	    		    		$scope.foundUsers.push($rootScope.users[i]);
+	    		    	}
+	    		    }
+	        		
+	        	}
+			 }  
+    	}
 
     };
     
@@ -53,22 +82,41 @@ myModule.controller('friendListCtrl', ['$rootScope', '$scope', 'dataService', 'a
     $scope.sendFriendRequest = function(friend){
   
     	var friendRequest = {
-    			userID: $rootScope.loginuser.id,
-    			friendID: friend.userID,
+    			myId: $rootScope.loginuser.id,
+    			userId: friend.userId,
     			approved: false,
-    			sender: true
+    			requestSender: true
     	};
 
-    	$rootScope.mainFriendRequests.push(friendRequest);
+    	//Call dataservice to add friend for me
+    	dataService.create('userFriend','create',friendRequest,function(res) {
+			if(res.status==200){  
+				console.log(res);
+			}else {
+				console.log(res);
+			}
+    			
+    	});
+    	
     	
     	friendRequest = {
-    			userID: friend.userID,
-    			friendID: $rootScope.loginuser.id,
+    			myId: friend.userId,
+    			userId: $rootScope.loginuser.id,
     			approved: false,
-    			sender: false
+    			senderequestSenderr: false
     	};
     	
-    	$rootScope.mainFriendRequests.push(friendRequest);
+    	//Call dataservice to add me to the friendRequest list of user that i just added
+    	
+    	dataService.create('userFriend','create',friendRequest,function(res) {
+			if(res.status==200){  
+				console.log(res);
+			}else {
+				console.log(res);
+			}
+    			
+    	});
+    	//$rootScope.mainFriendRequests.push(friendRequest);
     	
     	$scope.foundUsers = _.without($scope.foundUsers, friend);
     }
@@ -76,12 +124,28 @@ myModule.controller('friendListCtrl', ['$rootScope', '$scope', 'dataService', 'a
     $scope.confirmFriendRequest = function(friend){
     	
     	
-    	$scope.friendRequests = _.without($scope.friendRequests, friend);
+    	$rootScope.myFriendRequests = _.without($rootScope.myFriendRequests, friend);
+ 
+    	//This is fix for returned users that are displayed like array with numbers instead of named properties
+  
     	
-    	console.log(friend);
+        //Call data service update for myFriends table
+    	//Update my row for this friend and set approved to true
+    	dataService.update('userFriend','update',friend,function(res) {
+			if(res.status==200){  
+				console.log(res);
+				$scope.refreshFriends();
+			}else {
+				console.log(res);
+			}
+    			
+    	});
     	
-    	console.log($rootScope.loginuser.id);
+
     	
+    	//Update his row for me, where i am his friend and set approved to true
+    	
+    	/*
     	//First filter all friends table, and find all my friends that are not approved
     	var myNotApprovedFriends = appService.lodashFilterBy($rootScope.mainFriendRequests, 'userID', $rootScope.loginuser.id);
     	myNotApprovedFriends = appService.lodashFilterBy(myNotApprovedFriends, 'approved', false);
@@ -113,7 +177,15 @@ myModule.controller('friendListCtrl', ['$rootScope', '$scope', 'dataService', 'a
     	
     	console.log($rootScope.mainFriendRequests);
     	
-    	$scope.refreshFriends();
+    	*/
+    	
+    	
+    	
+    }
+    
+    
+    $scope.getFriendName = function(userId){
+    	 return appService.lodashFindBy($rootScope.users, 'id', userId);
     }
 }]);
 

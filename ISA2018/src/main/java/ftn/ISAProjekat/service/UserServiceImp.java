@@ -1,4 +1,6 @@
-package ftn.ISAProjekat.services;
+package ftn.ISAProjekat.service;
+
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,13 +32,14 @@ public class UserServiceImp implements UserService {
 	@Override
     public User create(User user) throws Exception {
        
-		user.setRole(Role.valueOf("CUSTOMER"));
-//        User user = new User();
-//        
-//        user.setName(userDTO.getName());
-        
+		user.setRole(Role.valueOf("CUSTOMER"));  
         User savedUser = userRepository.save(user);
         return savedUser;
     }
+
+	@Override
+	public List<User> findAll() {
+		return userRepository.findAll();
+	}
 
 }

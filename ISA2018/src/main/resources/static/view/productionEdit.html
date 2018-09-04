@@ -2,7 +2,7 @@
     <form name="frm" id="frm">
     	<div data-ng-if="showProductionType">
     		<label for="productionType">Production type:</label>
-    		<select id="productionType" name="productionType" data-ng-model="production.isMovie" data-required="">
+    		<select id="productionType" name="productionType" data-ng-model="production.movie" data-required="">
     			<option value="1">Movie</option>
     			<option value="0">Display</option>
     			<option value="">Please select</option>
@@ -27,7 +27,7 @@
     	<input id="nameOfDirector" type="text" name="nameOfDirector" data-ng-model="production.nameOfDirector" placeholder="nameOfDirector">
     	<br>
     	<label for="duration">Duration:</label>
-    	<input id="duration" type="number" name="duration" data-ng-model="production.duration" placeholder="Duration">
+    	<input id="duration" type=number name="duration" data-ng-model="production.duration" placeholder="Duration">
     	<br>
     	 <label for="avrageRating">Rating:</label>
     	<input id="avrageRating" type="text" name="avrageRating" data-ng-model="production.avrageRating" placeholder="Rating">

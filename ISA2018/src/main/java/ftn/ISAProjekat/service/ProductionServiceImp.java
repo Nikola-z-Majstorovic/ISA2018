@@ -1,4 +1,4 @@
-package ftn.ISAProjekat.services;
+package ftn.ISAProjekat.service;
 
 import java.util.List;
 
@@ -17,6 +17,19 @@ public class ProductionServiceImp implements ProductionService{
 	@Override
 	public List<Production> findByIsMovie(boolean isMovie) {
 		return productionRepository.findByIsMovie(isMovie);
+	}
+	@Override
+	public List<Production> findAll() {
+		return productionRepository.findAll();
+	}
+
+	@Override
+	public void delete(Long id) {
+		productionRepository.delete(id);
+	}
+	@Override
+	public Production create(Production production) {
+		return  productionRepository.save(production);
 	}
 
 

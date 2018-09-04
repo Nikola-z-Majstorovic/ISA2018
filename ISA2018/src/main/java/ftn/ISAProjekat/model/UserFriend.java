@@ -7,18 +7,20 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
-public class UserFriend implements Serializable {
+public class UserFriend  implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-
+	
 	@Column(nullable = false)
 	private int myId;
 	
@@ -27,12 +29,13 @@ public class UserFriend implements Serializable {
 
 	@Column(nullable = false)
 	private boolean requestSender;
-	
-	@Column(nullable = false)
-	private int userId;
+
+	@ManyToOne
+//	@Column(nullable = false)
+	private User user;
 	
 	public UserFriend() {
-		// TODO Auto-generated constructor stub
+		super();
 	}
 
 	public Long getId() {
@@ -41,6 +44,14 @@ public class UserFriend implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public int getMyId() {
+		return myId;
+	}
+
+	public void setMyId(int myId) {
+		this.myId = myId;
 	}
 
 	public boolean isApproved() {
@@ -58,20 +69,16 @@ public class UserFriend implements Serializable {
 	public void setRequestSender(boolean requestSender) {
 		this.requestSender = requestSender;
 	}
-	public int getUserId() {
-		return userId;
+
+	public User getUser() {
+		return user;
 	}
 
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
-	public int getMyId() {
-		return myId;
-	}
 
-	public void setMyId(int myId) {
-		this.myId = myId;
-	}
+	
 
 }

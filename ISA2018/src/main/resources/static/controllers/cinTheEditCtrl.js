@@ -1,4 +1,4 @@
-myModule.controller('cinTheEditCtrl', ['$rootScope', '$scope', 'dataService', 'appService', function ($rootScope, $scope, dataService,appService) {
+myModule.controller('cinTheEditCtrl', ['$rootScope', '$scope', 'dataService', 'appService','$routeParams', function ($rootScope, $scope, dataService,appService,$routeParams) {
     //-----------------------------------------------------------------------------------------------------------
     console.log('we are in cinTheEdit ctrl');
    
@@ -6,11 +6,11 @@ myModule.controller('cinTheEditCtrl', ['$rootScope', '$scope', 'dataService', 'a
     $scope.allEntities = [];
     if ($routeParams.entityid == '00000000-0000-0000-0000-000000000000') {
         $scope.entity = {
-        	cinemaTheaterId: $routeParams.entityid,
+        	id: null
         };               
     }else{
     	$scope.showEntityType = false;
-    	 dataService.getAll('cinThe','getAll',null,function(res) {
+    	 dataService.getAll('cinThe','findAll',null,function(res) {
          	if(res.status==200){        
          		console.log(res);
          		$scope.allEntities = res.data;
@@ -20,29 +20,23 @@ myModule.controller('cinTheEditCtrl', ['$rootScope', '$scope', 'dataService', 'a
          	}
          });
     	 
-    	 //console.log($scope.allEntities); // zasto je allEntities prazna niz
-    	 
-//    	$scope.entity = angular.copy(appService.lodashFindBy($rootScope.cinemasAndTheaters, 'cinemaTheaterId', Number($routeParams.entityid)));
-    	
-    	
-    	//Load existing theater or cinema
-    	//get entity for selected id from data service 
-    	//$scope.entity = dataservice
+ 
     }
     
     
     $scope.saveEntity = function(){
     	console.log($scope.entity);
     	
-    	if($scope.entity.cinemaTheaterId == '00000000-0000-0000-0000-000000000000'){
-    		$scope.entity.cinemaTheaterId = $rootScope.cinemasAndTheaters.length + 1;
-    		console.log($scope.entity);
-    		$scope.entity.isCinema = Number($scope.entity.isCinema);
-    		$rootScope.cinemasAndTheaters.push($scope.entity);
+    	if($routeParams.entityid == '00000000-0000-0000-0000-000000000000'){
+//    		$scope.entity.cinemaTheaterId = $rootScope.cinemasAndTheaters.length + 1;
+    		console.log($scope.entity.cinema);
+    		$scope.entity.cinema = Number($scope.entity.cinema);
+//    		$rootScope.cinemasAndTheaters.push($scope.entity);
 
             dataService.create('cinThe','create',$scope.entity,function(res) {
-            	if(res.status==200){        
+            	if(res.status==201){        
             		console.log(res);
+            		$rootScope.changeView('/cinematheaterlist');
             	}else {
             		console.log(res);
             		
@@ -56,9 +50,11 @@ myModule.controller('cinTheEditCtrl', ['$rootScope', '$scope', 'dataService', 'a
 //    			 }
 //    		 }    	
     		console.log($scope.entity);
+    		$scope.entity.cinema = Number($scope.entity.cinema);
             dataService.update('cinThe','update',$scope.entity,function(res) {
-            	if(res.status==200){        
+            	if(res.status==201){        
             		console.log(res);
+            		$rootScope.changeView('/cinematheaterlist');
             	}else {
             		console.log(res);
             		
@@ -67,7 +63,7 @@ myModule.controller('cinTheEditCtrl', ['$rootScope', '$scope', 'dataService', 'a
     		//data service call, update entity, pass $scope.entity		 
     	}
     	
-    	$rootScope.changeView('/cinematheaterlist');
+    	
     }
 }]);
 

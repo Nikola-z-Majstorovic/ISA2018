@@ -7,21 +7,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 @Entity
-public class Room implements Serializable{
-	
+public class Room implements Serializable {
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
 	@Column(nullable = false)
@@ -33,15 +29,13 @@ public class Room implements Serializable{
 	@Column(nullable = false)
 	private int numOfSitsInRow;
 	
-	@ManyToOne(optional = false)
-	@JoinColumn(name="cinema_theater_id")
-	@JsonBackReference("b")
-	private CinemaTheater cinemaTheater;
-	
+    @ManyToOne
+    private CinemaTheater cinemaTheater;
+    
+ 
 	public Room() {
-		// TODO Auto-generated constructor stub
+		super();
 	}
-
 
 	public Long getId() {
 		return id;

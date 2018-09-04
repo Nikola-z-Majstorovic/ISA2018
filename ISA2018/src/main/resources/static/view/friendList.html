@@ -10,16 +10,16 @@
     
     
     <div>Friend Requests</div>
-    <div data-ng-repeat="friendRequest in friendRequests">
+    <div data-ng-repeat="friendRequest in myFriendRequests">
     	<div>
-    		{{friendRequest.userID}} <button data-ng-click="confirmFriendRequest(friendRequest)">Accept</button>
+    		{{getFriendName(friendRequest.myId).name}} <button data-ng-click="confirmFriendRequest(friendRequest)">Accept</button>
     	</div>
     </div>
     
     <div>My Friends</div>
-    <div data-ng-repeat="myFriend in myFriends">
+    <div data-ng-repeat="myFriend in myFriends" data-ng-if="myFriend.approved == true">
     	<div>
-    		{{myFriend.friendID}}
+    		{{myFriend.user.name}}
     	</div>
     </div>
 </div>

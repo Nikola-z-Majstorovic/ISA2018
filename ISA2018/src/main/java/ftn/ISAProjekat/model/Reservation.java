@@ -7,31 +7,26 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
-public class Reservation implements Serializable{
-	
+public class Reservation  implements Serializable {
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-
-	@ManyToOne(optional = false)
-	@JsonBackReference
-	private User user;
 	
-	@ManyToOne(optional = false)
-	@JsonBackReference("r")
-	@JoinColumn(name="repertoire_id")
-	private Repertoire repertoire;
+	//@ManyToOne(optional = false)
+	//@JsonManagedReference
+	private Long userId;
+	
+	//@ManyToOne(optional = false)
+	//@JsonManagedReference
+	private Long repertoireId;
 	
 	@Column(nullable = false)
 	private boolean approved;
@@ -44,9 +39,9 @@ public class Reservation implements Serializable{
 	
 	@Column(nullable = true)
 	private Long senderId;
-	
+
 	public Reservation() {
-		// TODO Auto-generated constructor stub
+		super();
 	}
 
 	public Long getId() {
@@ -57,23 +52,7 @@ public class Reservation implements Serializable{
 		this.id = id;
 	}
 
-/*
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	public Repertoire getRepertoire() {
-		return repertoire;
-	}
-
-	public void setRepertoire(Repertoire repertoire) {
-		this.repertoire = repertoire;
-	}
-*/
+	
 	public boolean isApproved() {
 		return approved;
 	}
@@ -105,5 +84,23 @@ public class Reservation implements Serializable{
 	public void setSenderId(Long senderId) {
 		this.senderId = senderId;
 	}
+
+	public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
+
+	public Long getRepertoireId() {
+		return repertoireId;
+	}
+
+	public void setRepertoireId(Long repertoireId) {
+		this.repertoireId = repertoireId;
+	}
+	
+	
 
 }

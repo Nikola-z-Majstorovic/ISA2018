@@ -8,7 +8,7 @@
 			<div>Repertoire Date/Time: {{repertoire.displayDate}}</div>
 			<button data-ng-if="loginuser.role=='CINTHEADMIN'" data-ng-click="changeView('/repertoire/edit/'+ repertoire.id +'/'+selectedEntityId)">Edit</button>
 			<button data-ng-if="loginuser.role=='CINTHEADMIN'" data-ng-click="deleteRepertoire(repertoire.repertoireId)">Delete</button>
-			<button data-ng-if="loginuser.role=='CUSTOMER'" data-ng-click="changeView('/ticketReservation/'+ repertoire.id +'/'+selectedEntityId)">Reservation</button>
+			<button data-ng-if="loginuser.role=='CUSTOMER'" data-ng-click="changeViewReservation(repertoire.id, selectedEntityId)">Reservation</button>
     	
     	</div>
 		<button data-ng-click="changeView('/cinematheaterlist')">Back</button>
