@@ -1,22 +1,11 @@
 package ftn.ISAProjekat.dto;
 
-public class CinTheSumIncom {
-	
-	private Long id;
-	
-	public CinTheSumIncom() {
-		super();
-	}
+public interface CinTheSumIncom {
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
+	Long getCinTheId();
 	
+	String getCinTheName();
 	
-	
+	Float getMoneySum();
+		
 }

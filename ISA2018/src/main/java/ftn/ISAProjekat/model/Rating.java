@@ -10,30 +10,27 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class UserFriend  implements Serializable {
-
+public class Rating implements Serializable{
+	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
 	@Column(nullable = false)
-	private int myId;
+	private float mark;
 	
-	@Column(nullable = false)
-	private boolean approved;
+    @ManyToOne
+    private CinemaTheater cinemaTheater;
+    
+    @ManyToOne
+    private User user;
 
-	@Column(nullable = false)
-	private boolean requestSender;
-
-	@ManyToOne
-	private User user;
-	
-	public UserFriend() {
+	public Rating() {
 		super();
 	}
 
@@ -45,28 +42,21 @@ public class UserFriend  implements Serializable {
 		this.id = id;
 	}
 
-	public int getMyId() {
-		return myId;
+
+	public float getMark() {
+		return mark;
 	}
 
-	public void setMyId(int myId) {
-		this.myId = myId;
+	public void setMark(float mark) {
+		this.mark = mark;
 	}
 
-	public boolean isApproved() {
-		return approved;
+	public CinemaTheater getCinemaTheater() {
+		return cinemaTheater;
 	}
 
-	public void setApproved(boolean approved) {
-		this.approved = approved;
-	}
-
-	public boolean isRequestSender() {
-		return requestSender;
-	}
-
-	public void setRequestSender(boolean requestSender) {
-		this.requestSender = requestSender;
+	public void setCinemaTheater(CinemaTheater cinemaTheater) {
+		this.cinemaTheater = cinemaTheater;
 	}
 
 	public User getUser() {
@@ -76,8 +66,7 @@ public class UserFriend  implements Serializable {
 	public void setUser(User user) {
 		this.user = user;
 	}
-
-
-	
-
+    
+    
+    
 }

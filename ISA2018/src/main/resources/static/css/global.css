@@ -63,3 +63,19 @@
     .modal-content{background-color: #fefefe;margin: auto;padding: 20px;border: 1px solid #888;width: 55%;}
     .close{color: #aaaaaa;float: right;font-size: 28px;font-weight: bold;}
     .close:hover,.close:focus{color: #000;text-decoration: none;cursor: pointer;}
+    
+    
+    .rating > span:hover:before {
+   content: "\2605";
+   position: absolute;
+	}
+	
+	.rating {
+	  unicode-bidi: bidi-override;
+	  direction: rtl;
+	}
+	.rating > span:hover:before,
+	.rating > span:hover ~ span:before {
+	   content: "\2605";
+	   position: absolute;
+	}

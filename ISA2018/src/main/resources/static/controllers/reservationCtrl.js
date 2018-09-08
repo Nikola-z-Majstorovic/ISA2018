@@ -55,9 +55,7 @@ myModule.controller('reservationCtrl', ['$rootScope', '$scope', '$routeParams', 
     				$scope.allReservationsForThisRep = res.data;
     				
     				console.log($rootScope.myFriends);
-    				
-    				
-    				
+	
     				for (var y = 0; y <= $rootScope.myFriends.length - 1; y++) {
     					$rootScope.myFriends[y].userId = $rootScope.myFriends[y].user.id;	    
     					

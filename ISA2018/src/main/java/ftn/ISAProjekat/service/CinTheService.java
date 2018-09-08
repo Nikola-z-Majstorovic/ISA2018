@@ -5,6 +5,7 @@ import java.util.List;
 
 import ftn.ISAProjekat.dto.CinTheSumIncom;
 import ftn.ISAProjekat.model.CinemaTheater;
+import ftn.ISAProjekat.model.Rating;
 
 public interface CinTheService {
 
@@ -19,6 +20,10 @@ public interface CinTheService {
 	void delete(Long id);
 
 	List<CinTheSumIncom> incomeSummuryForPeriod(Date startDate, Date endDate);
+
+	List<Rating> getAllRatings();
+
+	List<Rating> createRating(Rating rating);
 
 
 

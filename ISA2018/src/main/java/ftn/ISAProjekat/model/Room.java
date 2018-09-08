@@ -31,7 +31,7 @@ public class Room implements Serializable {
 	
     @ManyToOne
     private CinemaTheater cinemaTheater;
-    
+   
  
 	public Room() {
 		super();

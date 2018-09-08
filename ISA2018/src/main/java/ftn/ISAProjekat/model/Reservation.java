@@ -20,11 +20,11 @@ public class Reservation  implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	//@ManyToOne(optional = false)
+//	@ManyToOne
 	//@JsonManagedReference
 	private Long userId;
 	
-	//@ManyToOne(optional = false)
+//	@ManyToOne
 	//@JsonManagedReference
 	private Long repertoireId;
 	
@@ -100,6 +100,8 @@ public class Reservation  implements Serializable {
 	public void setRepertoireId(Long repertoireId) {
 		this.repertoireId = repertoireId;
 	}
+
+
 	
 	
 

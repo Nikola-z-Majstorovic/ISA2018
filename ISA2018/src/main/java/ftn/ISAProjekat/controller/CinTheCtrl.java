@@ -1,5 +1,6 @@
 package ftn.ISAProjekat.controller;
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import ftn.ISAProjekat.dto.CinTheSumIncom;
 import ftn.ISAProjekat.dto.CinemaEarn;
 import ftn.ISAProjekat.model.CinemaTheater;
+import ftn.ISAProjekat.model.Rating;
 import ftn.ISAProjekat.service.CinTheService;
 
 @RestController
@@ -23,6 +25,15 @@ public class CinTheCtrl {
 	@Autowired
 	private CinTheService cinTheService;
 	
+//	public static Date parseDate(String date) {
+//		try {
+//			DateFormat f = new SimpleDateFormat("yyyy-MM-dd");
+//			return f.parse(date);
+//		} catch (ParseException e) {
+//			return null;
+//		}
+//	}
+		
 	@RequestMapping(
 			value = "/cinThe/getAll/{isCinema}",
 			method = RequestMethod.GET,
@@ -57,7 +68,24 @@ public class CinTheCtrl {
 	public List<CinemaTheater> findAll(){
 		return cinTheService.findAll();			
 	}
-
+	@RequestMapping(
+			value = "/cinThe/getAllRatings",
+			method = RequestMethod.GET,
+			produces = MediaType.APPLICATION_JSON_VALUE			
+			)
+	public List<Rating> getAllRatings(){
+		return cinTheService.getAllRatings();			
+	}
+	@RequestMapping(
+			value = "/cinThe/giveRating",
+			method = RequestMethod.POST,
+			consumes = MediaType.APPLICATION_JSON_VALUE		
+			)
+	public ResponseEntity<List<Rating>> create(@RequestBody Rating rating) {
+		List<Rating> savedRating= cinTheService.createRating(rating);
+		return new ResponseEntity<List<Rating>>(savedRating,HttpStatus.CREATED);
+	}
+	
 	@RequestMapping(
 			value = "/cinThe/create",
 			method = RequestMethod.POST,

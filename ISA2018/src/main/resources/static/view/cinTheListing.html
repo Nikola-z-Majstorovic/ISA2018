@@ -7,10 +7,26 @@
     		<div>{{ entityType }} name: {{entity.name}}</div>
     		<div>Address: {{entity.address}}</div>
     		<div>Description: {{entity.description}}</div>
-    		<div>Rating: {{entity.EntityRate}}</div>
+    		<div>Rating: {{getRatingForEntityId(entity.id)}}</div>
+    		<div data-ng-if="getRatingForEntityId(entity.id)!='not rated'"style="float:left;">
+			<span data-ng-if="getRatingForEntityId(entity.id)==1">☆</span>
+			<span data-ng-if="getRatingForEntityId(entity.id)==2">☆☆</span>
+			<span data-ng-if="getRatingForEntityId(entity.id)==3">☆☆☆</span>
+			<span data-ng-if="getRatingForEntityId(entity.id)==4">☆☆☆☆</span>
+			<span data-ng-if="getRatingForEntityId(entity.id)==5">☆☆☆☆☆</span>
+			</div><br>
+			<div style="clear:both;"></div>
     		<button data-ng-if="loginuser.role == 'CUSTOMER' || loginuser.role == 'CINTHEADMIN'" data-ng-click="changeView('/repertoirelisting/' + entity.id)">Repertoire</button>
     		<button data-ng-if="loginuser.role == 'SYSADMIN'" data-ng-click="changeView('/cinematheater/edit/' + entity.id)">Edit</button>
-    		<button data-ng-if="loginuser.role == 'SYSADMIN'" data-ng-click="deleteEntity(entity.id)">Delete</button>
+    		<button data-ng-if="loginuser.role == 'SYSADMIN'" data-ng-click="deleteEntity(entity.id)">Delete</button><br>
+    		<div data-ng-if="checkIfRated(entity.id)==true" class="rating" style="float:left;">
+			<span data-ng-click="rate(entity.id,5)">☆</span>
+			<span data-ng-click="rate(entity.id,4)">☆</span>
+			<span data-ng-click="rate(entity.id,3)">☆</span>
+			<span data-ng-click="rate(entity.id,2)">☆</span>
+			<span data-ng-click="rate(entity.id,1)">☆</span>
+			</div><br>
+			<div style="clear:both;"></div>
     	</div>
     </form>
 </div>

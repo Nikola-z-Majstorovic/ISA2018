@@ -3,21 +3,21 @@
 <!--     	<button data-ng-click="loadEntities(0)">Theaters</button> -->
 <!--     	<button data-ng-click="loadEntities(1)">Cinemas</button> -->
 		<label for="StartDate">StartDate:</label>
-		<input id="StartDate" type="date" placeholder="yyyy-MM-dd" data-ng-model="cinemaEarn.endDate">
+		<input id="StartDate" type="date" placeholder="yyyy-MM-dd" data-ng-model="cinemaEarn.startDate">
 		<br>
 		<label for="EndDate">EndDate:</label>
-		<input id="EndDate" type="date" placeholder="yyyy-MM-dd" data-ng-model="cinemaEarn.startDate">
+		<input id="EndDate" type="date" placeholder="yyyy-MM-dd" data-ng-model="cinemaEarn.endDate">
 		
 		<br>
 		<br>
-		<button data-ng-click="getSummary();">Get income Summary</button>
-		
+		<button data-ng-click="getSummary();">Get income Summary</button><br><br>
+		<div data-ng-show="showChart==true" id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div><br><br>
     	<div data-ng-repeat="entity in selectedEntities" data-ng-show="selectedEntities.length > 0">
     		<div>{{ entityType }} name: {{entity.name}}</div>
     		<div>Address: {{entity.address}}</div>
     		<div>Description: {{entity.description}}</div>
     		<div>Rating: {{entity.EntityRate}}</div>
-    		<div>Income: </div>
+    		<div>Income: {{getIncomeForEntity(entity.id)}} din</div>
     	</div>
     </form>
 </div>

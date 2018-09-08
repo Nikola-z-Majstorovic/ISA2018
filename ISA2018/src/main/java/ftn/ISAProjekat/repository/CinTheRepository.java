@@ -13,15 +13,12 @@ public interface CinTheRepository extends JpaRepository<CinemaTheater, Long>{
 
 	 List<CinemaTheater> findByIsCinema(boolean isCinema);
 
-//	 @Query(value= "SELECT CinThe.id FROM cinema_theater CinThe " + 
-//	 		"INNER JOIN repertoire REP ON REP.cinema_theater_id = CinThe.id " + 
-//	 		"INNER JOIN reservation RES ON RES.repertoire_id = REP.id " + 
-//	 		"WHERE REP.time_of_display >= '05-05-2018' AND REP.time_of_display <= curdate() " + 
-//	 		"GROUP BY CinThe.id, CinThe.Name",nativeQuery=true)
-		@Query(value="SELECT CinThe.id FROM cinema_theater CinThe",nativeQuery=true)
-		List<CinTheSumIncom> incomeSummuryForPeriod();
-	 
-	 
+	 @Query(value="SELECT CinThe.id AS CinTheId, CinThe.Name AS CinTheName, SUM(REP.price) As MoneySum FROM cinema_theater CinThe "
+				+ "INNER JOIN repertoire REP ON REP.cinema_theater_id = CinThe.id "
+				+ "INNER JOIN reservation RES ON RES.repertoire_id = REP.id  "
+				+ "WHERE REP.time_of_display >= ?1 AND REP.time_of_display <= ?2 "
+				+ "GROUP BY CinThe.id, CinThe.Name",nativeQuery=true)
+	List<CinTheSumIncom> incomeSummuryForPeriod(Date startDate,Date endDate);
 
-	
-}
+	 
+}	

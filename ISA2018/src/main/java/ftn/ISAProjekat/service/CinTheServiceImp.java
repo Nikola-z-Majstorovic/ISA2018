@@ -1,7 +1,6 @@
 package ftn.ISAProjekat.service;
 
 import java.sql.Date;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,14 +8,18 @@ import org.springframework.stereotype.Service;
 
 import ftn.ISAProjekat.dto.CinTheSumIncom;
 import ftn.ISAProjekat.model.CinemaTheater;
+import ftn.ISAProjekat.model.Rating;
 import ftn.ISAProjekat.repository.CinTheRepository;
+import ftn.ISAProjekat.repository.RatingRepository;
 
 @Service
 public class CinTheServiceImp implements CinTheService {
 
 	@Autowired
-	CinTheRepository cinTheRepository;
-
+	private CinTheRepository cinTheRepository;
+	@Autowired
+	private RatingRepository ratingRepository;
+	
 	@Override
 	public List<CinemaTheater> findAll() {
 		return cinTheRepository.findAll();
@@ -42,14 +45,17 @@ public class CinTheServiceImp implements CinTheService {
 	}
 	@Override
 	public List<CinTheSumIncom> incomeSummuryForPeriod(Date startDate, Date endDate) {
-		return	cinTheRepository.incomeSummuryForPeriod();
-//		List<CinemaTheater> list = cinTheRepository.incomeSummuryForPeriod();
-//		return new ArrayList<CinTheSumIncom>();
-		
+		return cinTheRepository.incomeSummuryForPeriod(startDate,endDate);
+	
 	}
-
-
-
-
+	@Override
+	public List<Rating> getAllRatings() {
+		return ratingRepository.findAll();
+	}
+	@Override
+	public List<Rating> createRating(Rating rating) {
+		ratingRepository.save(rating);
+		return ratingRepository.findAll();
+	}
 
 }

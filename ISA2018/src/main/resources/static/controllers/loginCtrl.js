@@ -4,9 +4,53 @@ myModule.controller('loginCtrl',['$rootScope', '$scope', 'dataService', 'appServ
     
     //get all users from db that will be used as repository users in friendList
     //$rootScope.users= dataservice getAll users
+    $rootScope.allEntityRatings=[];
     dataService.getAll('users','getAll',null,function(res) {
     	if(res.status==200){      
     		$rootScope.users=res.data;
+    	}
+    	else{
+    		console.log(res);
+    	}
+    });    
+    dataService.getAll('cinThe','getAllRatings',null,function(res) {
+    	if(res.status==200){      
+    		for(var i=0;i<=res.data.length-1;i++) {
+    			var rating = {
+    				id : res.data[i].id,
+    				mark :  res.data[i].mark,
+    				cinemaTheaterId : res.data[i].cinemaTheater.id,
+    				userId : res.data[i].user.id    				
+    			};
+    			$rootScope.allEntityRatings.push(rating);
+    		}
+//    		console.log($rootScope.allEntityRatings);
+    		$rootScope.sumedEntityMarks = [];
+    		var grouppedArray = [];
+    		grouppedArray =_.groupBy($rootScope.allEntityRatings,'cinemaTheaterId');
+    		console.log(grouppedArray);
+    		for(var propertyName in grouppedArray) {
+//    				console.log(grouppedArray[propertyName]);
+    				var sum=0;
+        			for(var j=0;j<=grouppedArray[propertyName].length-1;j++) {
+//        				console.log('bingo');
+//        				console.log(grouppedArray[propertyName][j]);
+        				sum=sum+grouppedArray[propertyName][j].mark;
+        			}
+        			
+        			var numbOfMarks=grouppedArray[propertyName].length;
+        			var forMathedMark = {
+        					sumedMark : Math.round(sum/numbOfMarks) ,
+        					cinemaTheaterId : grouppedArray[propertyName][0].cinemaTheaterId
+        			};
+        			$rootScope.sumedEntityMarks.push(forMathedMark);
+    		}
+    		
+    		
+
+//    		console.log(grouppedArray);
+    		console.log($rootScope.sumedEntityMarks);
+
     	}
     	else{
     		console.log(res);
@@ -17,7 +61,7 @@ myModule.controller('loginCtrl',['$rootScope', '$scope', 'dataService', 'appServ
     //DELETE FROM reservation WHERE timeOfDisplay < GETDATE() AND approved = 0
     dataService.delete('reservation','delete',null,function(res) {
 		if(res.status==200){  
-			console.log(res);
+			console.log(res.data);
 		}else {
 			console.log(res);
 		}

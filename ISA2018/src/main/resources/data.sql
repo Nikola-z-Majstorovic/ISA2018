@@ -61,4 +61,11 @@ insert into user_friend(my_id,approved,request_sender,user_id) values (4,false,t
 insert into user_friend(my_id,approved,request_sender,user_id) values (2,true,true,4);
 insert into user_friend(my_id,approved,request_sender,user_id) values (4,true,false,2);
 
-
+insert into rating(mark,cinema_theater_id,user_id) values (4,1,4);
+insert into rating(mark,cinema_theater_id,user_id) values (2,5,6);
+insert into rating(mark,cinema_theater_id,user_id) values (4,3,5);
+insert into rating(mark,cinema_theater_id,user_id) values (5,6,6);
+insert into rating(mark,cinema_theater_id,user_id) values (3,5,7);
+insert into rating(mark,cinema_theater_id,user_id) values (4,2,6);
+insert into rating(mark,cinema_theater_id,user_id) values (2,3,4);
+insert into rating(mark,cinema_theater_id,user_id) values (4,1,5);
