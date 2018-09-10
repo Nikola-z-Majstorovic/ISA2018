@@ -42,10 +42,16 @@ myModule.controller('repertoireCtrl', ['$rootScope', '$scope', 'dataService', 'a
     		  $rootScope.changeView('/ticketReservation/' + entityId + '/' + repertoireId);
   			
   		
-  		});
-    	
-    	
-    	
+  		});   	        	
     }
+    $scope.getRatingForRepertoireId = function (repertoireID) {
+    	
+    	if(appService.lodashFindBy($rootScope.sumedEntityMarks,'cinemaTheaterId',repertoireID)!=undefined) { 
+    		return appService.lodashFindBy($rootScope.sumedEntityMarks,'cinemaTheaterId',repertoireID).sumedMark; 
+    	} else {
+    		return "not rated";
+    	}
+    }
+   
 }]);
 

@@ -4,9 +4,11 @@
 	   	<div>Name: {{loginuser.name}}</div>
 	   	<div>Surname: {{loginuser.surname}}</div>
 	   	<div>Email: {{loginuser.email}}</div>
-	   	<div>City: {{loginuser.city}}</div>      
+	   	<div>City: {{loginuser.city}}</div>   
+	   	   	    <br>
+		<button data-ng-click="changeView('/cinematheaterlist')">Back</button>   
    	</div>
-   
+
     
    <div style="float: right;">
 	    <div>My Reservations</div>
@@ -47,10 +49,8 @@
 	    	</div>
 	    	<button data-ng-click="confirmInvitation(invitation, true)">Confirm</button>
 	    	<button data-ng-click="confirmInvitation(invitation, false)">Decline</button>
+	    </div>	    
+	    
 	    </div>
 
-	    
-	    
-	    </div>
     </div>
-</div>

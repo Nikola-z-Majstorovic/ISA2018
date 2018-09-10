@@ -19,7 +19,7 @@
     		<button data-ng-if="loginuser.role == 'CUSTOMER' || loginuser.role == 'CINTHEADMIN'" data-ng-click="changeView('/repertoirelisting/' + entity.id)">Repertoire</button>
     		<button data-ng-if="loginuser.role == 'SYSADMIN'" data-ng-click="changeView('/cinematheater/edit/' + entity.id)">Edit</button>
     		<button data-ng-if="loginuser.role == 'SYSADMIN'" data-ng-click="deleteEntity(entity.id)">Delete</button><br>
-    		<div data-ng-if="checkIfRated(entity.id)==true" class="rating" style="float:left;">
+    		<div data-ng-if="checkIfRated(entity.id)==true && loginuser.role!='CINTHEADMIN' " class="rating" style="float:left;">
 			<span data-ng-click="rate(entity.id,5)">☆</span>
 			<span data-ng-click="rate(entity.id,4)">☆</span>
 			<span data-ng-click="rate(entity.id,3)">☆</span>
@@ -27,6 +27,7 @@
 			<span data-ng-click="rate(entity.id,1)">☆</span>
 			</div><br>
 			<div style="clear:both;"></div>
+			</div>
     	</div>
     </form>
 </div>

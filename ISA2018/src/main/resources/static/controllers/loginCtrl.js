@@ -13,15 +13,15 @@ myModule.controller('loginCtrl',['$rootScope', '$scope', 'dataService', 'appServ
     		console.log(res);
     	}
     });    
-    dataService.getAll('cinThe','getAllRatings',null,function(res) {
-    	if(res.status==200){      
-    		for(var i=0;i<=res.data.length-1;i++) {
-    			var rating = {
-    				id : res.data[i].id,
-    				mark :  res.data[i].mark,
-    				cinemaTheaterId : res.data[i].cinemaTheater.id,
-    				userId : res.data[i].user.id    				
-    			};
+	    dataService.getAll('cinThe','getAllRatings',null,function(res) {
+	    	if(res.status==200){      
+	    		for(var i=0;i<=res.data.length-1;i++) {
+	    			var rating = {
+	    				id : res.data[i].id,
+	    				mark :  res.data[i].mark,
+	    				cinemaTheaterId : res.data[i].cinemaTheater.id,
+	    				userId : res.data[i].user.id    				
+			};
     			$rootScope.allEntityRatings.push(rating);
     		}
 //    		console.log($rootScope.allEntityRatings);
