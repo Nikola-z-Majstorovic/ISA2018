@@ -28,7 +28,6 @@ myModule.controller('loginCtrl',['$rootScope', '$scope', 'dataService', 'appServ
     		$rootScope.sumedEntityMarks = [];
     		var grouppedArray = [];
     		grouppedArray =_.groupBy($rootScope.allEntityRatings,'cinemaTheaterId');
-    		console.log(grouppedArray);
     		for(var propertyName in grouppedArray) {
 //    				console.log(grouppedArray[propertyName]);
     				var sum=0;
@@ -44,13 +43,7 @@ myModule.controller('loginCtrl',['$rootScope', '$scope', 'dataService', 'appServ
         					cinemaTheaterId : grouppedArray[propertyName][0].cinemaTheaterId
         			};
         			$rootScope.sumedEntityMarks.push(forMathedMark);
-    		}
-    		
-    		
-
-//    		console.log(grouppedArray);
-    		console.log($rootScope.sumedEntityMarks);
-
+    		}    		       		
     	}
     	else{
     		console.log(res);
@@ -61,7 +54,7 @@ myModule.controller('loginCtrl',['$rootScope', '$scope', 'dataService', 'appServ
     //DELETE FROM reservation WHERE timeOfDisplay < GETDATE() AND approved = 0
     dataService.delete('reservation','delete',null,function(res) {
 		if(res.status==200){  
-			console.log(res.data);
+			
 		}else {
 			console.log(res);
 		}
@@ -70,21 +63,17 @@ myModule.controller('loginCtrl',['$rootScope', '$scope', 'dataService', 'appServ
     $scope.login = function () {
 
         dataService.login($rootScope.loginuser,function(res) {
-        	if(res.status==200){        
-        		console.log(res.data);
+        	if(res.status==200){                		
         		$rootScope.loginuser= res.data;
         		        	
         		dataService.getAll('userFriend','getAllMyFriends',$rootScope.loginuser.id,function(res) {
-        			if(res.status==200){  
-        				console.log(res);
+        			if(res.status==200){          				
 	        			$rootScope.myFriends = res.data;	            		
 	            		
 	            		//gett all friend requests where other users sent friend request to me but i still didnt accept
 	            		dataService.getAll('userFriend','getAllMyFriendRequests',$rootScope.loginuser.id,function(res) {
 	            			if(res.status==200){  
 	    	        			$rootScope.myFriendRequests = res.data;	    	            		    	          
-	    	        			console.log($rootScope.myFriendRequests);
-	    	        			console.log(res.data);
 	    	            		 $rootScope.changeView('/cinematheaterlist');
 	                	    
 	            			}else {

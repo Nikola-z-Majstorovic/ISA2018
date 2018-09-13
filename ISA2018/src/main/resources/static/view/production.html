@@ -10,9 +10,10 @@
 			<div>Rating: {{production.avrageRating}}</div>	
 			<div>Description: {{production.description}}</div>		
 			<div>Movie/Display: {{getProductionType(production.isMovie)}}</div>		
-				
+			
     		<button data-ng-click="changeView('/production/edit/'+production.id)">Edit</button>
     		<button data-ng-click="deleteProduction(production.id)">Delete</button>
+			<br><br>	
     	</div>
     </form>
 </div>

@@ -13,7 +13,6 @@ myModule.controller('productionEditCtrl', ['$rootScope', '$scope', 'dataService'
 //    	$scope.production = angular.copy(appService.lodashFindBy($rootScope.productions, 'idProduction', Number($routeParams.productionId)));
 	   	 dataService.getAll('production','findAll',null,function(res) {
 	      	if(res.status==200){        
-	      		console.log(res);
 	      		$scope.allProductions = res.data;
 	      		$scope.production = angular.copy(appService.lodashFindBy($scope.allProductions, 'id',Number($routeParams.productionId)));
 	      	}else {
@@ -36,8 +35,7 @@ myModule.controller('productionEditCtrl', ['$rootScope', '$scope', 'dataService'
     		$scope.production.movie = Number($scope.production.movie);
 //    		$rootScope.productions.push($scope.production);
     		dataService.create('production','create',$scope.production,function(res) {
-    	      	if(res.status==200){        
-    	      		console.log(res);
+    	      	if(res.status==201){        
     	      		$rootScope.changeView('/productionList');
     	      	}else {
     	      		console.log(res);         
@@ -48,8 +46,7 @@ myModule.controller('productionEditCtrl', ['$rootScope', '$scope', 'dataService'
     	}else{
     		$scope.production.movie = Number($scope.production.movie);
     		dataService.update('production','update',$scope.production,function(res) {
-    	      	if(res.status==200){        
-    	      		console.log(res);
+    	      	if(res.status==201){        
     	      		$rootScope.changeView('/productionList');
     	      	}else {
     	      		console.log(res);         

@@ -1,6 +1,7 @@
 package ftn.ISAProjekat.model;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -8,12 +9,16 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class User implements Serializable  {
@@ -52,6 +57,9 @@ public class User implements Serializable  {
 	inverseJoinColumns=@JoinColumn(name="cinema_theater_id"))
 	private Set<CinemaTheater> cinemaTheaters;
 	
+	@JsonIgnore
+	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy="cinemaTheater")
+	private List<Rating> ratings;
 	
 	public User() {
 		super();
@@ -127,6 +135,14 @@ public class User implements Serializable  {
 
 	public void setCinemaTheaters(Set<CinemaTheater> cinemaTheaters) {
 		this.cinemaTheaters = cinemaTheaters;
+	}
+
+	public List<Rating> getRatings() {
+		return ratings;
+	}
+
+	public void setRatings(List<Rating> ratings) {
+		this.ratings = ratings;
 	}
 
 	

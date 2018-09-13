@@ -4,8 +4,7 @@ myModule.controller('productionCtrl', ['$rootScope', '$scope', 'dataService', 'a
     
     $scope.refreshProductions = function() {
 		 dataService.getAll('production','getAll',true,function(res){
-          	if(res.status==200){        
-         		console.log(res);
+          	if(res.status==200){                 		
          		$scope.productions = res.data;
           	}else {
           		console.log(res);
@@ -15,7 +14,6 @@ myModule.controller('productionCtrl', ['$rootScope', '$scope', 'dataService', 'a
     $scope.refreshProductions();
     $scope.getProductionType = function (productionType) {
     	 if (productionType == 1 ) {
-
     		 return "movie";
     	 }else {
     		 return "display";
@@ -26,7 +24,6 @@ myModule.controller('productionCtrl', ['$rootScope', '$scope', 'dataService', 'a
     	console.log(productionId);
     	 dataService.delete('production','delete',productionId,function(res){
            	if(res.status==200){        
-          		console.log(res);
           		$scope.productions = res.data;
            	}else {
            		console.log(res);

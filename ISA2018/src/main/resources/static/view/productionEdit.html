@@ -27,11 +27,8 @@
     	<input id="nameOfDirector" type="text" name="nameOfDirector" data-ng-model="production.nameOfDirector" placeholder="nameOfDirector">
     	<br>
     	<label for="duration">Duration:</label>
-    	<input id="duration" type=number name="duration" data-ng-model="production.duration" placeholder="Duration">
-    	<br>
-    	 <label for="avrageRating">Rating:</label>
-    	<input id="avrageRating" type="text" name="avrageRating" data-ng-model="production.avrageRating" placeholder="Rating">
-    	<br>  	    	
+    	<input id="duration" type=text name="duration" data-ng-model="production.duration" placeholder="Duration">
+    	<br>    	
     	<button data-ng-click="frm.$invalid || saveProduction()">Save</button>
     	<button data-ng-click="changeView('/productionlist')">Cancel</button>
     </form>

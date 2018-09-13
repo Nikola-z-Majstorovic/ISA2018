@@ -48,6 +48,10 @@ public class CinemaTheater implements Serializable {
 	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy="cinemaTheater") 
 	private List<Repertoire> repertoires;
 	
+	@JsonIgnore
+	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy="cinemaTheater")
+	private List<Rating> ratings;
+	
 	public CinemaTheater() {
 		super();
 	}
@@ -114,6 +118,14 @@ public class CinemaTheater implements Serializable {
 
 	public void setRepertoires(List<Repertoire> repertoires) {
 		this.repertoires = repertoires;
+	}
+
+	public List<Rating> getRatings() {
+		return ratings;
+	}
+
+	public void setRatings(List<Rating> ratings) {
+		this.ratings = ratings;
 	}
 
 }

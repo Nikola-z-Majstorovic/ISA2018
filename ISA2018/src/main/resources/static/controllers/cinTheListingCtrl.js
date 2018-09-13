@@ -11,8 +11,7 @@ myModule.controller('cinTheListingCtrl', ['$rootScope', '$scope', 'dataService',
     	if(entityType == 1){
     		$scope.entityType = 'Cinema';  
             dataService.getAll('cinThe','getAll',entityType,function(res) {
-            	if(res.status==200){        
-            		console.log(res);
+            	if(res.status==200){                    	
             		$scope.selectedEntities = res.data;
             	}else {
             		console.log(res);
@@ -23,8 +22,7 @@ myModule.controller('cinTheListingCtrl', ['$rootScope', '$scope', 'dataService',
     	}else{
     		$scope.entityType = 'Theater';
             dataService.getAll('cinThe','getAll',entityType,function(res) {
-            	if(res.status==200){        
-            		console.log(res);
+            	if(res.status==200){                    		
             		$scope.selectedEntities = res.data;
             	}else {
             		console.log(res);
@@ -38,16 +36,11 @@ myModule.controller('cinTheListingCtrl', ['$rootScope', '$scope', 'dataService',
     $scope.deleteEntity = function(entityId){
     	//call data service to delete entity for given id
 
-    	//refresh entity data
-//    	if($scope.entityType == 'Cinema'){
     		//Load cinemas using data service
             dataService.delete('cinThe','delete',entityId,function(res) {
             	if(res.status==200){        
-//            		  $scope.loadEntities();
-
                     dataService.getAll('cinThe','getAll', $scope.entityTypeSelected,function(res) {
-                    	if(res.status==200){        
-                    		console.log(res);
+                    	if(res.status==200){                            
                     		$scope.selectedEntities = res.data;
                     	}else {
                     		console.log(res);
@@ -88,7 +81,6 @@ myModule.controller('cinTheListingCtrl', ['$rootScope', '$scope', 'dataService',
         dataService.create('cinThe','giveRating',rating,function(res) {
         	if(res.status==201){   
         		$rootScope.allEntityRatings = [];
-        		console.log(res.data);
         		for(var i=0;i<=res.data.length-1;i++) {
         			var rating = {
         				id : res.data[i].id,
