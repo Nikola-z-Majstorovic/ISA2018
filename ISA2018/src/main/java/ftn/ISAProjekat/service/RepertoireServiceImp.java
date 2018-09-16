@@ -59,7 +59,8 @@ public class RepertoireServiceImp implements RepertoireService {
 
 	@Override
 	public List<RepertoireIncom> incomeSummuryForPeriod(Date startDate, Date endDate) {
-		return repertoireRepository.incomeSummuryForPeriod(startDate,endDate);
+		 List<RepertoireIncom> list = repertoireRepository.incomeSummuryForPeriod(startDate,endDate); 
+		return list;
 	}
 
 

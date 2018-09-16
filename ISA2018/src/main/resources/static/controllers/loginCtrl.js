@@ -5,6 +5,7 @@ myModule.controller('loginCtrl',['$rootScope', '$scope', 'dataService', 'appServ
     //get all users from db that will be used as repository users in friendList
     //$rootScope.users= dataservice getAll users
     $rootScope.allEntityRatings=[];
+    $rootScope.allProductionRatings=[];
     dataService.getAll('users','getAll',null,function(res) {
     	if(res.status==200){      
     		$rootScope.users=res.data;
@@ -49,7 +50,41 @@ myModule.controller('loginCtrl',['$rootScope', '$scope', 'dataService', 'appServ
     		console.log(res);
     	}
     });    
-    
+	    
+	    dataService.getAll('production','getAllRatings',null,function(res) {
+	    	if(res.status==200){      
+	    		for(var i=0;i<=res.data.length-1;i++) {
+	    			var rating = {
+	    				id : res.data[i].id,
+	    				mark :  res.data[i].mark,
+	    				productionId : res.data[i].production.id,
+	    				userId : res.data[i].user.id    				
+	    			};
+    			$rootScope.allProductionRatings.push(rating);
+    		}
+    		console.log($rootScope.allProductionRatings);
+    		$rootScope.sumedProductionsMarks = [];
+    		var grouppedArray = [];
+    		grouppedArray =_.groupBy($rootScope.allProductionRatings,'productionId');
+    		for(var propertyName in grouppedArray) {
+    				var sum=0;
+        			for(var j=0;j<=grouppedArray[propertyName].length-1;j++) {
+        				sum=sum+grouppedArray[propertyName][j].mark;
+        			}
+        			
+        			var numbOfMarks=grouppedArray[propertyName].length;
+        			var forMathedMark = {
+        					sumedMark : Math.round(sum/numbOfMarks) ,
+        					productionId : grouppedArray[propertyName][0].productionId
+        			};
+        			$rootScope.sumedProductionsMarks.push(forMathedMark);
+    		}    		 
+    		console.log($rootScope.sumedProductionsMarks);
+    	}
+    	else{
+    		console.log(res);
+    	}
+    });    
     //Delete all reservations that are not approved (0) and not in future(datetime<datetime.Now)
     //DELETE FROM reservation WHERE timeOfDisplay < GETDATE() AND approved = 0
     dataService.delete('reservation','delete',null,function(res) {

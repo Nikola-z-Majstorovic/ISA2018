@@ -32,6 +32,21 @@
 	    	<div>
 	    		Date/Time: {{getRepertoireInfo(reservation.repertoireId, 'time')}} 
 	    	</div>
+			<div>Rating : </div>
+	    	<div data-ng-if="getRepertoireInfo(reservation.repertoireId, 'productionRating')!='not rated'"style="float:left;">
+			<span data-ng-if="getRepertoireInfo(reservation.repertoireId, 'productionRating')==1">☆</span>
+			<span data-ng-if="getRepertoireInfo(reservation.repertoireId, 'productionRating')==2">☆☆</span>
+			<span data-ng-if="getRepertoireInfo(reservation.repertoireId, 'productionRating')==3">☆☆☆</span>
+			<span data-ng-if="getRepertoireInfo(reservation.repertoireId, 'productionRating')==4">☆☆☆☆</span>
+			<span data-ng-if="getRepertoireInfo(reservation.repertoireId, 'productionRating')==5">☆☆☆☆☆</span>
+			</div><br>
+			<div data-ng-if="checkIfRated(reservation.repertoireId)==true && loginuser.role!='CINTHEADMIN' && loginuser.role!='SYSADMIN'" class="rating" style="float:left;">
+			<span data-ng-click="rate(reservation.repertoireId,5)">☆</span>
+			<span data-ng-click="rate(reservation.repertoireId,4)">☆</span>
+			<span data-ng-click="rate(reservation.repertoireId,3)">☆</span>
+			<span data-ng-click="rate(reservation.repertoireId,2)">☆</span>
+			<span data-ng-click="rate(reservation.repertoireId,1)">☆</span>
+			</div><br>
 	    </div>
 	    <br>
 	    <br>

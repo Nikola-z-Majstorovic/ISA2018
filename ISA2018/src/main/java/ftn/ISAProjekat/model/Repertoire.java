@@ -10,6 +10,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import javax.persistence.TemporalType;
+
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
@@ -30,7 +35,8 @@ public class Repertoire implements Serializable {
 	@Column(nullable = false)
 	private float price;
 	
-	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone = "UTC")
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+//	@Temporal(TemporalType.TIMESTAMP)
 	private Date timeOfDisplay;
 	
     @ManyToOne
@@ -94,11 +100,11 @@ public class Repertoire implements Serializable {
 		this.production = production;
 	}
 
-	public Date getTimeOfDisplay() {
+	public Date  getTimeOfDisplay() {
 		return timeOfDisplay;
 	}
 
-	public void setTimeOfDisplay(Date timeOfDisplay) {
+	public void setTimeOfDisplay(Date  timeOfDisplay) {
 		this.timeOfDisplay = timeOfDisplay;
 	}
     

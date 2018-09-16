@@ -58,6 +58,10 @@ public class Production implements Serializable{
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY,mappedBy="production") 
 	private List<Repertoire> repertoires;
 
+	@JsonIgnore
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY,mappedBy="production") 
+	private List<ProductionRating> productionRatings;
+	
 	public Production() {
 		super();
 	}

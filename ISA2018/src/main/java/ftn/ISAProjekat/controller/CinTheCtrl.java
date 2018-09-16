@@ -24,16 +24,7 @@ public class CinTheCtrl {
 
 	@Autowired
 	private CinTheService cinTheService;
-	
-//	public static Date parseDate(String date) {
-//		try {
-//			DateFormat f = new SimpleDateFormat("yyyy-MM-dd");
-//			return f.parse(date);
-//		} catch (ParseException e) {
-//			return null;
-//		}
-//	}
-		
+
 	@RequestMapping(
 			value = "/cinThe/getAll/{isCinema}",
 			method = RequestMethod.GET,

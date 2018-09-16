@@ -1,5 +1,6 @@
 package ftn.ISAProjekat.controller;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,7 @@ public class RepertoireCtrl {
 	}
 	@RequestMapping(
 			value = "/repertoire/incomeSummuryForPeriod",
-			method = RequestMethod.GET,
+			method = RequestMethod.PUT,
 			produces = MediaType.APPLICATION_JSON_VALUE
 			)
 	private List<RepertoireIncom> incomeSummuryForPeriod(@RequestBody CinemaEarn cinemaEarn) {

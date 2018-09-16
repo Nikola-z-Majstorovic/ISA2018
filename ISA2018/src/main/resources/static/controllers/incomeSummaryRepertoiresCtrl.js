@@ -1,37 +1,45 @@
-myModule.controller('incomeSummaryCtrl', ['$rootScope', '$scope', 'dataService', 'appService', function ($rootScope, $scope, dataService,appService) {
+myModule.controller('incomeSummaryRepertoiresCtrl', ['$rootScope', '$scope', 'dataService', 'appService', function ($rootScope, $scope, dataService,appService) {
     //-----------------------------------------------------------------------------------------------------------
-    console.log('we are in incomeSummaryCtrl ctrl');
+    console.log('we are in incomeSummaryRepertoiresCtrl ctrl');
     $scope.selectedEntities = [];
 
 	$scope.entityType = 'Cinema';  
-    dataService.getAll('cinThe','findAll', null,function(res) {
+    dataService.getAll('repertoire','getEveryRepertoire', null,function(res) {
     	if(res.status==200){        
     		console.log(res);
-    		$scope.selectedEntities = res.data;
+    		$scope.selectedRepertoires = res.data;
     	}else {
     		console.log(res);
     		
     	}	
     });
     
-//    var cinemaEarn = {
-//    		startDate: moment(new Date('2018-05-05')),
-//    		endDate: moment(new Date('2018-08-27'))
-//    }
+    var repertoireEarn = {
+    		startDate: moment(new Date('2018-05-05')),
+    		endDate: moment(new Date('2018-08-27'))
+    }
     
     $scope.showChart=false;
     $scope.getSummary = function(){
 
-    	console.log($scope.cinemaEarn);
-	    dataService.update('cinThe','incomeSummuryForPeriod', $scope.cinemaEarn, function(res) {
+    	console.log($scope.repertoireEarn);
+	    dataService.update('repertoire','incomeSummuryForPeriod', $scope.repertoireEarn, function(res) {
 	    	if(res.status==200){        
-	    		console.log(res);
+//	    		console.log(res);
 	    		$scope.allIncome = res.data;
+//	    		for(var i=0;i<=$scope.allIncome.length-1;i++) {
+//	    				var moneySum = 	$scope.allIncome[i].repertoireId;
+//	    				var repertoireId = 	$scope.allIncome[i].moneySum;
+//	    				$scope.allIncome[i].repertoireId = repertoireId;
+//	    				$scope.allIncome[i].moneySum = moneySum;
+//	    				
+//	    		}
+	    		console.log($scope.allIncome);
 	    		var namesArray= [];
 	    		var numbersArray= [];
 	    		for(var i=0;i<=$scope.allIncome.length-1;i++) {
 	    			console.log($scope.allIncome[i]);
-	    			namesArray.push($scope.allIncome[i].cinTheName);
+	    			namesArray.push($scope.allIncome[i].productionName);
 	    			numbersArray.push($scope.allIncome[i].moneySum);
 	    		}
 	    		
@@ -76,9 +84,9 @@ myModule.controller('incomeSummaryCtrl', ['$rootScope', '$scope', 'dataService',
 	    		    }]
 	    		});
 	    		$scope.showChart=true;
-	    		$scope.getIncomeForEntity = function (entityId) {
-	    			if(appService.lodashFindBy($scope.allIncome,'cinTheId',entityId)!=undefined){
-	    			return appService.lodashFindBy($scope.allIncome,'cinTheId',entityId).moneySum;
+	    		$scope.getIncomeForRepertoire = function (repertoireID) {
+	    			if(appService.lodashFindBy($scope.allIncome,'repertoireId',repertoireID)!=undefined){
+	    			return appService.lodashFindBy($scope.allIncome,'repertoireId',repertoireID).moneySum;
 	    			}else {
 	    				return 0;
 	    			}

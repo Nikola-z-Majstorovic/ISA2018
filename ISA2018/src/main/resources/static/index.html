@@ -19,7 +19,8 @@
 <button data-ng-if="loginuser.role=='CINTHEADMIN'" data-ng-click="changeView('/productionList')">View production list</button> 
 <button data-ng-if="loginuser.role=='CUSTOMER'"data-ng-click="changeView('/friendList')">View friend list</button> 
 <button data-ng-if="loginuser.role=='CUSTOMER'" data-ng-click="changeView('/myReservations')">My Reservations</button> 
-<button data-ng-if="loginuser.role=='CINTHEADMIN'" data-ng-click="changeView('/incomeSummary')">Income Summary</button> 
+<button data-ng-if="loginuser.role=='CINTHEADMIN'" data-ng-click="changeView('/incomeSummary')">Income Summary for entities</button> 
+<button data-ng-if="loginuser.role=='CINTHEADMIN'" data-ng-click="changeView('/incomeSummaryForReperotires')">Income Summary for repertoires</button> 
 	<div data-ng-view></div>
 <!-- sevices -->
 <script src="services/appService.js"></script>
@@ -37,6 +38,7 @@
 <script src="controllers/reservationCtrl.js"></script>
 <script src="controllers/myReservationsCtrl.js"></script>
 <script src="controllers/incomeSummaryCtrl.js"></script>
+<script src="controllers/incomeSummaryRepertoiresCtrl.js"></script>
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/modules/export-data.js"></script>

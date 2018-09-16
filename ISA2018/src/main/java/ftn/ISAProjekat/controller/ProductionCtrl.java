@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import ftn.ISAProjekat.model.Production;
+import ftn.ISAProjekat.model.ProductionRating;
 import ftn.ISAProjekat.service.ProductionService;
 
 @RestController
@@ -37,6 +38,23 @@ public class ProductionCtrl {
 			)
 	public List<Production> findAll() {		
 		return productionService.findAll();		
+	}
+	@RequestMapping(
+			value = "/production/getAllRatings",
+			method = RequestMethod.GET,
+			produces = MediaType.APPLICATION_JSON_VALUE			
+			)
+	public List<ProductionRating> getAllRatings(){
+		return productionService.getAllRatings();			
+	}
+	@RequestMapping(
+			value = "/production/giveRating",
+			method = RequestMethod.POST,
+			consumes = MediaType.APPLICATION_JSON_VALUE		
+			)
+	public ResponseEntity<List<ProductionRating>> create(@RequestBody ProductionRating rating) {
+		List<ProductionRating> savedRating= productionService.createRating(rating);
+		return new ResponseEntity<List<ProductionRating>>(savedRating,HttpStatus.CREATED);
 	}
 	@RequestMapping(
 			value = "/production/create",

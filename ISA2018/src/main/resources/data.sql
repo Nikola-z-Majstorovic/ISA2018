@@ -34,12 +34,12 @@ insert into room(name,num_of_rows,num_of_sits_in_row,cinema_theater_id) values('
 insert into room(name,num_of_rows,num_of_sits_in_row,cinema_theater_id) values('6',2,8,7);
 insert into room(name,num_of_rows,num_of_sits_in_row,cinema_theater_id) values('7',2,8,4);
  
-insert into repertoire(active,price,cinema_theater_id,room_id,production_id,time_of_display) values (true,200,1,1,1,'2018-08-25');
-insert into repertoire(active,price,cinema_theater_id,room_id,production_id,time_of_display) values (true,300,2,1,5,'2018-08-26');
-insert into repertoire(active,price,cinema_theater_id,room_id,production_id,time_of_display) values (true,220,3,2,4,'2018-08-26');
-insert into repertoire(active,price,cinema_theater_id,room_id,production_id,time_of_display) values (true,240,4,5,6,'2018-08-26');
-insert into repertoire(active,price,cinema_theater_id,room_id,production_id,time_of_display) values (true,280,4,4,7,'2018-08-26');
-insert into repertoire(active,price,cinema_theater_id,room_id,production_id,time_of_display) values (true,210,6,4,3,'2018-08-26');
+insert into repertoire(active,price,cinema_theater_id,room_id,production_id) values (true,200,1,1,1);
+insert into repertoire(active,price,cinema_theater_id,room_id,production_id) values (true,300,2,1,5);
+insert into repertoire(active,price,cinema_theater_id,room_id,production_id) values (true,220,3,2,4);
+insert into repertoire(active,price,cinema_theater_id,room_id,production_id) values (true,240,4,5,6);
+insert into repertoire(active,price,cinema_theater_id,room_id,production_id) values (true,280,4,4,7);
+insert into repertoire(active,price,cinema_theater_id,room_id,production_id) values (true,210,6,4,3);
 
 insert into reservation(user_id,repertoire_id,approved,sit_number,row_number,sender_id) values (2,2,true,1,3,null);
 insert into reservation(user_id,repertoire_id,approved,sit_number,row_number,sender_id) values (2,2,false,2,1,1);
@@ -69,3 +69,7 @@ insert into rating(mark,cinema_theater_id,user_id) values (3,5,7);
 insert into rating(mark,cinema_theater_id,user_id) values (4,2,6);
 insert into rating(mark,cinema_theater_id,user_id) values (2,3,4);
 insert into rating(mark,cinema_theater_id,user_id) values (4,1,5);
+
+insert into production_rating(mark,production_id,user_id) values (4,1,4);
+insert into production_rating(mark,production_id,user_id) values (2,5,6);
+insert into production_rating(mark,production_id,user_id) values (4,3,5);

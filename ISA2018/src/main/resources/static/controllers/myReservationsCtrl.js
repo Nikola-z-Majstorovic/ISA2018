@@ -21,8 +21,32 @@ myModule.controller('myReservationsCtrl', ['$rootScope', '$scope', 'dataService'
       				}else if(optionInfo == 'time'){
       					
       					return appService.lodashFindBy($scope.allRepertoires, 'id', repertoireId).timeOfDisplay;
+      				}else if(optionInfo == 'productionRating'){
+      					
+      					var productionId =  appService.lodashFindBy($scope.allRepertoires, 'id', repertoireId).production.id;
+      					if (appService.lodashFindBy($rootScope.sumedProductionsMarks, 'productionId', productionId)!= undefined) {
+      						return appService.lodashFindBy($rootScope.sumedProductionsMarks, 'productionId', productionId).sumedMark;
+      					}else {
+      						return 'not rated';
+      					}
       				}
       			}
+      	   $scope.checkIfRated = function (repertoireId) {
+      		   console.log($scope.allRepertoires);
+      		   console.log(repertoireId);
+      			var productionId =  appService.lodashFindBy($scope.allRepertoires, 'id', repertoireId).production.id;
+      	    	var productions = [];
+      	    	productions = appService.lodashFilterBy($rootScope.allProductionRatings,'productionId',productionId);
+      	    	if(productions.length > 0){
+      	    		if(appService.lodashFindBy(productions,'userId',$rootScope.loginuser.id) != undefined) {
+      	    			return false;
+      	    		}else {
+      	    			return true;
+      	    		}
+      	    	}else {
+      	    		return true;
+      	    	}
+      	   }
       		
       		$scope.isPossibleToCancel = function(repertoireId){
       	    	var repertoire = appService.lodashFindBy($scope.allRepertoires, 'id', repertoireId);
@@ -131,7 +155,53 @@ myModule.controller('myReservationsCtrl', ['$rootScope', '$scope', 'dataService'
     $scope.getFriendName = function(userId){
    	 return appService.lodashFindBy($rootScope.users, 'id', userId);
    }
-    
-    
+
+    $scope.rate = function(repertoireId,rate) {
+
+    	var production =  appService.lodashFindBy($scope.allRepertoires, 'id', repertoireId).production;
+    	console.log(rate);
+    	var rating = {
+    		id : null,
+    		production : production,
+    		mark : rate,
+    		user : $rootScope.loginuser
+    	};
+    	console.log(rating);
+        dataService.create('production','giveRating',rating,function(res) {
+        	if(res.status==201){   
+        		$rootScope.allProductionRatings = [];
+        		
+        		for(var i=0;i<=res.data.length-1;i++) {
+	    			var rating = {
+	    				id : res.data[i].id,
+	    				mark :  res.data[i].mark,
+	    				productionId : res.data[i].production.id,
+	    				userId : res.data[i].user.id    				
+	    			};
+    			$rootScope.allProductionRatings.push(rating);
+    		}
+	    		console.log($rootScope.allProductionRatings);
+	    		$rootScope.sumedProductionsMarks = [];
+	    		var grouppedArray = [];
+	    		grouppedArray =_.groupBy($rootScope.allProductionRatings,'productionId');
+	    		for(var propertyName in grouppedArray) {
+	    				var sum=0;
+	        			for(var j=0;j<=grouppedArray[propertyName].length-1;j++) {
+	        				sum=sum+grouppedArray[propertyName][j].mark;
+	        			}
+	        			
+	        			var numbOfMarks=grouppedArray[propertyName].length;
+	        			var forMathedMark = {
+	        					sumedMark : Math.round(sum/numbOfMarks) ,
+	        					productionId : grouppedArray[propertyName][0].productionId
+	        			};
+	        			$rootScope.sumedProductionsMarks.push(forMathedMark);
+	    		}        	
+        	}else {
+        		console.log(res);
+        		
+        	}	
+        });
+    }
 }]);
 

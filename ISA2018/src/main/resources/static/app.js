@@ -90,6 +90,12 @@ myModule.config(['$routeProvider' ,'$locationProvider', function ($routeProvider
                 templateUrl: 'view/incomeSummary.html',
                 resolve: {}
             }) 
+         .when('/incomeSummaryForReperotires',
+            {
+                controller: 'incomeSummaryRepertoiresCtrl',
+                templateUrl: 'view/incomeSummaryRepertoires.html',
+                resolve: {}
+            })                 
             
 }]);
 
